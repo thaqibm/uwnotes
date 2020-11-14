@@ -1,0 +1,321 @@
+\documentclass[16pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics}
+
+
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarks=true,
+    pdfauthor=Thaqib,
+    bookmarksopen=true
+}
+
+\newtcbtheorem{defn}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=orange,
+    colbacktitle=orange,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{def}
+
+
+\newtcbtheorem{axm}{Axiom}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{axm}
+
+\newtcbtheorem{prop}{Proposition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{prop}
+
+\newtcbtheorem{thm}{Theorem}{
+    width=\textwidth,
+    colback=deepblue!2,
+    colframe=deepblue,
+    colbacktitle=deepblue,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+\newtcbtheorem{lemm}{Lemma}{
+    width=\textwidth,
+    colback=deepred!0,
+    colframe=deepred,
+    colbacktitle=deepred,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{lemm}
+
+
+
+\newtcbtheorem{coll}{Corollary}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=dkgreen,
+    colbacktitle=dkgreen,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+
+
+
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.3,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.9}\small	tfamily},
+  numbers=none,
+  numberstyle=	iny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{deepred},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\newcommand{\ang}[1]{\langle #1 \rangle}
+
+\newcommand{\OR}{\vee}
+
+\newcommand{\AND}{\wedge}
+
+\author{Thaqib Mo.}
+\title{ Elementary Number Theory }
+\begin{document}
+\maketitle
+\newpage
+\section{Integral Domains}
+\begin{defn}{Integral Domains}{}
+Let $R$ be a commutative ring, then $a\in R$ is called the \emph{zero divisor}, if there is some $b\in R$ with $b\neq 0$ for which $ab=0$.  
+\\
+An \emph{Integral Domain} is a commutative ring $R$, with $R\neq \{0\}$ such that $0$ is the only \emph{zero divisor}. If we have $ab=0$ then either $a=0$ or  $b=0$. 
+\end{defn}
+
+We can define Integral Domains in another equivalent way using the "cancellation law". 
+\begin{thm}{}{}
+A commutative ring $R\neq \{0\}$ is an integral domain if and only if for all $a,b,c \in R$ if $a\neq 0$ and 
+\[ab=ac\]
+Then
+\[b=c\] 
+\end{thm} 
+\begin{proof}
+Suppose $R$ is an integral domain, and we have $ab=ac$ and $a\neq 0$ then $ab-ac = 0$ and then $a(b-c) = 0$. Since $R$ is an integral domain we must have $b-c = 0$ that implies $b=c$. 
+\\
+Now suppose $R$ is a ring where the commutative property holds. Assume we have $ab=0$ If $a=0$ we are done, suppose $a\neq 0$ then 
+\[ab=a\cdot 0 \leadsto b=0\]   
+\end{proof}
+
+\begin{example}
+The ring $\mathbb{Z}$ is an integral domain.  
+\end{example}
+
+\begin{example}
+The commutative rings $\mathbb{Q}, \mathbb{R}$ are an integral domains.  
+\end{example}
+
+The rings $\mathbb{Q}$ and $\mathbb{R}$ are more than rings. They are also \emph{fields}. 
+\begin{defn}{Fields}{}
+A ring $F$ is called a \emph{field} if it is commutative, and if every non zero element in $F$ has a multiplicative inverse. That means if $a\in F$ with $a\neq 0$ then we have $b\in F$ such that 
+\[ab=1\]  
+\end{defn}
+For the fields $\mathbb{Q,R}$ if we have $r\in \mathbb{Q}$ then we also have $\frac{1}{r}\in \mathbb{Q}$ and $r\cdot \frac{1}{r} = 1$. The same applies for the field $\mathbb{R}$. The ring $\mathbb{Z}$ is not a field since not every element has a multiplicative inverse. 
+
+\newpage
+\begin{thm}{}{}
+Every subring of a field is an integral domain. In particular, every field is an integral
+domain.
+\end{thm}
+\begin{proof}
+Let $F$ be a field and $R$ be a sub ring. Since $\times$ in $R$ and $\times$ in $F$ is the same, $(R,\times)$ is commutative and $R$ is a commutative ring. Now suppose we have $a,b\in R$ such that $ab=0$. If $a=0$ we are done. Assume $a\neq 0$ since this equation also holds in $F$ then there is some $a^{-1}\in F$ such that $aa^{-1}=1$ then we get 
+\begin{align*}
+&ab=0\\
+&aba^{-1}=0a^{-1}\\
+&b=0
+\end{align*}
+\end{proof}
+
+\begin{example}
+If $n\geq 2$ is composite then $\mathbb{Z}/n\mathbb{Z}$ is not an integral domain. Since there is a factorization of $n=ab$ then $[a],[b]$ are both non zero elements with $[a][b]=[ab]=[n]=[0]$
+\end{example}
+
+
+\begin{example}
+We define the ring of \emph{Gaussian integers} denoted by $\mathbb{Z}[i]=\{a+bi : a,b\in \mathbb{Z}\}$ where addition is given by 
+\[a+bi+c+di = (a+b)+(c+d)i\]
+and multiplication is given by 
+\[(a+bi)(c+di) = (ac-bd)+(ad+bc)i\]
+This is a subring is $\mathbb{C}$ the complex numbers. 
+\end{example}
+
+\subsection{Basic Properties of Integral Domains}
+
+\begin{thm}{}{}
+If $R$ is an integral domain then $\mathrm{Char} R = 0$ or $\mathrm{Char} R$ is prime. 
+\end{thm}
+\begin{proof}
+Suppose $R$ is an integral domain and $\mathrm{Char}R\neq 0$ and $\mathrm{Char}R$ is not prime. Then if we have $\mathrm{Char} R=1$, then $R$ is the zero ring since $1=0$, which is not possible due to the definition of integral domain. Now suppose $\mathrm{Char}R=n$ where $n>1$ is not prime. Then we have $n=ab$ then $a\cdot 1_R$ and $b\cdot 1_R$ are non zero elements but $(a\cdot 1)(b\cdot 1) = ab\cdot 1 =0$ that contradicts the definition of an integral domain. 
+\end{proof}
+Note that this again shows that $\mathbb{Z}/n\mathbb{Z}$ is not an integral domain
+
+\newpage
+\begin{thm}{}{}
+Every finite integral domain is a field.
+\end{thm}
+
+\begin{proof}
+Let $R$ be an integral domain, and suppose $|R|=n$. Let $a\in R$ with $a\neq 0$ consider the multiplication map $\phi_a(r) = ar$ then $\phi$ is injective since if we have $\phi(r)=\phi(s)$ then $ra=sa$ since $R$ is an integral domain we can use the cancellation property to get $r=s$.
+\\
+So we have an injective function $\phi:R\rightarrow R$. Since $R$ is finite then this implies $\phi$ is surjective. Given that $\phi$ is injective we have $|\phi(R)|=n$. Since $\phi$ is surjective there must be some $b\in R$ such that $\phi(b) = 1$ which means $ab=ba = 1$ thus $a$ has an multiplicative inverse in $R$. By definition $R$ is a field.  
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

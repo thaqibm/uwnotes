@@ -1,0 +1,292 @@
+
+\documentclass[16pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+
+\newtcbtheorem{defn}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=orange,
+    colbacktitle=orange,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{def}
+
+
+\newtcbtheorem{axm}{Axiom}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{axm}
+
+
+\newtcbtheorem{thm}{Theorem}{
+    width=\textwidth,
+    colback=blue!10,
+    colframe=blue,
+    colbacktitle=blue,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+
+
+
+\newtcbtheorem{coll}{Corollary}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=red,
+    colbacktitle=red,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{coll}
+
+
+
+
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{lorange}{HTML}{FF9F40}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.9}\small	tfamily},
+  numbers=none,
+  numberstyle=	iny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{deepred},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newtheorem{Axiom}{Axiom}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\newcommand{\OR}{\vee}
+
+\newcommand{\AND}{\wedge}
+
+\author{Thaqib Mo.}
+\title{ Reading-13 }
+\begin{document}
+\maketitle
+\newpage
+\section{Axiom of choice}
+
+Suppose $\mathcal{C}$ is a non empty collection of sets then the Cartesian product of all sets in $\mathcal{C}$ is written as:
+
+\[\prod\limits_{C\in \mathcal{C}} C\] 
+
+If $\mathcal{C}$ is an infinite collection of sets then we need infinite ordered tuple of elements. Then we need a function $\alpha : \mathcal{C} \rightarrow \bigcup \mathcal{C}$. Then for each $C\in \mathcal{C}$ we have $\alpha(C) \in C$. The function $\alpha (C)$ should give the $C$-th coordinate of the infinite tuple. We can formally define this as:\\
+
+\begin{defn}{Cartesian Product for infinite sets}{}
+Let $\mathcal{C}$ denote a non empty collection of sets. The Cartesian product $\prod\limits_{C\in \mathcal{C}}C$  is the set of all functions $\alpha : \mathcal{C} \rightarrow \bigcup \mathcal{C}$  with the property $\alpha(C) \in C$.
+\end{defn} 
+
+We can use this definition to redefine the Cartesian product, even for finitely many sets. We can define an ordered pair $(a,b) \in A\times B$ as $(\alpha(A), \alpha(B))\in A\times B$. \\
+The problem arises when for an infinite number of sets in $\mathcal{C}$ we cannot show (using the standard axioms of set theory) that:
+
+\[\prod_{C\in \mathcal{C}}C \neq \varnothing\]
+For this we need a new axiom. 
+
+\begin{axm}{Axiom of Choice}{}
+The Cartesian product of any non-empty collection of non-empty sets is
+non-empty.
+\end{axm}
+This axiom is also equivalent to the existence of a choice function for every non-empty collection of set $\mathcal{C}$.   
+
+
+
+
+\newpage
+
+\section{Zorn's Lemma and the Well-Ordering Theorem}
+
+Another statement about partially ordered set is logically equivalent to Axiom of choice. 
+
+
+\begin{thm}{Zorn's Lemma}{}
+Let $A$ be a partially ordered set with order relation $\preceq$. Suppose that every chain in $A$ has an upper bound in $A$, then $A$ has a maximal element. 
+\end{thm}
+
+
+A Corollary that follows from Zorn's Lemma is:
+
+\begin{coll}{}{}
+Suppose that $A$ is a partially ordered set with order relation $\preceq$ then every chain $\mathcal{C}$ in $A$ is contained in a maximal chain $\mathcal{M}$. 
+\end{coll}
+\begin{proof}
+Let $\mathcal{C}$ be an arbitrary chain in $A$. Consider the set $\Gamma$ of all chains $\mathcal{C}$ in $A$. The subset relation $\subseteq$ relation on $\mathcal{P}(A)$ giving the order relation between elements of $\Gamma$. Now suppose we have a chain $\mathcal{D}$ in the ordered set $\Gamma$. We can show that $\mathcal{D}$ is an upper bound in $\gamma$
+\\
+
+If we define $\mathcal{C}_0 = \bigcup \mathcal{D}$, the union of all the, clearly for each $\mathcal{C}^\prime \in \mathcal{D}$ we have $C^\prime \subseteq \mathcal{C}_0$. Since $C_0$ contains every chain of $\mathcal{D}$, each of which contains $\mathcal{C}$ we know that $\mathcal{C}_0$ contains $\mathcal{C}$. Therefore $C_0$ is an upper bound on $\mathcal{D}$ by definition. If we can verify $C_0 \in \Gamma $ that means $C_0$ is a chain in $A$
+\\
+
+Suppose we have  $a_1, a_2 \in \mathcal{C}_0$. By construction each element of $a_1$ and $a_2$ belong to a chain in $\mathcal{D}$, so we can write $a_1 \in \mathcal{C}_1$ and $a_2 \in \mathcal{C}_2$. Since $\mathcal{D}$ is a chain with respect to the relation $\subseteq$, we can either have $\mathcal{C}_1\subseteq \mathcal{C}_2$ or we can have $\mathcal{C}_2\subseteq \mathcal{C}_1$. Without loss of generality we say $\mathcal{C}_1\subseteq \mathcal{C}_2$ . Thus both $a_1, a_2 \in C_2$. Since $\mathcal{C}_2$ is a chain, the elements in $\mathcal{C}_2$ are comparable with $\preceq$, this verifies that $\mathcal{C}_0$ is a chain in $A$, as $C_0 \in \Gamma$. 
+\\
+
+Now if we apply Zorns lemma to $\Gamma$ which is ordered by $\subseteq$, there is a chain $\mathcal{M} \in \Gamma$, maximal with respect to the containment relation $\subseteq$. This is a chain in $A$ with respect to the ordering $\preceq$, as it is maximal with with respect to $\subseteq$ all chains $\mathcal{C}$ of $A$ are contained in $\mathcal{M}$ and it is not properly contained in any chain.  
+
+
+\end{proof}
+
+
+
+
+\newpage
+The well ordering theorem is another statement known to be equivalent to axiom of choice. We can define the WOP of $\mathbb{N}$ more generally. 
+\begin{defn}{Well ordering}{}
+Suppose $A$ is a set with order relation $\preceq$. The ordered set $A$ is said to be well ordered if every non empty subset of $A$ has a least element with respect to the relation $\preceq$
+\end{defn}
+
+This leads to the well ordering theorem:
+
+\begin{thm}{Well-Ordering Theorem}{}
+Every non empty set has a well ordering. 
+\end{thm}
+
+In other words, if $A$ is a non empty set then there is a an order relation $\preceq$ on $A$, such that $A$ is well ordered with respect to $\preceq$. This means that the set $\mathbb{R}$ has as well ordering, not with respect to the relation $\leq$ as this fails for any open interval in $\mathbb{R}$ but according to \textit{well ordering theorem} there exits a relation $\preceq$ on $\mathbb{R}$ on which every subset of $\mathbb{R}$ will have a least element with respect to $\preceq$ which is not the relation $\leq$. 
+\\
+
+The 3 statements Axiom of choice, Well-Ordering Theorem, Zorn's Lemma are all logically equivalent.    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

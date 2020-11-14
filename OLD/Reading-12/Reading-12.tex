@@ -1,0 +1,257 @@
+
+\documentclass[16pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Sharelatex Example},
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+
+
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+
+\newtcbtheorem{defn}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=orange,
+    colbacktitle=orange,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{def}
+
+
+\newtcbtheorem{axm}{Axiom}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{axm}
+
+
+\newtcbtheorem{thm}{Theorem}{
+    width=\textwidth,
+    colback=blue!10,
+    colframe=blue,
+    colbacktitle=blue,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+
+
+
+\newtcbtheorem{coll}{Corollary}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=red,
+    colbacktitle=red,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{coll}
+
+
+
+
+
+
+
+
+
+
+
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.9}\small	tfamily},
+  numbers=none,
+  numberstyle=	iny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{deepred},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\newcommand{\OR}{\vee}
+
+\newcommand{\AND}{\wedge}
+\newcommand{\ord}{\preceq}
+
+
+\author{Thaqib Mo.}
+\title{ Reading-12 }
+\begin{document}
+\maketitle
+\newpage
+\section{Order Relations}
+\begin{defn}{Antisymmetric Relation}{}
+Let $R$ be a binary relation on set $A$. We say that $R$ if, whenever we have $a,b \in A$ such that $aRb$ and $bRa$, it follows that $a=b$. A relation $\ord$ is an order relation on $A$ if if it is reflexive , \textit{antisymmetric}, and transitive.
+\end{defn}
+\subsection{Chains and Extremal Elements}
+\begin{defn}{Total ordering}{}
+If $\ord$ is a partial ordering on set $A$ we say that 2 elements $a,b \in A$ are comparable if either $a\ord b$ or $b \ord a$. A partial order in which every pair of elements is comparable is called a \textit{total ordering} or \textit{linear ordering}. \\
+\end{defn}
+{\color{red} Example} The relation $\leq$ on $\mathbb{Z}$ is a total ordering as every pair $a,b \in \mathbb{Z}$ are comparable. 
+
+Another important notion which comes is the notion of a \textit{chain}:
+\begin{defn}{Chain}{}
+If $\ord$ is a partial order on set $A$, a subset $C$ of $A$ is called a \textit{chain} if every pair of $C$ are comparable. In particular, if $\ord$ is a total order on $A$ then $A$ itself is a chain in $A$. 
+\end{defn}
+
+Because not every element of a set must be comparable we have to be careful in distinguishing the greatest and the least elements of of a given set. The distinction is given by the following definitions. 
+\begin{defn}{Maximal, minimal, greatest, least elements}{}
+Let $A$ be a set with partial order relation $\ord$. Given a subset $B$ of $A$ we say that 
+\begin{itemize}
+\item An element $b\in B$ is the \textbf{least element} of $B$ if we have $b\ord b^\prime$ for all $b^\prime \in B$. Similarly, an element is the \textbf{greatest element} if $b^\prime \ord b$ for all $b^\prime\in B$. 
+
+\item An element $b\in B$ is the \textbf{minimal element} of $B$ if there are no smaller elements, that is if $b^\prime \ord b$ \textbf{for some} $b^\prime \in B$ then $b = b^\prime$. Similarly an element is the \textbf{maximal element} if there are no larger elements, that is if $b \ord b^\prime$ \textbf{for some} $b^\prime \in B$ then $b^\prime = b$. 
+\end{itemize}
+\end{defn}
+
+\newpage
+\section{Bounds on Sets, Suprema, and Infima}
+\begin{defn}{Bounds, Suprema, and Infima}{}
+Suppose $A$ is a set with order relation $\ord$ and with a subset $B$. 
+\begin{itemize}
+\item An element $a\in A$ is a lower bound for $B$ if $a\ord b$ \textbf{for all} $b\in B$. Similarly $a\in A$ is a upper bound for $B$ if $b \ord a$ \textbf{for all} $b\in B$. 
+
+\item An element $a\in A$ is the infimum (Greatest lower bound) of $B$ if $a$ is the greatest element of the set of al lower bounds for $B$. 
+
+\item Am element $a\in A$ is the supremum (Least upper bound) of $B$ if $a$ is the least element of the set of all upper bounds for $B$. 
+\\
+If they exist, we use $sup\;B$ and $inf \;B$ to denote the supremum and infimum of a set $B$, respectively.
+ 
+\end{itemize}
+\end{defn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

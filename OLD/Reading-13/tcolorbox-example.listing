@@ -1,0 +1,4 @@
+This is a \LaTeX\ example:
+\begin{equation}
+\sum\limits_{i=1}^n i = \frac{n(n+1)}{2}.
+\end{equation}
