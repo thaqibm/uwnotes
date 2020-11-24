@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.11.3)  14 NOV 2020 12:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.11.3)  18 NOV 2020 13:32
 entering extended mode
 **./Elementary.tex
 (Elementary.tex
@@ -933,13 +933,17 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen266
 \l_MT_below_shortintertext_sep=\dimen267
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/doublestroke\dsfon
+t.sty"
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 28.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 26.
+(hyperref)                setting the option has no effect on input line 28.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 26.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 28.
 \c@tcb@cnt@defn=\count301
 \c@tcb@cnt@axm=\count302
 \c@tcb@cnt@prop=\count303
@@ -1022,20 +1026,20 @@ LaTeX Warning: Unused global option(s):
 (Elementary.aux)
 \openout1 = `Elementary.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
  ABD: EveryShipout initializing macros
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
@@ -1068,7 +1072,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 460.
 )
 \AtBeginShipoutBox=\box74
-Package hyperref Info: Link coloring ON on input line 166.
+Package hyperref Info: Link coloring ON on input line 169.
 
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -1084,9 +1088,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count328
 )
-LaTeX Info: Redefining \ref on input line 166.
-LaTeX Info: Redefining \pageref on input line 166.
-LaTeX Info: Redefining \nameref on input line 166.
+LaTeX Info: Redefining \ref on input line 169.
+LaTeX Info: Redefining \pageref on input line 169.
+LaTeX Info: Redefining \nameref on input line 169.
  (Elementary.out) (Elementary.out)
 \@outlinefile=\write6
 \openout6 = `Elementary.out'.
@@ -1127,54 +1131,107 @@ LaTeX Info: Redefining \nameref on input line 166.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count329
-LaTeX Font Info:    Trying to load font information for U+msa on input line 168
+LaTeX Font Info:    Trying to load font information for U+msa on input line 171
 .
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 168
+LaTeX Font Info:    Trying to load font information for U+msb on input line 171
 .
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/thaqi/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-[3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 321.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 321.
+[3] [4] [5]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 3
+15.
+
+("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/doublestroke\udsro
+m.fd"
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 315.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 315.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 325--327
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+
+ []
+
+[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 347.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 347.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 404--406
+
+ []
+
+[8] [9] [10] [11] [12] [13] [14]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 571.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 571.
+
+[15] [16]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 654.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 654.
  (Elementary.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 321.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 321.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 654.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 654.
 Package rerunfilecheck Info: File `Elementary.out' has not changed.
-(rerunfilecheck)             Checksum: D9E4C33ED0A154992749FBC7F96D26DD;134.
+(rerunfilecheck)             Checksum: 2158E6080381EC67C830A810AB91969C;1084.
  ) 
 Here is how much of TeX's memory you used:
- 33784 strings out of 492484
- 667985 string characters out of 3121601
- 939360 words of memory out of 3000000
- 37683 multiletter control sequences out of 15000+200000
- 540547 words of font info for 56 fonts, out of 3000000 for 9000
+ 33928 strings out of 492484
+ 670227 string characters out of 3121601
+ 941465 words of memory out of 3000000
+ 37768 multiletter control sequences out of 15000+200000
+ 542363 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,95p,846b,1306s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 59i,10n,95p,846b,1306s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thaqi/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thaqi/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thaq
-i/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
-:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr17.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr7.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thaqi/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/thaqi/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C
-:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
-Output written on Elementary.pdf (4 pages, 149759 bytes).
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thaqi/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thaqi/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/th
+aqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+<C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thaqi/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thaqi/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Use
+rs/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/doub
+lestroke/dsrom10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/doublestroke/dsrom12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thaqi/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Elementary.pdf (16 pages, 240557 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
