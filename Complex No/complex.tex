@@ -1,0 +1,358 @@
+\documentclass[16pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics}
+
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{dsfont}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarks=true,
+    pdfauthor=Thaqib,
+    bookmarksopen=true
+}
+
+\newtcbtheorem{defn}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=orange,
+    colbacktitle=orange,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{def}
+
+
+
+\newtcbtheorem{axm}{Axiom}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{axm}
+
+\newtcbtheorem{prop}{Proposition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=black,
+    colbacktitle=black,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{prop}
+
+\newtcbtheorem{thm}{Theorem}{
+    width=\textwidth,
+    colback=deepblue!2,
+    colframe=deepblue,
+    colbacktitle=deepblue,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+\newtcbtheorem{lemm}{Lemma}{
+    width=\textwidth,
+    colback=deepred!0,
+    colframe=deepred,
+    colbacktitle=deepred,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{lemm}
+
+
+
+\newtcbtheorem{coll}{Corollary}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=dkgreen,
+    colbacktitle=dkgreen,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{thm}
+
+
+
+
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.3,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.9}\small	tfamily},
+  numbers=none,
+  numberstyle=	iny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{deepred},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\newcommand{\ang}[1]{\langle #1 \rangle}
+
+\newcommand{\OR}{\vee}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+
+
+\newcommand{\AND}{\wedge}
+\author{Thaqib Mo.}
+\title{ Polynomials }
+\begin{document}
+\maketitle
+\newpage
+\section{Complex Numbers}
+Using localization similar to the construction of $\mathbb{Q}$ we can construct elements of $\C$ in terms of ordered pairs $(a,b)\in \R\times \R$. The addition is defined component wise, 
+\[(a,b) + (c,d) = (a+c,b+d)\]
+and multiplication similar to the Gaussian integers is defined as
+\[(a,b)\cdot (c,d) = (ac-bd, ad+bc)\]
+The addition is the same as the addition in $\R$ so we can already conclude that $\C,+$ is an abelian group. $(1,0)$ is clearly the multiplicative identity and it is easy to check that multiplication is associative. 
+\\
+To check that every non-zero element in $\C$ has an multiplicative inverse: 
+\begin{align*}
+\frac{1}{a+bi} = \frac{a-bi}{a^2 + b^2} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i
+\end{align*}
+So we have $\left( \frac{a}{a^2+b^2}, \frac{b}{a^2+b^2}\right)$ this ordered pair is the inverse of $(a,b)$. We have $a^2 + b^2 \neq 0$ when $(a,b)\neq (0,0)$. Now consider 
+\begin{align*}
+& (a,b)\cdot ((c,d)+(e,f)) = (a,b)\cdot (c+e,d+f) \\
+& = \left(a(c+e) - b(d+f), a(d+f) + b(c+e)\right) \\
+& = \left(ac- bd + ae -bf, ad+ bc +af +be\right) \\
+& = (a,c)\cdot (e,f) + (a,b)\cdot (e,f)
+\end{align*} 
+So we can now say $\C$ is a field. 
+
+\subsection{Complex Number Constructions and Properties}
+\begin{defn}{}{}
+Let $z\in\C$ and we write $z=a+bi$ for some $a,b \in \R$
+\begin{itemize}
+\item The form $a+bi$ is called the standard form of $z$ 
+\item The number $a$ is the \emph{Real} part of $z$ denoted by $\Re(z)$ 
+\item The number $b$ is the \emph{imaginary} part of $z$ denoted by $\Im(z)$
+\item $\bar{z} = a-bi$ is called the \emph{complex conjugate}
+\item $|z| = \sqrt{a^2 + b^2}$ is called the \emph{absolute value} of $z$
+\end{itemize}
+\end{defn}
+
+\begin{prop}{}{}
+$\phi:\C \rightarrow \C$ given by $\phi(z) = \bar{z}$ is a ring homomorphism. 
+\end{prop}
+\begin{proof}
+Let $z=a+bi$ and $w=c+di$ \\
+Consider $\phi(z+w) = \overline{z+w} = a+c -(b+d)i  = a-bi + c-di = \phi(z) + \phi(w)$. 
+\\
+$\phi(zw) = \bar{zw} = \overline{ac-bd + (ad+bc)i} = ac-bd -(ad+bc)i = ac-bd-adi-bci = (a-bi)(c-di) = \phi(z)\phi(w)$. For $\phi(1+0i) = 1-0i = 1$. So $\phi$ is a ring homomorphism. 
+\end{proof}
+
+
+\begin{prop}{}{}
+For all $z\in \C$ we have $|zw| = |z||w|$ 
+\end{prop}
+\begin{proof}
+Let $z=a+bi$ and $w=c+di$ we have $zw = ac-bd +(ad+bc)i$ so we have 
+\begin{align*}
+|zw| &= \sqrt{(ac-bd)^2 (ad+bc)^2} \\
+& = \sqrt{a^2c^2 -2acbd + b^2d^2 + a^2d^2 +2adbc + b^2c^2}\\
+&=\sqrt{a^2c^2  + b^2d^2 + a^2d^2 + b^2c^2}\\
+&= \sqrt{a^2(c^2+d^2) + b^2(c^2+d^2)}\\
+&= \sqrt{(a^2+ b^2)(c^2+d^2)}\\
+&= \sqrt{a^2+b^2}\sqrt{c^2+d^2}\\
+&= |z||w|
+\end{align*}
+
+\end{proof}
+
+The \emph{triangle inequality} also holds in $\C$
+\begin{thm}{Triangle inequality}{}
+For all $z,w\in \C$ we have $|z+w|\leq |z| + |w|$
+\end{thm}
+\begin{proof}
+\begin{align*}
+|z+w|^2 &= (z+w)\overline{(z+w)}\\
+&= (z+w)(\bar{z}+\bar{w}) \\
+&= z\bar{z} + z\bar{w} + w\bar{z} + w\bar{w} \\
+& = |z|^2 + |w|^2 + (z\bar{w} + \overline{z\bar{w}}) \\
+& = |z|^2 + |w|^2 + 2\Re(z\bar{w})
+\end{align*}
+Note that $\Re(z\bar{w})\leq |z\bar{w}| = |z||\bar{w}| = |z||w|$. 
+So we have \[|z+w|^2 = |z|^2 + |w|^2 + 2\Re(z\bar{w}) \leq |z|^2 + 2|z||w| + |w|^2 = (|z|+|w|)^2 \]
+Taking the positive square roots gives the triangle in equality.   
+\end{proof}
+\subsection{Polar Form of a Complex Number}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
