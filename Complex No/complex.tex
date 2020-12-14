@@ -41,6 +41,20 @@
 }{def}
 
 
+\newtcbtheorem{algo}{Algorithm}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=mauve,
+    colbacktitle=mauve,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced jigsaw,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{algo}
+
 
 \newtcbtheorem{axm}{Axiom}{
     width=\textwidth,
@@ -126,7 +140,7 @@
 \usepackage{color}
 \definecolor{dkgreen}{rgb}{0,0.3,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{mauve}{HTML}{6a1b9a}
 
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
@@ -163,11 +177,19 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\fig}[2]{\begin{figure}[hbtp] 
+ \centering
+ \includegraphics[scale=#2]{figs/#1.png}
+ \end{figure}
+}
+
 
 
 \newcommand{\AND}{\wedge}
 \author{Thaqib Mo.}
-\title{ Polynomials }
+\title{ Factoring Polynomials }
 \begin{document}
 \maketitle
 \newpage
@@ -248,45 +270,206 @@ So we have \[|z+w|^2 = |z|^2 + |w|^2 + 2\Re(z\bar{w}) \leq |z|^2 + 2|z||w| + |w|
 Taking the positive square roots gives the triangle in equality.   
 \end{proof}
 \subsection{Polar Form of a Complex Number}
+\fig{fig1}{1}
 
+So we write $a+bi = re^{i\theta}$ where $r$ is the magnitude and $\theta$ is the argument. There are be many values for the argument for the same complex number, in particular any $\theta + 2k\pi$ for $k\in \mathbb{Z}$ would work. 
 
+\begin{thm}{}{}
+For complex numbers $z_1 = r_1z^{\theta_1}$ and $z_2 = r_2z^{\theta_2}$ we have 
+\[
+z_1z_2 = r_1r_2e^{i(\theta_1 + \theta_2)}
+\] 
+ \end{thm} 
+\begin{proof}
+We have $z_1 = r_1e^{\theta_1} = r_1(\cos(\theta_1) + i\sin(\theta_1))$ and 
+$z_2 = r_2(\cos(\theta_2) + i\sin(\theta_2))$ so we have 
+\begin{align*}
+z_1z_2 &= r_1r_2(\cos(\theta_1) + i\sin(\theta_1))(\cos(\theta_2) + i\sin(\theta_2)) \\
+&= r_1r_2(\cos(\theta_1)\cos(\theta_2) -\sin(\theta_1)\sin(\theta_2) + i(\cos(\theta_1)\sin(\theta_1)+\sin(\theta_2)\cos(\theta_2))) \\
+&= r_1r_2(\cos(\theta_1 + \theta_2) + i\sin(\theta_1\theta_2))\\
+&= r_1r_2e^{i(\theta_1+\theta_2)}
+\end{align*}
+\end{proof}
 
+\begin{coll}{(de Moivre's Theorem)}{}
+Let $z$ be a complex number with $z\neq 0$. Then we have 
+\[
+z^n = r^ne^{n\theta}
+\]
+For $n\in \Z$
+\end{coll}
+\begin{proof}
+The base case is trivial we have $z^0 = 1$ and $r^0e^{0\theta} = 1$. Now assume it holds true for some $n\in \mathbb{N}$. Now consider $n+1$
+\begin{align*}
+z^{n+1} &= zz^{n} \\
+&= re^{\theta}r^{n}e^{n\theta} \\
+&= rr^ne^{n\theta + \theta}\\
+&=  r^{n+1}e^{(n+1)\theta}
+\end{align*}
+This completes the proof for $n\in \mathbb{N}$. Now consider $z^{-n}$ for $n\in \mathbb{N}$. By uniqueness of inverse since $\C$ is a field, we have $r^{-n}e^{-n\theta}z^n = 1$. 
+\end{proof}
+\section{The Fundamental Theorem of Algebra}
 
+\subsection{Algebraically Closed Field}
+\begin{thm}{Fundamental Theorem of Algebra}{}
+Let $f\in \C[x]$ be a non-constant polynomial. Then $f$ has a root in $\C$. 
+\end{thm}
+This leads to the definition of algebraically closed fields
 
+\begin{defn}{Algebraically Closed Field}{}
+A field is algebraically closed if any non-constant polynomial $f\in F[x]$ has a root in $F$. 
+\end{defn} 
+ \newpage
+Another equivalent way of formulating algebraically closed field is in the following theorem: 
 
+\begin{thm}{}{}
+A field is algebraically closed if and only if every non-constant polynomial $f\in F[x]$ can be factored as a product of linear polynomials. 
+\[
+f = c(x-a_1)(x-a_2) \cdots (x-a_n)
+\]
+Where $n=\deg f$ and $c,a_1,a_2,\ldots, a_n \in F$. 
+\end{thm}
 
+\begin{proof}
+$(\Rightarrow)$ suppose that $F$ is algebraically closed. Consider the base case $n=1$, it is already in linear form so we are done. Now assume the results holds true for $\deg f = n$ and consider $\deg f = n+1$. 
+\\
+Since $F$ is algebraically closed $f$ has a root in $F$, and let $f(a_{n+1}) = 0$. Then by the factor theorem $(x-a_{n+1})$ divides $f$. So let 
+\[
+f = g(x-a_{n+1})
+\] 
+And since $\deg g = n$ by the inductive hypothesis it can be factored into linear factors and we have 
+\[
+f = c(x-a_{n+1})(x-a_1)(x-a_2) \cdots (x-a_n)
+\] 
+$(\Leftarrow)$ Suppose every non-constant polynomial in $F[x]$ can be factored into linear polynomials. Then 
+\[
+f = c(x-a_1)(x-a_2) \cdots (x-a_n)
+\] 
+Now $f$ always has a root in $f$ since $a_1, a_2, \ldots, a_n$ are all roots. 
+\end{proof}
+\newpage
+\section{Irreducible Polynomials}
 
+\begin{defn}{Irreducible and Reducible Polynomials}{}
+Let $F$ be a field. Then $f$ is reducible if $f$ has a proper factorization that is $f=gh$ where $g,h\in F[x]$ and $\deg(g),\deg(h) \geq 1$. Otherwise $f$ is irreducible. 
+\end{defn}
+Using this definition every linear polynomial is automatically irreducible. For larger degrees we have:
 
+\begin{prop}{}{}
+  Let $F$ be a field and $f\in F[x]$ If $\deg f \geq 2$ be irreducible then $f$ has no roots. Conversely, if $\deg f = 2$ and $\deg f = 3$ has no roots then $f$ is irreducible. 
+  \end{prop}  
+\begin{proof}
+Suppose we have $\deg f\geq 2$ is irreducible. Assume $f$ has a root in $F$. By the factor theorem we have $f = (x-c)h$ then we have $\deg	h = \deg f -1 \geq 1$ this means we have factored $f$ into 2 non-constant polynomials thus a contradiction. 
+\\
+Conversely suppose $\deg f = 2$ or $\deg 3 = f$ and that $f$ has no roots in $F$. Suppose $f$ is reducible in $F$ then we must have $f = gh$ and we must have $\deg f = \deg g + \deg h$ and this forces one of $\deg g, \deg h = 1$ either way $f$ has a linear factor and must have a root again a contradiction. Thus $f$ must be irreducible.  
+\end{proof}
+Note the converse does not generalize to higher degrees there can be polynomials $f$ with $\deg f = 4$ with no roots and still be irreducible. The above theorem also shows that $x^2 + 1 \in \R[x]$ is irreducible. 
 
+\begin{coll}{}{}
+If $F$ is algebraically closed and a non-constant polynomial $f\in F[x]$ is irreducible if and only if $\deg f = 1$
+\end{coll}
+\begin{proof}
+We already know that a linear polynomial is irreducible. Conversely assume that $f\in F[x]$ is irreducible and $\deg f > 1$ then $f$ has no roots in $F$ by the above proposition, which is a contradiction to $F$ being algebraically closed. 
+\end{proof}
 
+\begin{example}
+The polynomial $f(x) = x^3 +x+[1]\in \Z/2\Z$ is irreducible. A simple exhaustive proof can show this we have $f([0]) = [1]$ and $f([1]) = [1]$ so $f$ has no roots therefore $f$ is irreducible. 
+\end{example}
+\newpage
+\subsection{Irreducible Polynomials in $\R[x]$}
+\begin{lemm}{Conjugate Roots}{}
+Suppose $f\in \R[x]$ and if $c\in \C$ is a root of $f$ then $\overline{c}$ is also a root. 
+\end{lemm}
+\begin{proof}
+We know that $f(c) = 0$ so 
+\begin{align*}
+a_0 + a_1c + a_2c^2 + \ldots + a_nc^n = 0 
+\end{align*}
+Then we have 
+\begin{align*}
+0 &= \overline{0} \\
+&= \overline{a_0 + a_1c + a_2c^2 + \ldots + a_nc^n}\\
+&= \bar{a_0} + \bar{a_1}\bar{c} + \bar{a_2}\bar{c^2} + \ldots + \bar{a_n}\bar{c^n} \\
+&= a_0 + a_1 \bar{c} + a_2\bar{c^2} + \ldots +a_n\bar{c^n}\\
+&= f(\overline{c})
+\end{align*}
+\end{proof}
+Using this lemma we can prove a very important result for polynomials in $\R[x]$
 
+\begin{thm}{}{}
+Let $f\in \R[x]$ be a non-constant polynomial. Then $f$ is irreducible in $\R[x]$ if and only if $\deg f = 1$ and $\deg f = 2$ 
+\end{thm}
+\begin{proof}
+If $\deg f = 1$ or $\deg f = 2$ has no real roots then we know that $f$ is irreducible. Conversely if $f\in \R[x]$ is an irreducible polynomial then $f$ is also a polynomial in $\C[x]$. Since $\C$ is algebraically closed there is a $c\in \C$ such that $f(c) = 0$. If we have $c\in \R$ then since $f$ is irreducible it forces us to $\deg f = 1$.  
+\\
+If $c\notin \R$ then $c\in \C$ then by the conjugate roots theorem $\bar{c}$ is also a root. To we can write $f(x) = (x-c)(x-\bar{c})h(x)$ for $h\in \C[x]$. Then let $g = (x-c)(x-\overline{c})$ we have 
+\begin{align*}
+(x-c)(x-\overline{c}) &= x^2 - (c+\overline{c})x + c\overline{c} \\
+&= x^2 - (2\Re c)x + |c|^2 \in \R[x]
+\end{align*}
+So $f$ is divisible by $g\in \R[x]$
+\\
+Thus we have a factorization $f = gh$ in $\R[x]$ where $\deg g = 2$. Again by irreducibility of $f$, $h$ must be a constant polynomial. Therefore $\deg	 f = 2$      
+\end{proof}
+\newpage
+\subsection{Irreducible Polynomials in $\Q[x]$}
 
+\begin{thm}{Rational Root Theorem}{}
+Let $f\in \Q[x]$ be a non-constant polynomial and suppose $r\in \Q$ is a root of $f$, and let 
+\[
+f = a_0 + a_1x^1 + a_2x^2 + \ldots + a_nx^n 
+\]
+With $a_0, a_1, \ldots a_n \in \Z$ and $a_n\neq 0$ if we write $r = \frac{p}{q}$ with $\gcd (p, q) = 1$ (Simplest form). Then we must have 
+\[
+q\mid a_n \quad p \mid a_0 \text{ in $\Z$}
+\]
+\end{thm}
+\begin{proof}
+Since $\frac{p}{q}$ is a root we have 
+\begin{align*}
+a_0 + a_1 \frac{p}{q} + \ldots + a_n \left(\frac{p}{q} \right) = 0
+\end{align*}
+Multiplying by $q^n$ we have 
+\begin{align*}
+a_0q^n + a_1pq^{n-1} + \ldots + a_np = 0 \\
+a_0q^n = -(a_1pq^{n-1} + \ldots + a_np) = -p(a_1q^{n-1} + \ldots a_n)
+\end{align*}
+This shows that we have $p\mid a_0q^n$. Since $\gcd(p,q) = 1$ we have $\gcd(p,q^n) = 1$ and we get $p\mid a_0$ by the divisibility results. 
+\\
+Similarly we can isolate $a_np^n$ to get $q\mid a_np^n$ and again using $\gcd(p^n, q) = 1$ we have $q\mid a_n$
+\end{proof}
 
+\begin{example}
+Let $f(x)= x^3 -2x + 5\in \Q[x]$ is irreducible.  Since $\deg f = 3$ we know that it has no roots. We can also use the rational roots theorem. If $\frac{p}{q}$ is a root with $\gcd(p,q) = 1$ then we must have $q\mid 1$ and $p\mid 5$. This means we have $q\in \{-1,1\}$ and $p\in \{-1,1,-5,5\}$. So the possibilities for $\frac p q$ are $1,-1,-5,5$ and none of them are roots. 
+\end{example}
+\newpage
+\subsection{Showing a number is irrational}
+We can also use rational root theorem to show that some $\alpha \in \R$ is irrational. 
+\begin{algo}{}{}
+\begin{itemize}
+\item[\#1] Find a non-zero polynomial for which $f$ with integer coefficients for which $\alpha$ is a root.  
+\item[\#2] Use RRT to show that $f$ has no rational roots. 
+\end{itemize}
+\end{algo}
+These 2 steps combined should prove any $\alpha \in \R$ is irrational. 
 
+\begin{example}
+$\alpha = \sqrt{2} + \sqrt{3}$ is irrational. We have $\alpha^2 = 2 + 2\sqrt{6} + 3 = 5+2\sqrt{5}$ so $\alpha^2 - 5 = 2\sqrt{6}$ and then $(\alpha^2 -5)^2 = (2\sqrt{6})^2 = 24$. So we have $\alpha^4 -10\alpha^2 +1 =0$. So all roots are integers and if $\alpha \in \Q$ then we must have $\alpha = \frac{p}{q}$ with $p\mid 1$ and $q\mid 1$ the only choices are $\frac{p}{q} = 1,-1$ and $f(1),f(-1)\neq 0$ so we cannot have $\alpha\in \Q$ 
+\end{example}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{example}
+For any prime $p$ and $n\geq 2$ $\sqrt[n]{p}$ is irrational. 
+\begin{align*}
+\left(\sqrt[n]{p}\right)^n = p \\
+\left(\sqrt[n]{p}\right)^n - p = 0
+\end{align*}
+So a polynomial with integer coefficients with root $\sqrt[n]{p}$ is $x^n - p$. Then if $\sqrt[n]{p}\in \Q$ then we have $\sqrt[n]{p} = \frac{r}{s}$. Then since it is a root of $x^n - p$ we must have $s\mid 1$ and $r\mid -p$ that means $s\in \{-1,1\}$ and $r\in \{-1,1,p,-p\}$ then the possibilities for $\frac{p}{q}$ are $1,-1,-p,p$. By simple computation we know that 
+\begin{align*}
+(-1)^n - p \neq 0 \\
+(1)^n - p \neq 0 
+\end{align*}
+For the other possibility assume we have $p^n - p = 0$  then $p(p^{n-1}-1) = 0$ so we must have $p=0$ or $p^{n-1} - 1 =0$ the first case directly leads to a contradiction and in the second case if we have $p^{n-1} - 1 = 0$ that means $p^{n-1} = 1$ which is not true for any prime $p$ so we  have $\sqrt[n]{p}\notin \Q$ 
+\end{example}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.11.3)  1 DEC 2020 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.11.3)  14 DEC 2020 18:07
 entering extended mode
 **./complex.tex
 (complex.tex
@@ -945,11 +945,12 @@ Package hyperref Warning: Option `bookmarks' has already been used,
 
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 27.
 \c@tcb@cnt@defn=\count301
-\c@tcb@cnt@axm=\count302
-\c@tcb@cnt@prop=\count303
-\c@tcb@cnt@thm=\count304
-\c@tcb@cnt@lemm=\count305
-\c@tcb@cnt@coll=\count306
+\c@tcb@cnt@algo=\count302
+\c@tcb@cnt@axm=\count303
+\c@tcb@cnt@prop=\count304
+\c@tcb@cnt@thm=\count305
+\c@tcb@cnt@lemm=\count306
+\c@tcb@cnt@coll=\count307
 
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/setspace\setspace.
 sty"
@@ -967,9 +968,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 y"
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count307
-\Gm@cntv=\count308
-\c@Gm@tempcnt=\count309
+\Gm@cnth=\count308
+\Gm@cntv=\count309
+\c@Gm@tempcnt=\count310
 \Gm@bindingoffset=\dimen268
 \Gm@wd@mp=\dimen269
 \Gm@odd@mp=\dimen270
@@ -984,24 +985,24 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 cfg"))
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\listings.
 sty"
-\lst@mode=\count310
+\lst@mode=\count311
 \lst@gtempboxa=\box71
 \lst@token=\toks43
-\lst@length=\count311
+\lst@length=\count312
 \lst@currlwidth=\dimen276
-\lst@column=\count312
-\lst@pos=\count313
+\lst@column=\count313
+\lst@pos=\count314
 \lst@lostspace=\dimen277
 \lst@width=\dimen278
-\lst@newlines=\count314
-\lst@lineno=\count315
+\lst@newlines=\count315
+\lst@lineno=\count316
 \lst@maxwidth=\dimen279
 
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
 ty"
 File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
-\c@lstnumber=\count316
-\lst@skipnumbers=\count317
+\c@lstnumber=\count317
+\lst@skipnumbers=\count318
 \lst@framebox=\box72
 )
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\listings.
@@ -1014,10 +1015,10 @@ Package: listings 2019/09/10 1.8c (Carsten Heinz)
 sty"
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-\c@definition=\count318
-\c@example=\count319
-\c@theorem=\count320
-\c@corollary=\count321
+\c@definition=\count319
+\c@example=\count320
+\c@theorem=\count321
+\c@corollary=\count322
 
 
 LaTeX Warning: Unused global option(s):
@@ -1026,34 +1027,34 @@ LaTeX Warning: Unused global option(s):
 (complex.aux)
 \openout1 = `complex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 171.
-LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
  ABD: EveryShipout initializing macros
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count322
+\scratchcounter=\count323
 \scratchdimen=\dimen280
 \scratchbox=\box73
-\nofMPsegments=\count323
-\nofMParguments=\count324
+\nofMPsegments=\count324
+\nofMParguments=\count325
 \everyMPshowfont=\toks44
-\MPscratchCnt=\count325
+\MPscratchCnt=\count326
 \MPscratchDim=\dimen281
-\MPnumerator=\count326
-\makeMPintoPDFobject=\count327
+\MPnumerator=\count327
+\makeMPintoPDFobject=\count328
 \everyMPtoPDFconversion=\toks45
 )
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
@@ -1072,7 +1073,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 460.
 )
 \AtBeginShipoutBox=\box74
-Package hyperref Info: Link coloring ON on input line 171.
+Package hyperref Info: Link coloring ON on input line 193.
 
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -1086,11 +1087,11 @@ Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 estring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count328
+\c@section@level=\count329
 )
-LaTeX Info: Redefining \ref on input line 171.
-LaTeX Info: Redefining \pageref on input line 171.
-LaTeX Info: Redefining \nameref on input line 171.
+LaTeX Info: Redefining \ref on input line 193.
+LaTeX Info: Redefining \pageref on input line 193.
+LaTeX Info: Redefining \nameref on input line 193.
  (complex.out) (complex.out)
 \@outlinefile=\write6
 \openout6 = `complex.out'.
@@ -1130,71 +1131,91 @@ LaTeX Info: Redefining \nameref on input line 171.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count329
-LaTeX Font Info:    Trying to load font information for U+msa on input line 173
+\c@lstlisting=\count330
+LaTeX Font Info:    Trying to load font information for U+msa on input line 195
 .
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 173
+LaTeX Font Info:    Trying to load font information for U+msb on input line 195
 .
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/thaqi/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-98.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
+20.
 
 ("C:\Users\thaqi\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 220.
 
-[2] [3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 358.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
+[2] [3]
+<figs/fig1.png, id=72, 316.61143pt x 241.33018pt>
+File: figs/fig1.png Graphic file (type png)
+<use figs/fig1.png>
+Package pdftex.def Info: figs/fig1.png  used on input line 273.
+(pdftex.def)             Requested size: 316.61066pt x 241.32959pt.
+ [4 <./figs/fig1.png>] [5] [6] [7]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 379.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 379.
+
+[8]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 415.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 415.
+
+[9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 541.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 541.
  (complex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 358.
-
-
-Package rerunfilecheck Warning: File `complex.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `complex.out':
-(rerunfilecheck)             Before: 82840F78458622BD6CB426836CBCC53D;140
-(rerunfilecheck)             After:  61E4457378B71FDC43E104120F1866C5;218.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 541.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 541.
+Package rerunfilecheck Info: File `complex.out' has not changed.
+(rerunfilecheck)             Checksum: EC2A7644E3A6F59E93596BA4B6F42D8E;653.
  ) 
 Here is how much of TeX's memory you used:
- 33806 strings out of 492484
- 668508 string characters out of 3121601
- 944456 words of memory out of 3000000
- 37703 multiletter control sequences out of 15000+200000
+ 33895 strings out of 492484
+ 669714 string characters out of 3121601
+ 945252 words of memory out of 3000000
+ 37761 multiletter control sequences out of 15000+200000
  540547 words of font info for 56 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,10n,95p,843b,1307s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 59i,13n,95p,843b,1307s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thaqi/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thaqi/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/tha
-qi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr17.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thaqi/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thaqi/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/User
-s/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/m
-sbm10.pfb>
-Output written on complex.pdf (4 pages, 146052 bytes).
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/th
+aqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+<C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi7.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/thaqi/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thaqi/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users
+/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmti10.pfb><C:/Users/thaqi/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on complex.pdf (10 pages, 221529 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 12 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 185 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
+ 90 words of extra memory for PDF output out of 10000 (max. 10000000)
 
