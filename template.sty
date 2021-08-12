@@ -1,0 +1,282 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{template}
+\RequirePackage{kvoptions}% load kvoptions
+\RequirePackage{kvoptions-patch}
+
+\SetupKeyvalOptions{
+ family=MCS,
+ prefix=MCS@
+}
+
+
+\DeclareStringOption{name}[]
+\DeclareStringOption{class}[]
+\DeclareStringOption{doctype}[]
+\DeclareBoolOption{boxed} %default=false
+\DeclareBoolOption{boxedthm} %default=false
+\DeclareBoolOption{boxedlemma} %default=false
+\DeclareBoolOption{boxeddefn} %default=false
+\DeclareBoolOption{boxedlight} %default=false
+
+
+\ProcessKeyvalOptions*
+
+
+
+
+
+
+\usepackage[margin=1in, marginparsep=0.25in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\MCS@class \ \MCS@doctype}
+\rhead{\MCS@name}
+\renewcommand{\abstractname}{Preface}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+%\usepackage{circuitikz}
+\usepackage{mathdots}
+\usepackage{graphicx}
+\usepackage{logicproof}
+\usepackage{relsize}
+\usepackage{wasysym}
+\usepackage{tikz-3dplot}
+\usepackage{comment}
+%\usepackage{gensymb}
+\usepackage{stmaryrd}
+\usepackage{esint}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{tocloft}
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{dsfont}
+\usepackage{setspace}
+\setstretch{1.7}
+\usepackage{graphicx}
+
+
+
+% Box Thm Colors
+\definecolor{defncol}{HTML}{661a00} 
+\definecolor{thmcol}{HTML}{0d0d0d} 
+\definecolor{lemmcol}{HTML}{0f0f3d} 
+
+% Links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarks=true,
+    pdfauthor=Thaqib,
+    bookmarksopen=true
+}
+
+% Box Theorems
+\newtcbtheorem[number within=section]{bthmi}{Theorem}{
+    width=	\textwidth,
+    colback=black!2,
+    colframe=thmcol,
+    colbacktitle=thmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bthmi}
+
+\newtcbtheorem[use counter from=bthmi,number within=section]{bdefi}{Definition}{
+    width=\textwidth,
+    colback=white!20,
+    colframe=defncol,
+    colbacktitle=defncol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{bdefi}
+\newtcbtheorem[use counter from=bthmi, number within=subsection]{blemmai}{Lemma}{
+    width=\textwidth,
+    colback=white!0,
+    colframe=lemmcol,
+    colbacktitle=lemmcol,
+    fonttitle=\bfseries,
+    sharp corners,
+    boxrule=1pt,
+    breakable,
+    enhanced,
+    boxed title style={sharp corners},
+    attach boxed title to top left
+}{blemmai}
+% Box Thm end
+
+% Code Blocks
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{HTML}{2E8B57}
+\definecolor{thmgray}{HTML}{373a40}
+\definecolor{dkgrey}{HTML}{142d4c}
+\definecolor{silver}{HTML}{C0C0C0}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\lstset{frame=tb,
+  language=python,
+  aboveskip=2mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\linespread{0.9}\small	tfamily},
+  numbers=none,
+  numberstyle= tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{deepred},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+% Theorems/proofs
+\swapnumbers
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{subthm}{Theorem}[subsection]
+\newtheorem{subprop}[subthm]{Proposition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{subfact}[subthm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{subcor}[subthm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{sublemma}[subthm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{subdefn}[subthm]{Definition}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{subexmp}[subthm]{Example}
+\newtheorem{qstn}[thm]{Question}
+\swapnumbers
+\newtheorem{subqstn}[subthm]{Question}
+\swapnumbers
+\newtheorem{xrcs}[thm]{Exercise}
+\newtheorem{subxrcs}[subthm]{Exercise}
+\newtheorem{alg}[thm]{Algorithm}
+\newtheorem{subalg}[subthm]{Algorithm}
+\theoremstyle{remark}
+\newtheorem{remk}[thm]{Remark}
+\newtheorem{subremk}[subthm]{Remark}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{subnotn}[subthm]{Notation}
+\newtheorem{impnotn}[thm]{Important Notation}
+\newtheorem{anncon}[thm]{Annoying Convention}
+\newtheorem{conv}[thm]{Convention}
+\newtheorem{subconv}[subthm]{Convention}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{aside}[thm]{Aside}
+\newtheorem{subaside}[subthm]{Aside}
+
+
+% aesthetics
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\epsilon}{\varepsilon}
+
+
+% Symbol Macros
+\newcommand{\ang}[1]{\langle #1 
+angle}
+\newcommand{\OR}{\vee}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\dk}{\Delta_k}
+\newcommand{\AND}{\wedge}
+\newcommand{\nlim}[2]{\lim\limits_{#1 \rightarrow #2}}
+\newcommand{\nsum}[2]{\sum\limits_{#1}^{#2}}
+
+% MATH 245
+
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Col}{\operatorname{Col}}
+\newcommand{\Row}{\operatorname{Row}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\subsp}{\leq}
+\newcommand{\Range}{\operatorname{Range}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\Free}{\operatorname{Free}}
+\newcommand{\tensor}{\otimes}
+
+% MATH 247
+\newcommand{\Int}[2]{\operatorname{Int}_{#1}\left(#2\right)}
+\newcommand{\Cl}[2]{\operatorname{Cl}_{#1}\left(#2\right)}
+\newcommand{\closure}[1]{\overline{#1}}
+
+
+
+% Env Macros
+\newcommand{\fig}[2]{\begin{figure}[hbtp] 
+ \centering
+ \includegraphics[scale=#2]{figs/#1.png}
+ \end{figure}
+}
+
+% Boxed Theorems/defn
+\newenvironment{bthm}[1]
+    {\begin{bthmi}{#1}{}}
+    {\end{bthmi}}
+\newenvironment{blemma}[1]
+    {\begin{blemmai}{#1}{}}
+    {\end{blemmai}}
+\newenvironment{bdefn}[1]
+    {\begin{bdefi}{#1}{}}
+    {\end{bdefi}}
+    
+
+% boxed options
+\ifMCS@boxed
+\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
+\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
+\fi
+
+\ifMCS@boxedthm
+\renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
+\fi
+\ifMCS@boxedlemma
+\renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
+\fi
+\ifMCS@boxeddefn
+\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\fi
+
+\ifMCS@boxedlight
+\definecolor{defncol}{HTML}{FF8000} 
+\definecolor{thmcol}{HTML}{000080} 
+\definecolor{lemmcol}{HTML}{990000} 
+\fi
+
+
+\allowdisplaybreaks
+
