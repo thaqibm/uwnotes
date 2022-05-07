@@ -1,0 +1,717 @@
+\documentclass[16pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[
+	name=Thaqib \ M, % Name
+	class= stat240, % Class Number
+	doctype= notes, % Type of doc
+	boxed=true,] % Boxed or not [default is false]
+{template}
+\title{ stat240 notes}
+\date{}
+\begin{document}
+\maketitle
+\begin{center}
+Fall 2021
+\end{center}
+\newpage
+\section{Counting}
+\begin{thm}{Number of subsets of size $k$}
+The number of subsets of size $k$ selected from a set of size $n$ are:
+\begin{align*}
+{n \choose k} = \frac{n!}{k!(n-k)!}
+\end{align*}
+\end{thm}
+\begin{thm}{Counting with repeated symbols/objects}
+If we have $n_i$ symbols of type $i$ with $i=1,2, \ldots, k$ with \begin{align*}
+n_1 + n_2 + \ldots + n_k = n
+\end{align*}
+Then the number of arrangements using all the symbols is: 
+\begin{align*}
+&{n\choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} \cdots {n_k \choose n_k}\\
+&= \frac{n!}{n_1!n_2!\cdots n_k!}
+\end{align*} 
+\end{thm}
+
+\begin{thm}{Hyper geometric identity}
+\begin{align*}
+\nsum{x=0}{\infty}{a\choose x}{b \choose n-x} = {a+b\choose n}
+\end{align*}
+\begin{proof}
+\begin{align*}
+(1+y)^{a+b} &= (1+y)^a(1+y)^b\\
+&= \nsum{k=0}{a+b}{a+b\choose k}y^k = \nsum{i=0}{a}{a\choose i}y^i\nsum{j=0}{b}{b\choose j}y^j
+\end{align*}
+The coefficient of $y^k$ on the left hand side is ${a+b\choose k}$ and the coefficient of $y^k$ on the right hand side is 
+\begin{align*}
+\nsum{i=0}{a}{a\choose i}{b\choose k-i}
+\end{align*}
+both coefficients must be equal. 
+\end{proof}
+\end{thm}
+
+\begin{thm}{\textbf{Exponential series}}
+\begin{align*}
+e^t = \nsum{n=0}{\infty}\frac{t^n}{n!}
+\end{align*}
+\end{thm}
+\newpage
+\section{Probability rules}
+\begin{thm}{\textbf{Set properties}}
+\begin{enumerate}
+\item[(1)] Distribution law: 
+\begin{align*}
+A(B \cup C) = AB \cup AC
+\end{align*} 
+\item[(2)] Morgan’s Laws: 
+\begin{align*}
+(A\cup B)^c = A^c \cap B^c \\
+(A\cap B)^c = A^c \cup B^c
+\end{align*}
+\end{enumerate}
+\end{thm}
+\begin{defn}{\textbf{Probability rules}}
+\begin{enumerate}
+\item[(1)] $P({\cal S}) = 1$ where $\cal S$ is the full sample space. 
+\item[(2)] For any event $A$, $0 \leq P(A) \leq 1$. 
+\item[(3)] If $A$ and $B$ are events with $A\subseteq B$ then $P(A) \leq P(B)$
+\item[(4)] Addition Law: 
+\begin{align*}
+P(A \cup B) = P(A) + P(B) - P(AB)
+\end{align*}
+\item[(5)] Complement events
+\begin{align*}
+P(A) = 1-P(A^c)
+\end{align*}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}{\textbf{Independent events}}
+2 $A,B$ events are independent $\iff$ $P(AB) = P(A)P(B)$
+\end{defn}
+
+\newpage
+\section{Conditional Probability}
+\begin{defn}{Probability $A$ occurs given $B$ has occurred}
+\begin{align*}
+P(A\vert B) = \frac{P(A\cap B)}{P(B)}
+\end{align*}
+\end{defn}
+
+\begin{thm}{\textbf{Multiplication Theorem}}
+For $n$ events $A_1, A_2 \ldots, A_n$ we have 
+\begin{align*}
+P(A_1A_2\cdots A_n) = P(A_1)P(A_2\vert A_1)P(A_3\vert A_2A_1)P(A_4\vert A_3A_2A_1)\cdots P(A_n\vert A_1A_2\cdots A_{n-1})
+\end{align*}
+\end{thm}
+
+\begin{thm}{\textbf{Total probability}}
+For any event $A$ we have 
+\begin{align*}
+P(A) = P(AB) + P(AB^c)
+\end{align*}
+In general if we have a partition $A_1, A_2, \ldots,$ of ${\cal S}$, then 
+\begin{align*}
+P(B) = P(B{\cal S} = \nsum{i=1}{\infty}P(A_iB) = \nsum{i=1}{\infty}P(A_i)P(B\vert A_i)
+\end{align*}
+\end{thm}
+
+\begin{thm}{Bayes formula}
+\begin{align*}
+P(A_i\vert B) = \frac{P(A_iB)}{P(B)} = \frac{P(A_i)P(B\vert A_i)}{P(B)} = \frac{P(A_i)P(B\vert A_i)}{\nsum{i=1}{\infty}P(A_i)P(B\vert A_i)}
+\end{align*}
+When $A_1, A_2, \ldots$ is a partition of ${\cal S}$ and $P(B) \neq 0$. 
+\end{thm}
+\newpage
+\section{Discrete Random Variables}
+\begin{defn}{Random variable}
+A random variable $X$ over ${\cal S}$ is a function 
+\begin{align*}
+&X: {\cal S}\to \R\\
+&X = X(\omega) \;,\; \omega \in {\cal S}
+\end{align*}
+\end{defn}
+\begin{defn}{Probability mass function}
+\begin{align*}
+f(x_i) = P[X=x_i] \;,\; i =  1,2,\ldots
+\end{align*}
+Some properties of \textit{pmf}
+\begin{align*}
+\sum_{\text{all }x} f(x) = 1
+\end{align*}
+\end{defn}
+
+\newpage
+\begin{defn}{cumulative distribution function}
+\begin{align*}
+F(x) = P[X\leq x] \; \forall x \in \R
+\end{align*}
+Where 
+\begin{align*}
+(X\leq x) = \{\omega : X(\omega) \leq x \; ,\; \omega \in \cal S\}
+\end{align*}
+Some properties of \textit{cdf}:
+\begin{enumerate}
+\item[(1)] Non-decreasing $x_1 \leq x_2 \Rightarrow F(x_1) \leq F(x_2)$
+\item[(2)] Bounded $0\leq F(x) \leq 1$
+\item[(3)] Limits using the monotone convergence theorem we have 
+\begin{align*}
+\nlim{x}{\infty} F(x) = 1\\
+\nlim{x}{-\infty} F(x) = 0
+\end{align*}
+\end{enumerate}
+\end{defn}
+We can calculate $f(x)$ using $F(x)$ if $X$ takes integer values then 
+\begin{align*}
+&f(x) = P[X=x] = P[X\leq x]-P[X\leq x-1] = F(x) - F(x-1)\\
+&F(x) = \sum_{u\leq x}f(u)
+\end{align*} 
+\newpage
+\subsection{Bernoulli trials and related random variables}
+\begin{defn}{Bernoulli trials}
+Experiments with only 2 outcomes Success/Failure. 
+Let $B = \text{Sucess}$ with $P(B) = p$. Then $B^c = \text{Failure}$ with $P(B^c) = 1-p$. 
+\end{defn}
+\begin{defn}{Bernoulli Random Variable}
+Let $X = X(\omega) = 1$ if $\omega = B$ otherwise $X(\omega) = 0$ if $\omega = B^c$. 
+\\
+So the \textit{pmf} of $X$ is 
+\begin{align*}
+f(1) = p\\
+f(0) = 1-p
+\end{align*}
+The distribution is 
+\begin{align*}
+f(x) = p^x(1-p)^{1-x}
+\end{align*}
+Where $x\in \{0,1\}$
+\end{defn}
+\subsection{Binomial distribution}
+If we repeat independent Bernoulli trials with the same probability of success $p$, each $n$ times then let $X$ be the number of successes among $n$ trials. 
+\begin{thm}{Binomial distribution}
+If $X\sim \text{Binomial}(n,p)$ then the \textit{pmf} is given by 
+\begin{align*}
+f(x) = P[X=x] = {n\choose x}p^x(1-p)^{n-x}
+\end{align*}
+\end{thm}
+\newpage
+\subsection{Hypergeometric Distribution}
+If we have a collection of $N$ objects which can be classified into 2 types success $(S)$ and failure. If there are $r$ successes and $N-r$ failures. Pick $n$ objects at random \textbf{without replacement}. Let $X$ be the number of successes obtained, $X$ has a hyper-geometric distribution. 
+\\
+\[
+X \sim \text{Hypergeometric}(N,r,n)
+\]  
+\begin{thm}{hyper-geometric distribution}
+If $X \sim \text{Hypergeometric}(N,r,n)$ then the \textit{pmf} is given by 
+\begin{align*}
+f(x) = P[X=x] = \frac{{r\choose x}{N-r\choose n-x}}{{N\choose n}}
+\end{align*}
+\begin{proof}
+$\# {\cal S} = {N \choose n}$ total ways of choosing $n$ objects. First we choose $x$ successes from the total $r$ and then choose the rest $n-x$ from the $N-r$ failures. Using the product rule we get the \textit{pmf}. 
+\end{proof}
+\end{thm}
+\newpage
+\subsection{Negative Binomial Distribution}
+The experiment has two distinct outcomes $S$ and $F$ which is repeated independently with $P(S) = {\bf p}$. Continue doing the experiment until we get ${\bf k}$ successes. Then let $X$ be the number of failures before the $k-$th success is obtained then $X$ has a Negative Binomial Distribution. 
+\[
+X\sim \text{NBinomial}(k,p)
+\]  
+There will be $x+k$ trials where we get $x$ failures and $k$ successes then we stop. The last trial must be a success. So in the first $x+k-1$ trials we need $x$ failures and $k-1$ successes. 
+\\
+The number of ways to get that is ${x+k-1\choose x}$ we choose the $x$ failures and the rest must be successes. 
+
+\begin{thm}{Negative Binomial Distribution}
+If $X\sim \text{NBinomial}(k,p)$ then the \textit{pmf} is given by 
+\begin{align*}
+f(x)  = P[X=x]  = {x+k-1\choose x}p^k(1-p)^x
+\end{align*}
+\end{thm}
+\subsection{Geometric distribution}
+Consider the Negative Binomial Distribution with $k=1$. That is we only need 1 success. So we repeat the trials until we get the first success.  
+\[
+X\sim \text{Geo}(p)
+\]
+\begin{thm}{Geometric Distribution}
+If $X\sim \text{Geo}(p)$ then the \textit{pmf} is given by 
+\begin{align*}
+f(x) = P[X=x] = p(1-p)^x
+\end{align*}
+\begin{proof}
+$k=1$ in Negative Binomial Distribution. 
+\end{proof}
+\end{thm}
+\newpage
+\subsection{Poisson distribution}
+\subsubsection{Limit of Binomial}
+The Poisson distribution happens as a limiting case of the binomial distribution. That is $n\to \infty$ and $p\to 0$. We can keep $\mu = np$ fixed while $n\to \infty$ this forces $p\to 0$. Then the limit for the \textit{pmf} $f(x)$ is given by 
+\begin{align*}
+f(x) = \frac{\mu^x e^{-\mu}}{x!}
+\end{align*}
+\subsubsection{Poisson Distribution from Poisson Process}
+Consider an event that occurs in random points in time with the following conditions: 
+\begin{itemize}
+\item \textbf{Independence} The number of occurrences of the event in non-overlapping intervals is independent
+\item \textbf{Individuality} For a small interval $[T, T+\Delta t)$ we have 
+\begin{align*}
+P[\text{ Two or more events in $[T, T+\Delta t)$ } ] = o(\Delta t)
+\end{align*}
+\item \textbf{Homogeneity} events occur at a uniform rate $\lambda$ over time. 
+\end{itemize}
+Any process with these 3 conditions is called a \textbf{Poisson process}. 
+\begin{thm}{Poisson Process}
+In a poission process with a rate of occurrence $\lambda$ the number of occurrences $X$ in a time interval $t$ has a Poisson distribution. The \textit{pmf} is given by 
+\[
+f(x) = P[X=x] = \frac{(\lambda t)^x e^{-\lambda t}}{x!}
+\]
+\end{thm}
+\newpage
+\section{Expected Value and Variance}
+\begin{defn}{Expected Value}
+Let $X$ be a discrete random variable with range $A$ and \textit{pmf} $f(x)$ then the expected value of $X$ is 
+\begin{align*}
+E(X) = \nsum{x\in A} xf(x) 
+\end{align*} 
+\end{defn}
+\begin{thm}{\textit{Law of unconscious statistician}}
+\begin{align*}
+E(g(X)) = \sum_{x\in A}g(x)f(x) 
+\end{align*}
+\end{thm}
+\begin{thm}{Linearity of Expectation}
+\begin{align*}
+E(a\cdot g(X) + b) = aE(g(X)) + b
+\end{align*}
+\end{thm}
+\begin{defn}{Variance}
+Let $\mu = E(X)$ then the variance is given by 
+\begin{align*}
+\Var(X) = E[(X-\mu)^2]
+\end{align*}
+\end{defn}
+\begin{thm}{\textit{Variance properties}}
+Let $\sigma^2 = \Var(X)$ then 
+\begin{align*}
+(1) && \sigma^2 = E(X^2) - E(X)^2\\
+(2) && \Var(aX+b) = a^2\Var(X)
+\end{align*}
+\end{thm}
+
+
+
+\begin{thm}{Expected and Variance value for common distributions}
+\begin{enumerate}[(1)]
+\item $X \sim \mathrm{Bernoulli}(p)$ then $E(X)  =  p$ and $\Var(X) = p(1-p)$
+\item $X \sim \mathrm{Binomial}(n,p)$ then $E(X)  =  np$ and $\Var(X) = np(1-p)$
+\item $X \sim \mathrm{Geometric}(p)$ then $E(X)  =  \frac{1-p}{p}$ and $\Var(X) = \frac{(1-p)^2}{p^2} + \frac{1-p}{p}$
+\item $X \sim \mathrm{NB}(k,p)$ then $E(X) = \frac{k(1-p)}{p}$ and $\Var(X) = \frac{k(1-p)}{p^2}$
+\item $X\sim {\rm Hypergeometric}(N,M,n)$ then $E(x) = \frac{nM}{N}$
+\item $X\sim {\rm Poisson}(\mu)$ then $E(x) = \mu$ and $\Var(X) = \mu$.
+\end{enumerate}
+\end{thm}
+\newpage
+\section{Multivariate Distributions}
+\subsection{Joint and marginal pmf}
+Joint probability functions for more then 1 variables are defined as: 
+\begin{align*}
+f(x_1, x_2, \ldots, x_n) &= P[X_1 = x_1 \wedge X_2 = x_2 \wedge \cdots \wedge X_n = x_n]\\
+&= P[X_1 = x_1 , X_2 = x_2 , \cdots , X_n = x_n]
+\end{align*} 
+$f(x_1, \ldots, x_n)$ is called the joint probability function of $(X_1, \ldots, X_n)$ 
+
+\begin{defn}{Properties of Joint Probability function}
+\begin{align*}
+(1) && \sum_{\mathrm{all}(x_1, \ldots, x_n)}f(x_1, \ldots, x_n) = 1\\
+(2) && f(x_1, \ldots, x_n) \geq 0 \;\; \forall (x_1, \ldots, x_n)
+\end{align*}
+\end{defn}
+
+\begin{defn}{Marginal probability function}
+Marginal probability function for a single variable $X$ or $Y$ denoted by $f_X(x)$ and $f_Y(y)$ are 
+\begin{align*}
+f_X(x) = \sum_{\text{all}(y)} f(x,y)\\
+f_Y(y) = \sum_{\text{all}(x)} f(x,y)\\
+\end{align*} 
+where $f(x,y)$ is the joint probability function for $X,Y$.  
+\end{defn}
+\subsubsection{Conditional pmf}
+\begin{defn}{Conditional pmf}
+The conditional \textit{pmf} of $X$ given $Y = y$ is
+\begin{align*}
+f_X(x | y) =  \frac{f(x,y)}{f_Y(y)}, \text{ Given $f_Y(y) > 0$}
+\end{align*}
+\end{defn}
+\subsubsection{Independent random variables}
+\begin{defn}{Independent random variables}
+Two random variables $X,Y$ are independent if
+\begin{align*}
+P[X=x, Y=y] = P[X=x]\cdot P[Y=y]
+\end{align*}
+Or $f(x,y) = f_X(x)f_Y(y)$ for all $(x,y)$. 
+\end{defn}
+\newpage
+\newpage
+\begin{thm}{Vandermonde's Convolution Formula}
+\begin{align*}
+{n+m \choose k} = \sum_{j=0}^k {n \choose j}{m \choose k-j}
+\end{align*}
+\end{thm}
+\section{Multivariate Distributions}
+\subsection{Trinomial Distribution}
+There are 3 possible outcomes $A,B,C$ with 
+\begin{align*}
+P[A] = p_1, P[B] = p_2, P[C] = p_3\\
+p_1+p_2+p_3 = 1
+\end{align*} 
+The joint \textit{pmf} when $x_1+x_2 +x_3 = n$ is given by 
+\begin{align*}
+P[X_1 = x_1, X_2 = x_2, X_3 = x_3] = \frac{n!}{x_1!x_2!x_3!}p_1^{x_1}p_2^{x_2}p_3^{x_3}
+\end{align*}
+the marginal distribution is
+\begin{align*}
+X_1 \sim \text{Binomial}(n,p_1);
+X_2 \sim \text{Binomial}(n,p_2);
+X_3 \sim \text{Binomial}(n,p_3);
+\end{align*} 
+\subsection{Multinomial Distribution}
+Each trial for $k\geq 2$ has possible outcomes $A_1, \ldots, A_k$ with $P[A_i] = p_i$. Such that $\sum p_i = 1$. If we have 
+\begin{align*}
+\sum X_i = n
+\end{align*}
+Then the joint \textit{pmf} is 
+\begin{align*}
+(X_1, \ldots, X_k) \sim \text{Multinomial}(n, p_1, \ldots, p_k)\\
+P[X_1 = x_1, \ldots, X_k = x_k) =  \frac{n!}{x_1!\cdots x_k!}p_1^{x_1}\ldots p_k^{x_k}
+\end{align*}
+\newpage
+\section{Multivariate Expectation}
+\begin{thm}{The law of unconscious statistician}
+If $(X_1, X_2)\sim f(x_1, x_2)$ then 
+\begin{align*}
+E(g(X_1, X_2)) = \sum_{x_1}\sum_{x_2}g(x_1, x_2)f(x_1,x_2)
+\end{align*}
+\end{thm}
+
+\begin{thm}{Properties of Expectation}
+\begin{enumerate}[(1)]
+\item $E(X+Y) = E(X) + E(Y)$
+\item $E(aX+bY + c) = aE(X) + bE(Y) + c$
+\item if $X$ and $Y$ are independent then 
+\begin{align*}
+E[h(X)g(Y)] = E[h(X)]E[g(Y)]
+\end{align*}
+\end{enumerate}
+\end{thm}
+\subsection{Covariance}
+\begin{defn}{Covariance}
+\begin{align*}
+\Cov(X,Y) &= E[(X-EX)(Y-EY)]\\
+&= E(XY) - (EX)(EY)
+\end{align*}
+\end{defn}
+
+\begin{defn}{Varriance}
+\begin{align*}
+&\Var(X+Y) = \Var(X) + \Var(Y) + \Cov(X,Y)\\
+&\Var(aX+bY+c) = a^2\Var(X) + 2ab\Cov(X,Y) + b^2\Var(Y)
+\end{align*}
+\end{defn}
+\begin{thm}{Multinational co-variance}
+If $(X_1, \ldots, X_k) \sim \text{Multinomial}(n, p_1, \ldots, p_k)$ then 
+\begin{align*}
+\Cov(X_i,X_j) = -np_ip_j
+\end{align*}
+\end{thm}
+
+\subsection{Correlation coefficient}
+\begin{defn}{}
+\begin{align*}
+\rho = \frac{\Cov(X,Y)}{\sqrt{\Var(X)}\sqrt{\Var(Y)}}
+\end{align*}
+$|\rho| \leq 1$ and $|\rho| = 1$ if and only if $Y = aX+b$. 
+\end{defn}
+\newpage
+\subsection{Expectation and Variance results}
+\begin{thm}{General result}
+\begin{enumerate}[(1)]
+\item $E(\sum c_iX_i) = \sum c_iE(X_i)$
+\item $\Var(\sum c_iX_i) = \sum c_i^2\Var(X_i) + \sum_{i<j}c_ic_j\Cov(X_i,X_j)$
+\item If $X_1, \ldots,X_n$ are independent then   $\Var(\sum c_iX_i) = \sum c_i^2\Var(X_i)$
+\end{enumerate}
+\end{thm}
+
+
+
+\newpage
+\section{Continuous probability distributions}
+\begin{defn}{Probability density function (PDF)}
+$X$ has \textit{pdf}, where 
+\begin{align*}
+& f(x) \geq 0 & x\in (-\infty, \infty)\\
+& P[a\leq X \leq b] = \int_a^b f(x) \dd x & a\leq b
+\end{align*}
+\end{defn}
+
+\begin{defn}{Cumulative distribution function (CDF)}
+$X$ has \textit{cdf}, where 
+\begin{align*}
+F(x) = P[X\leq x] = \int_{-\infty}^x f(t) \dd t
+\end{align*}
+\begin{enumerate}[(1)]
+\item $0\leq F(x) \leq 1$
+\item $F(x_1) \leq F(x_2)$ if $x_1 < x_2$
+\item If $f(x)$ is continuous at $x$ then $\dv{F(x)}{x} = f(x)$
+\end{enumerate}
+\end{defn}
+
+\subsection{Change of variables}
+Suppose $X\sim f(x)$ and let $Y = h(X)$. If $h(X)$ has a \textit{unique} inverse or $h(\cdot)$ is one-to-one then the \textit{pdf} of $Y$ is given by 
+\begin{align*}
+g(y) = f(h^{-1}(y)) \abs{\dv{}{y}h^{-1}(y)}
+\end{align*}
+\begin{proof}
+\begin{align*}
+g(y) = \dv{}{y}F(h^{-1}(y)) = F'(h^{-1}(y))\abs{\dv{}{y}h^{-1}(y)} = f(h^{-1}(y))\abs{\dv{}{y}h^{-1}(y)}
+\end{align*}
+\end{proof}
+\newpage
+\subsection{Commonly used continuous distributions}
+\subsection{Exponential distribution}
+$X\sim \text{EXP}(\lambda)$ 
+\begin{enumerate}[(1)]
+\item The \textit{pdf} is $f(x) = \frac{\lambda}{e^{\lambda x}}$ $x\geq 0, \lambda > 0$
+\item The \textit{cdf} is 
+\begin{align*}
+F(x) = \int_{-\infty}^x \lambda e^{-\lambda t} \dd t = 1 - e^{-\lambda x} && x > 0\\
+F(x) = 0 && x \leq  0
+\end{align*}
+\item Memory less property 
+\begin{align*}
+P[X > t+s | X > s] = P[X>t]
+\end{align*}
+\item Can be used to model waiting time. Suppose $\lambda$ is the intensity parameter of a Poisson process. Let $X$ be the waiting time for the next event. 
+\begin{align*}
+F(x) = 1 - P(X>x) = 1-P[\text{No events in $[0, x)$}] = 1-\frac{e^{-\lambda x}(\lambda x)^0}{0!} = 1-e^{-\lambda x}
+\end{align*}
+\end{enumerate}
+
+\subsection{Gamma distribution}
+$X\sim \text{GAM}(\alpha, \beta)$
+\begin{enumerate}[(1)]
+\item The \textit{pdf} is 
+\begin{align*}
+f(x) = \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha - 1}\exp(\frac{-x}{\beta})
+\end{align*}
+\end{enumerate}
+\subsection{Uniform distribution}
+$X\sim \text{UNIF}(a,b)$ then the \textit{pdf} is
+\begin{align*}
+f(x) = \frac{1}{b-a}
+\end{align*}
+the \textit{cdf} is 
+\begin{align*}
+F(x) = \frac{x-a}{b-a}
+\end{align*}
+\newpage
+\subsection{Beta distribution}
+Beta function: 
+\begin{align*}
+B(\alpha_1, \alpha_2) = \frac{\Gamma(\alpha_1)\Gamma(\alpha_2)}{\Gamma(\alpha_1+\alpha_2)}
+\end{align*}
+\begin{enumerate}[(1)]
+\item pdf is given by 
+\begin{align*}
+f(x) = \frac{1}{B(\alpha_1, \alpha_2)}x^{\alpha_1-1}(1-x)^{\alpha_2-1}
+\end{align*}
+\end{enumerate}
+\section{Expectation and Variance of continuous random variables}
+\begin{defn}{Expectation and variance}
+\begin{align*}
+&E(X) = \int_{-\infty}^\infty xf(x) \dd x\\
+&\Var(X) = \int_{-\infty}^{\infty} [x-E(X)]^2f(x) \dd x
+\end{align*}
+\end{defn}
+\newpage
+\section{Moments and moment generating function}
+\begin{defn}{}
+If $X$ is a random variable then the moment generating function is 
+\begin{align*}
+M_X(t) = E(e^{tX}) && \text{Given it exists for $t\in (-h, h)$}
+\end{align*} 
+\end{defn}
+\subsection{Joint MGF}
+\begin{defn}{Joint MGF}
+For two random variables $X,Y$ the joint MGF is 
+\begin{align*}
+M_{X,Y}(t_1, t_2) &= E(e^{t_1X + t_2Y})\\
+&= \iint_{\R^2} e^{t_1x}e^{t_2y}f(x,y) \dd x \dd y
+\end{align*}
+if the joint expectation exists for $t_1 \in (-h_1, h_1)$ and $t_2\in (-h_2,h_2)$
+$M_X(t) = M_{X,Y}(t,0)$ and $M_Y(t) = M_{X,Y}(0,t)$
+\end{defn}
+\begin{thm}{MGF of linear function}
+Suppose $X$ has \textit{mgf} $M_X(t)$ for $t\in (-h, h)$. Let $Y = aX+b$ then 
+\begin{align*}
+M_Y(t) = e^{bt}M_X(at) && t \in \left(-\frac{h}{|a|}, \frac{h}{|a|}\right)
+\end{align*}
+\end{thm}
+\newpage
+\section{Properties of MGF}
+\begin{thm}{Moments}
+Suppose $X$ has MGF $M_X(t)$. Then $M_X(0) = 1$ and 
+\begin{align*}
+E(X^k) = M^{(k)}_X(0)
+\end{align*}
+\end{thm}
+
+
+\begin{thm}{Joint Moments}
+Suppose $X,Y$ are random variables with joint MGF $M_{X,Y}(t_1,t_2)$. Then 
+\begin{align*}
+E(X^jY^k) = \left.\frac{\partial^{j+1}}{\partial t_1^j \partial t_2^k} M_{X,Y}(t_1,t_2) \right|_{(t_1, t_2) = (0,0)}
+\end{align*}
+\end{thm}
+
+\begin{thm}{MGF Independence}
+Two random variables $X,Y$ are independent  \textbf{if and only if}
+\begin{align*}
+M_{X,Y}(t_1, t_2) = M_X(t_1)M_Y(t_2)
+\end{align*} 
+\end{thm}
+
+\begin{thm}{ Sum of independent random variables}
+If $Y = X_1 + X_2$ then 
+\begin{align*}
+M_Y(t)  = M_1(t)M_2(t)
+\end{align*}
+\end{thm}
+\newpage
+\section{Convergence in probability}
+\begin{defn}{Convergence in probability}
+$X_n \pto b$ if for any $\epsilon > 0$ we have 
+\begin{align*}
+\nlim{n}{\infty} P[|X_n-b| \geq \epsilon ] = 0
+\end{align*}
+\end{defn}
+\begin{thm}{Convergence of Sum and product}
+If $X_n \pto a$ and $Y_n \pto b$ then 
+\begin{align*}
+X_n + Y_n \pto a+b\\
+X_nY_n \pto ab
+\end{align*}
+\end{thm}
+\begin{thm}{Markov's inequality}
+For random variable $X$ with finite $E(|X|^k)$, 
+\begin{align*}
+P[|X| \geq c] \leq \frac{E[|X|^k]}{c^k}
+\end{align*}
+\end{thm}
+\subsection{Weak Law of large numbers}
+\begin{thm}{Weak Law of large numbers}
+Suppose $X_i'$s are \textbf{iid} with $EX_i = \mu$ and $\Var X_i = \sigma^2 < \infty$ then 
+\begin{align*}
+&\bar{X} = \sum_{n=1}^n \frac{X_i}{n}\\
+&\bar{X} \pto \mu
+\end{align*}
+\end{thm}
+
+\newpage
+\section{Convergence in distribution}
+
+\begin{defn}{Convergence in distribution}
+$X_n \dto X$ if 
+\begin{align*}
+\nlim{n}{\infty} F_n(x) = F(x) && \text{ All all continuity points of $F$ } 
+\end{align*}
+where $F_n(x) = P[X_n \leq x]$ and $F$ is the \textit{CDF} of $X$
+\end{defn}
+
+\subsection{e limit}
+\begin{thm}{$e$ limit}
+If $b$ is a real constant and $\nlim{n}{\infty}\psi(n) = 0$ then 
+\begin{align*}
+\nlim{n}{\infty} \left[1+\frac{b}{n}+\frac{\psi(n)}{n}\right]^n = e^b
+\end{align*} 
+\end{thm}
+
+\subsection{MGF for limiting distributions}
+\begin{thm}{MGF Convergence theorem}
+Let $X_1, X_2, \ldots, X_n$ and let $M_1(t), M_2(t), \ldots, M_n(t), \ldots$ be the MGF. Let $X$ be a random variable with MGF $M(t)$ if there exists $h> 0$ such that 
+\begin{align*}
+\nlim{n}{\infty} M_n(t) = M(t) && t \in (-h,h)
+\end{align*}
+then $X_n \dto X$
+\end{thm}
+\newpage
+\section{Central limit theorem}
+\begin{thm}{Central limit theorem}
+Suppose $X_i$ are \textit{iid} with $EX_i = \mu$ and $\Var X_i = \sigma^2 < \infty$ then 
+\begin{align*}
+\frac{\sqrt{n}(\bar{X}-\mu)}{\sigma} \dto Z \sim N(0,1)
+\end{align*}
+Equivalently 
+\begin{enumerate}[(1)]
+\item $S_n = \sum X_i \dto N(n\mu, n\sigma^2)$
+\item $\bar{X}= \frac{1}{n}\sum X_i \dto N(\mu, \frac{\sigma^2}{n})$
+
+\end{enumerate} 
+\end{thm}
+\newpage
+\section*{CDF Not in notes}
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+Name & \textit{PDF} & $E(X)$ & $\Var(X)$ & MGF ($M(t)$) \\ 
+\hline 
+Exponential ($X\sim EXP(\lambda)$) & $\lambda e^{-\lambda x}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ & $\frac{1}{1-\frac{t}{\lambda}}$ for $t<\lambda$ \\ 
+\hline 
+Gamma ($X\sim Gamma(\alpha, \beta)$) & $f(x) = \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha -1}e^{\frac{-x}{\beta}}$ & $\alpha\cdot \beta$ & $\alpha \cdot \beta^2$ & $\frac{1}{(1-\beta t)^\alpha}$ for $t<\frac{1}{\beta}$ \\ 
+\hline 
+Beta ($X\sim Beta(\alpha, \beta)$) & $f(x) = \frac{1}{B(\alpha, \beta)}x^{\alpha -1}(1-x)^{\beta -1}$ & $\frac{\alpha}{\alpha+\beta}$ & $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ & - \\ 
+\hline 
+\end{tabular} 
+\newpage
+\section*{Useful}
+IID for distribution
+\begin{enumerate}[\# 1]
+\item If $Y \sim BN(n,p)$ then 
+\begin{align*}
+Y = \sum_{i=1}^n X_i && X_i \iid Bernoulli(p)
+\end{align*}
+
+\item
+If $Y \sim \POI(n)$ then 
+\begin{align*}
+Y = \sum_{i=1}^n X_i  && X_i \iid \POI(1)
+\end{align*}
+
+
+\item If $Y \sim GAMMA(\alpha, \beta)$ then 
+\begin{align*}
+Y = \sum_{i=1}^n X_i && X_i \iid GAMMA(1, \beta)
+\end{align*}
+
+\item If $Y \sim NB(k,p)$ then 
+\begin{align*}
+Y = \sum_{i=1}^k X_i && X_i \iid Geo(p)
+\end{align*}
+\end{enumerate}
+
+Assignment Theorems: 
+\begin{thm}{\textbf{A4Q7}}
+If $\{X_1, X_2, \ldots, X_n, \ldots\}$ is a sequence of random variables and $E(X_n) = \mu$ and $\Var(x_n) = \sigma_n^2$ with 
+\begin{align*}
+\nlim{n}{\infty} \mu_n = \mu\\
+\nlim{n}{\infty} \sigma_n^2 = 0\\
+\end{align*}
+Then
+\begin{align*}
+X_n \pto X = \mu
+\end{align*}
+\end{thm}
+
+
+
+
+
+
+\end{document}
+
