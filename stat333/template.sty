@@ -1,4 +1,5 @@
 
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{template}
 \RequirePackage{kvoptions}% load kvoptions
@@ -34,6 +35,7 @@
 \rhead{\MCS@name}
 \renewcommand{\abstractname}{Preface}
 
+\usepackage{blkarray}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -172,7 +174,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{subdefn}[subthm]{Definition}
-\newtheorem{exmp}[thm]{Example}
+\newtheorem{example}[thm]{Example}
 \newtheorem{subexmp}[subthm]{Example}
 \newtheorem{qstn}[thm]{Question}
 \swapnumbers
@@ -207,17 +209,23 @@
 angle}
 \newcommand{\OR}{\vee}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
-\newcommand{\Z}{\mathbf{Z}}
-\newcommand{\C}{\mathbf{C}}
-\newcommand{\R}{\mathbf{R}}
-\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\dk}{\Delta_k}
 \newcommand{\AND}{\wedge}
 \newcommand{\nlim}[2]{\lim\limits_{#1 \rightarrow #2}}
 \newcommand{\nsum}[2]{\sum\limits_{#1}^{#2}}
 
-% MATH 245
 
+% Stat 333
+
+\newcommand{\iid}{\mathrm{iid}}
+\newcommand{\given}{\;\vert\;}
+
+
+% MATH 245
 \newcommand{\id}{\operatorname{id}}
 \newcommand{\Col}{\operatorname{Col}}
 \newcommand{\Row}{\operatorname{Row}}
@@ -259,7 +267,7 @@ angle}
 % boxed options
 \ifMCS@boxed
 \renewenvironment{thm}[1]{\begin{bthm}{#1}}{\end{bthm}}
-\renewenvironment{defn}[1]{\begin{bdefn}{#1}}{\end{bdefn}}
+\renewenvironment{defn}[1][]{\begin{bdefn}{#1}}{\end{bdefn}}
 \renewenvironment{lemma}[1]{\begin{blemma}{#1}}{\end{blemma}}
 \fi
 

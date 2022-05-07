@@ -18,6 +18,171 @@
 \maketitle
 \newpage
 \section{Week 1}
+\begin{defn}[\textbf{Stochastic Process}]
+Let $(X_t)_{t\in T}$ be a collection of random variables this is called a Stochastic Process. $T$ is the \textit{index set}. 
+\end{defn}
+\begin{example}[Simple Random Walk on $\Z$]
+Let $X_i\sim \iid$ where $X_i \in \{-1,1\}$ with 
+\begin{align*}
+P(X_i = 1) = \frac{1}{2}\\
+P(X_i = -1) = -\frac{1}{2}
+\end{align*}
+now let 
+\begin{align*}
+S_n = \sum_{i=0}^n X_i
+\end{align*}
+Then $(S_i)_{k=0}^\infty$ is a stochastic process.  
+\end{example}
+
+\begin{defn}[\textbf{Transition Probability}]
+Given $(X_s)_{s \leq t}$ we need the probability for $X_{t+1}$.
+\begin{align*}
+P(X_{(t+1)} = x_{t+1} \vert X_1 = x_1 , X_2 = x_2, \ldots X_t = x_t)
+\end{align*}
+\end{defn}
+
+
+\begin{note}{Conditional Probability Properties}
+\begin{align*}
+&P(A | B) = \frac{P(AB)}{P(B)} \; P(B) > 0\\
+&P(ABC) = P(A|BC) \cdot P(B|C) \cdot P(C)
+\end{align*}
+\end{note}
+
+\begin{example}{Transition Probabilities for SRW on $\Z^d$}
+\begin{align*}
+P\left(\norm{X_{t+1} - X_{t}} \given (X_{s})_{s \leq t} \right) = \frac{1}{2d} 
+\end{align*}
+\end{example}
+\newpage
+\subsection{Markov Chains}
+\begin{defn}[{Markov Property}]
+\label{markovprop}
+A process has the Markov property if:
+\begin{align*}
+P(X_{t+1}= x_{t+1} \given (X_{s})_{s\leq t}) = P(X_{t+1} = x_{t+1} \given X_{t} = x_t)
+\end{align*}
+(Next outcome only depends on the previous outcome)
+\end{defn}
+
+\begin{note}[Markov Chain]
+A stochastic process that satisfies the \hyperref[markovprop]{Markov property} is called a Markov chain.
+\end{note}
+
+\begin{defn}[Time Homogeneous Markov Chain]
+A Markov Chain is called time homogeneous if the following is true
+\begin{align*}
+P(X_{t+1} = x_t \given X_t = x_t) = P(X_1 = x_1 \given X_0 = x_0)
+\end{align*}
+\end{defn}
+
+\begin{defn}[Stochastic Matrix]
+\label{stocmat}
+
+A matrix $\mathbf{P}$ is called stochastic if
+\begin{align*}
+&\mathbf{P} = \mqty(
+p_{00} & p_{01} & \ldots \\
+p_{10} & p_{11} & \ldots \\
+\vdots  & \ddots &
+)\\
+&0\leq p_{ij} \leq 1\\
+&\nsum{all(j)}{} p_{i_0j} = 1 \; \text{ for fixed $i_0$}
+\end{align*}
+\end{defn}
+\begin{defn}[Transition Matrix]
+Let $\mathbf{P}$ be a \hyperref[stocmat]{Stochastic matrix} and let $p_{ij} = $ value in $i-$th row and $j-$th column.
+We define $p_{ij}$ as
+\begin{align*}
+&p_{ij} = P(X_{t} = j \given X_{t-1} = i)\\
+\end{align*}
+This is called the transition matrix for $(X_t)_{t \in T}$.
+\end{defn}
+\newpage
+\begin{example}{Transition Matrix}
+Consider this transition matrix 
+The transition matrix for this Markov Chain is
+\[
+\begin{blockarray}{cccc}
+& 1 & 2 & 3 \\
+\begin{block}{c(ccc)}
+1 & 0 & \frac{1}{2} & \frac{1}{2} \\
+2 & \frac{1}{3} & 0 & \frac{2}{3} \\
+3 & \frac{1}{3} & \frac{2}{3} & 0 \\
+\end{block}
+\end{blockarray}
+\]
+this can be visualized as: 
+\fig{fig0}{0.5}
+\end{example}
+\newpage
+\subsubsection{Multistep Transition Probabilities}
+\begin{defn}
+\begin{align*}
+[P(n, n+m)]_{xy} = P(X_{n+m} = y \given X_{n} = x)
+\end{align*}
+\end{defn}
+
+\begin{thm}{Multistep Transition Probability Matrix}
+\label{thm113}
+Let $(X_t)_{t\in T}$ be a stochastic process satisfying the Markov property and let $\bf P$ be the transition matrix.  
+\begin{align*}
+[P(n, n+m)]_{xy} = \mathbf{P}^m_{xy}
+\end{align*}
+\end{thm}
+\begin{lemma}{}
+\label{lem114}
+\begin{align*}
+[P(n, m+1+n)]_{xy} = \nsum{\mathrm{all}(z)}{}[P(n,m+n)]_{xz}P_{zy}
+\end{align*}
+\end{lemma}
+\begin{proof}
+To go from state $x \to y$ we must add up all probabilities of going to an intermediate state $\bf z$, $x \to {\bf z} \to y$ we add possibilities of $\bf z$. 
+\begin{align*}
+&[P(n, m+1+n)]_{xy} = P(X_{m+1+n} = y \given X_{n} = x)\\
+&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y, X_{n+m} = z \given X_{n} = x) \text{ Marginal probability function (stat240) }\\
+&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z , X_{n} = x)P(X_{n+m} = z \given X_n = x) \text{ conditional probability }
+\end{align*}
+Since $X_t$ satisfies the Markov property we get
+\begin{align*}
+&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z)P(X_{n+m} = z \given X_n = x)
+\end{align*}
+By definition we have $P(X_{m+1+n} = y \given X_{n+m} = z) = P_zy$ and $P(X_{n+m} = z \given X_n = x) = [P(n, n+m)]_{xz}$. 
+\end{proof}
+\newpage
+Using \hyperref[lem114]{Lemma 1.14} we can prove the \hyperref[thm113]{Theorem 1.13}. \\
+Since  \hyperref[lem114]{1.14}'s result is the definition of matrix multiplication we get
+\begin{align*}
+[P(n, m+1+n)]_{xy} = [P(n, m+n)P]_{xy}
+\end{align*}
+by induction on $m$ with base case $P(n, n+1) = P$ we get
+\begin{align*}
+&[P(n, m+1+n)]_{xy} = {\bf P}^m
+\end{align*}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
