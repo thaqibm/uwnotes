@@ -19,15 +19,26 @@
 \maketitle
 \newpage
 \section*{Linear Algebra}
-\textbf{Matrix multiplication.} If $A$ is a $n\times m$ matrix and $B$ is a $m\times k$ matrix then the matrix $AB$ of $\dim$ $n\times k$ is defined by: 
+\subsubsection*{Matrix multiplication} If $A$ is a $n\times m$ matrix and $B$ is a $m\times k$ matrix then the matrix $AB$ of $\dim$ $n\times k$ is defined by: 
 \begin{align*}
 {\bf[}AB{\bf]}_{xy} = \nsum{\all(z)}{}A_{xz}B_{zy}
 \end{align*}
 \\
-\textbf{Inner Product} The inner product (dot product) of 2 vectors $\vec{a}, \vec{b}$ in $\R^n$ is defined as
+\subsubsection*{Inner Product} The inner product (dot product) of 2 vectors $\vec{a}, \vec{b}$ in $\R^n$ is defined as
 \begin{align*}
 \va{a}\cdot \va{b} = \innerp{\va{a},\va{b}} = \nsum{k=1}{n}a_kb_k
 \end{align*}
+\subsubsection*{Eigenvalues and Eigenvectors}
+We can find eigenvalues by solving for the roots of the characteristic polynomial of the matrix $\vb A$.
+\begin{align*}
+\det(\vb A-tI_n) = 0
+\end{align*}
+Where $I_n$ is the $n\times n$ identity matrix.
+Then for each eigenvalue $t=c$ we can solve the system of linear equations 
+\begin{align*}
+(\vb A - cI_n)\va* x = \va* 0
+\end{align*}
+$\va* x$ will be an eigenvector of $\vb A$. 
 
 \newpage
 \section{Week 1}
