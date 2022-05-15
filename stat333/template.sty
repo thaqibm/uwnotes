@@ -160,7 +160,7 @@
 
 % Theorems/proofs
 \swapnumbers
-\theoremstyle{plain}
+\theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{subthm}{Theorem}[subsection]
 \newtheorem{subprop}[subthm]{Proposition}
@@ -171,7 +171,6 @@
 \newtheorem{subcor}[subthm]{Corollary}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{sublemma}[subthm]{Lemma}
-\theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{subdefn}[subthm]{Definition}
 \newtheorem{example}[thm]{Example}
@@ -205,14 +204,15 @@
 
 
 % Symbol Macros
-\newcommand{\ang}[1]{\langle #1 
-angle}
+\DeclarePairedDelimiter\innerp{\langle}{\rangle} % inner product
 \newcommand{\OR}{\vee}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+
 \newcommand{\dk}{\Delta_k}
 \newcommand{\AND}{\wedge}
 \newcommand{\nlim}[2]{\lim\limits_{#1 \rightarrow #2}}
@@ -220,10 +220,10 @@ angle}
 
 
 % Stat 333
-
 \newcommand{\iid}{\mathrm{iid}}
+\newcommand{\all}{\mathrm{all}}
 \newcommand{\given}{\;\vert\;}
-
+\renewcommand{\sim}{\thicksim}
 
 % MATH 245
 \newcommand{\id}{\operatorname{id}}

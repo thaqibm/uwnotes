@@ -1,0 +1,234 @@
+
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{bigints}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{xhfill}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\title{física eléctrica}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+%cambios de unidades (pt, mm, cm,ex,em,bp,dd,pc,sp) https://tex.stackexchange.com/questions/8260/what-are-the-various-units-ex-em-in-pt-bp-dd-pc-expressed-in-mm
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\newcommand{\nc}[2][]{%
+\tikz \draw [draw=black, ultra thick, #1]
+    ($(current page.center)-(0.5\linewidth,0)$) -- 
+    ($(current page.center)+(0.5\linewidth,0)$)
+    node [midway, fill=white] {#2};
+}% tomado de https://tex.stackexchange.com/questions/179425/a-new-command-of-the-form-tex
+\begin{document}
+
+\begin{center}{\huge{\textbf{STAT 333}}}\\
+\end{center}
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%--------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+\begin{itemize}
+\addtolength{\itemsep}{-2pt}
+%\item[$g = $]  
+%  9.80 m s$^{-2}$
+\item[$c = $] 
+  Velocidad de la luz $ = 3.00\times 10^8$ ms$^{-1}$ 
+\item[$k = $] 
+  Constante de Coulomb $ = 8.9876\times 10^9$ Nm$^2C^{-2}$ %8.9875517873681764×109 N·m2/C2 (m/F)​.
+\item[$\epsilon_o = $] 
+  Constante dieléctrica vació $ = 8.85\times 10^{-12}$ N$^{-1}$C$^2m^{-2}$ (m/F)
+\item[$\mu_o = $] 
+  Permeabilidad del vació $ = 4\pi\times 10^{-7}$ H/m $= 1.256\times 10^{-6}$ Kgs$^{-2}$A$^{-2}$ %1.25663706 × 10-6 m kg s-2 A-2
+\item[$e^{\pm} = $]
+  Carga del electrón-protón  $ = 1.60\times10^{-19}$ C
+\item[$m_e = $]
+  Masa del electrón $ = 9.11\times10^{-31}$ kg % \\ $ = 0.511$ MeV/$c^2$
+\item[$m_n = $]
+  Masa de neutrón-protón $ = 1.67\times10^{-27}$ kg % \\ $ = 938$ MeV/$c^2$
+\item[$N_A = $]
+  Número de Avogadro $ = 6.022 \times 10^{23}$ moléculas/mol
+\item[$k_B = $]
+  Constante de Boltzmann $ = 1.38 \times 10^{-23} {\mbox{J}}/{\mbox{K}}$
+%\item[$R = $]
+%  Constante de gases ideales$ = 8.31 \frac{\mbox{J}}{\mbox{mol K}} = 0.0821 \frac{\mbox{l atm}}{\mbox{mol K}}$
+%\item[ $c_{\mbox{w}} = $] 
+%  Calor específico agua $ = 1 {\mbox{ cal}}/({\mbox{g K}})$]
+%\item[ $1 {\mbox{ cal}} $] $= 4.186 {\mbox{ J}}$]
+%\item[ $\sigma = $] 
+%  Constante Stefan-Boltzmann $ = 5.67\times 10^{-8}\>\frac{\mbox{W}}{\mbox{m}^2 \mbox{K}^4}$
+\end{itemize}
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {};
+\end{tikzpicture}
+
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $\Vec{F}_{ij}=k\frac{Q_iQ_j}{r^2_{ij}}\hat{r}_{ij} = \frac{1}{4\pi\epsilon_o}\frac{Q_iQ_j}{r^2_{ij}}\hat{r}_{ij}=Q_i\Vec{E}_j$\\
+    $\Vec{E}_i=k\frac{Q_i}{r^2_{io}}\hat{r}_{io}$ \\
+    $V=k\frac{Q_i}{r_{oi}}$ 
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Distribuciones Discretas};
+\end{tikzpicture}
+
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $\lambda= \frac{q}{L}=\frac{dq}{dL}$, $dq=\lambda dL$\\
+    $\sigma= \frac{q}{A}=\frac{dq}{dA}$, $dq=\sigma dA$\\
+    $\rho= \frac{q}{V}=\frac{dq}{dV}$, $dq=\rho dV$
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Densidad de Carga};
+\end{tikzpicture}
+
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+     \nc{Campo}\\
+    $d\vec{E} = k\frac{dq}{r^2_{do}}\hat{r}_{do}$\\
+    $\vec{E} = k\bigintsss \frac{\lambda dL}{r^2_{do}}\hat{r}_{do}$, $\vec{E} = k\bigintsss \frac{\sigma dA}{r^2_{do}}\hat{r}_{do}$, $\vec{E} = k\bigintssss \frac{\rho dV}{r^2_{do}}\hat{r}_{do}$\\
+    $\vec{E}_{linea}=\frac{1}{2\pi\epsilon_o}\frac{\lambda}{r}\hat{r}$\\ $\vec{E}_{placa}=\frac{\sigma}{2\epsilon_o}\hat{r}_{\scriptstyle{\perp}}$\\ Entre placas opuestas $\vec{E}_{placas}=\frac{\sigma}{\epsilon_o}\hat{r}_{\scriptstyle{\perp}}$\\
+    $E_i=-\frac{dV}{dx_i}$; $x_i=x,y,z$\\  
+    $\vec{E}=-\vec{\nabla} V$
+    \end{minipage}
+};
+%------------ campo titulo---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Distribuciones Continuas};
+\end{tikzpicture}
+%---------------------------------
+%\bigskip
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \nc{Gauss}\\
+    $\Phi=\bigointsss \vec{E}\cdot d\vec{A}=\frac{q_{enc}}{\epsilon_o}$\\
+    \nc{Potencial}\\
+    $V=\frac{U}{q}$\\
+    $V=\vec{E}\cdot\vec{r}$\\
+    $V-V_o=-\bigintsss \vec{E}\cdot d\vec{l}$\\
+    $V=\frac{1}{4\pi\epsilon_o}\bigintsss \frac{dq}{r}$\\
+    $V= k\bigintsss \frac{\lambda dL}{r_{do}}$, $V= k\bigintsss \frac{\sigma dA}{r_{do}}$, $V = k\bigintssss \frac{\rho dV}{r_{do}}$\\
+    \nc{Energía}\\
+    $\Delta U=-\bigintsss_a^b\vec{F}d\vec{l}=-q\bigintsss_a^b\vec{E}d\vec{l}$\\
+    $\Delta U=q\Delta V=-W_{ab}=qEl$
+    \end{minipage}
+};
+%------------ potencial titulo  ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Distribuciones Continuas};
+\end{tikzpicture}
+
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $C_o\frac{q}{V}=\frac{\epsilon_oA}{d}$, con dieléctrico $C=kC_o=\frac{k\epsilon_oA}{d}$\\
+    $C_p=C_1+C_2+...+C_n=\sum_i^nC_i$\\
+    $C_s=1/C_1+1/C_2+...+1/C_n=(\sum_i^n\frac{1}{C_i})^{-1}$\\
+    $E_{pot-elec}=U=\frac{1}{2}qV=\frac{q^2}{2C}=\frac{1}{2}CV^2$\\
+    $\mu=\frac{\epsilon_oE^2}{2}=\frac{\epsilon_oV^2}{2d^2}=\frac{U}{V_{olumen}}$
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Capacitancia};
+\end{tikzpicture}
+
+%\bigskip\\
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $I=\frac{V}{R}=\frac{\Delta q}{\Delta t}=\frac{dq}{dt}=JA=\int \vec{J}\cdot\vec{A}$\\
+    $v_d=\frac{I}{nAe}=\frac{J}{ne}=a\tau=\frac{eE\lambda}{m}$\\
+    $R=\rho\frac{L}{A}$, $\rho=\frac{E}{J}=\frac{1}{\sigma}=\frac{m_e}{ne^2\tau}$, $\vec{J}=\sigma \vec{E}=-ne\vec{v}_d$\\
+     $R_s=R_1+R_2+...+R_n=\sum_i^nR_i$\\
+    $R_p=1/R_1+1/R_2+...+1/R_n=(\sum_i^n\frac{1}{R_i})^{-1}$\\
+    $P=IV=I^2R=\frac{V^2}{R}=\frac{dU}{dt}$, $dU=dqV_{ab}=IdtV_{ab}$\\
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Corriente};
+\end{tikzpicture}
+
+%\bigskip\\
+%---------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $F=\frac{\mu_o}{2\Pi}\frac{qvI}{r}$\\
+    $\vec{F}=q\vec{v}\times\vec{B}$,$F=qvBsen\theta$\\
+    $B=\frac{\mu_oI}{2\pi r}$\\
+    $\vec{F}=q\vec{E}+q\vec{v}\times\vec{B}$\\
+    $B=n\mu_oI$\\
+    $\vec{F}=i\vec{l}\times\vec{B}$
+    \end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Fuentes Campo Magnético};
+\end{tikzpicture}
+\bigskip\\
+%---------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+	\nc{Biot-Savart}
+	$d\vec{B}=\frac{\mu_o}{4\pi}\frac{Id\vec{l}\times\vec{r}}{r^3}$\\
+	$B=\frac{\mu_oI}{4\pi R^2}\Delta l_{arco}$\\
+	$B=\frac{\mu_oI}{4\pi R}(cos\theta_1-cos\theta_2)$\\
+	\nc{Cargas en Movimiento}\\
+	$r=\frac{mv}{qB}$\\
+	$a=\frac{qvB}{m}=\frac{v^2}{r}$
+	\end{minipage}
+};
+%---------------------------------
+\node[fancytitle, right=10pt] at (box.north west) {Cargas en Movimiento con Presencia de Campos};
+\end{tikzpicture}
+\bigskip\\
+
+
+
+
+\end{multicols*}
+\end{document}
+
+

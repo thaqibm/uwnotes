@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{lmodern}
 
+
 \usepackage[
 	name=Thaqib\ M, 
 	class= stat333, 
@@ -16,6 +17,18 @@
 \title{stat333 Notes}
 \begin{document}
 \maketitle
+\newpage
+\section*{Linear Algebra}
+\textbf{Matrix multiplication.} If $A$ is a $n\times m$ matrix and $B$ is a $m\times k$ matrix then the matrix $AB$ of $\dim$ $n\times k$ is defined by: 
+\begin{align*}
+{\bf[}AB{\bf]}_{xy} = \nsum{\all(z)}{}A_{xz}B_{zy}
+\end{align*}
+\\
+\textbf{Inner Product} The inner product (dot product) of 2 vectors $\vec{a}, \vec{b}$ in $\R^n$ is defined as
+\begin{align*}
+\va{a}\cdot \va{b} = \innerp{\va{a},\va{b}} = \nsum{k=1}{n}a_kb_k
+\end{align*}
+
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
@@ -96,6 +109,7 @@ We define $p_{ij}$ as
 \begin{align*}
 &p_{ij} = P(X_{t} = j \given X_{t-1} = i)\\
 \end{align*}
+(probability of going from state $i$ to state $j$ in the chain). \\
 This is called the transition matrix for $(X_t)_{t \in T}$.
 \end{defn}
 \newpage
@@ -125,7 +139,7 @@ this can be visualized as:
 
 \begin{thm}{Multistep Transition Probability Matrix}
 \label{thm113}
-Let $(X_t)_{t\in T}$ be a stochastic process satisfying the Markov property and let $\bf P$ be the transition matrix.  
+Let $(X_t)_{t\in T}$ be a stochastic process satisfying the Markov property and be \textit{time homogeneous} and let $\bf P$ be the transition matrix.  
 \begin{align*}
 [P(n, n+m)]_{xy} = \mathbf{P}^m_{xy}
 \end{align*}
@@ -159,7 +173,134 @@ by induction on $m$ with base case $P(n, n+1) = P$ we get
 \begin{align*}
 &[P(n, m+1+n)]_{xy} = {\bf P}^m
 \end{align*}
- 
+Since RHS does not depend on $n$ we can write $P(n, n+m) = P(m)$ and time homogeneity applies for any $m$ number of steps. 
+\begin{align*}
+P(X_{n+m} = y \given X_n = x) = P(X_{m} = y \given X_0 = x)
+\end{align*}  
+
+\newpage 
+
+\section{Week 2}
+\subsection{Initial Data}
+Let $(X_n)_{n\in I}$ be a time homogeneous Markov chain. We denote these by $0, 1, 2, \ldots \abs{I} - 1$. We represent the state space as:
+\begin{align*}
+\{i_1, i_2, \ldots, i_{\abs{I}}\} = \mathcal{X}
+\end{align*}
+Let $\bf P$ be the transition matrix for this Markov chain. 
+\begin{defn}[Distribution Row Vector]
+\begin{align*}
+\mu_j = P(X_0 = i_j)
+\end{align*}
+Then the row vector $\vec{\mu}$ of $\dim = 1 \times \abs{I}$ is defined as 
+\begin{align*}
+\vec{\mu} = \left[\mu_1, \mu_2, \ldots, \mu_{\abs{I}}\right]
+\end{align*} 
+$\vec{\mu}$ is called the distribution of $X_0$ denoted by $X_0 \sim \vec{mu}$.\\
+The distribution vector for $X_n$ is denoted by $\mu(n)$. 
+\end{defn}
+
+
+\begin{thm}{Distribution of $X_n$}
+The distribution row vector of $X_n$ for a time homogeneous Markov chain is given by $\mu P^n$  
+\end{thm}
+\begin{proof}
+\textit{Sketch}. 
+\begin{align*}
+P(X_n = i_k) = \nsum{j=1}{\abs{I}}P(X_n = i_k \given X_0 = i_j)P(X_0 = i_j) = \sum \vec{\mu_j} P_{jk} = \left[\vec{\mu}P\right]_k
+\end{align*}
+Implies $X_n \sim \vec{\mu}P^n$
+\end{proof}
+\newpage
+\subsection{Conditional Expectation}
+Given $f: \mathcal{X}\to \mathbb{R}$ what is the expected value of $f(X_m)$ given an initial distribution? 
+\\
+The function $f$ on a finite state space $\mathcal{X}$ is equivalent to a vector $\vec{f} \in \R^{\abs{\mathcal{X}}}$
+\begin{align*}
+\vec{f} = \mqty(f(1)\\f(2)\\ \ldots \\ f(n))
+\end{align*}  
+The conditional expectation for $f(X_m)$ given $X_0 \sim \vec{\mu}$ is denoted by 
+\begin{align*}
+\E(f(X_m) \given X_0 \sim \vec{\mu})
+\end{align*} 
+By definition of conditional expectation we get
+\begin{align*}
+\E(f(X_m) \given X_0 \sim \vec{\mu}) &= \nsum{k=1}{\abs{\mathcal{X}}} f(i_k)P(X_m = i_k \given X_0 \sim \vec{\mu})\\
+&= \nsum{\all(k)}{} f(i_k) \left[\va*{\mu} \vb{P}^m \right]_k\\
+&= \nsum{\all(k)}{} \va*{f}_k \left[\va*{\mu} \vb{P}^m \right]_k\\
+&= \innerp{\va*{\mu}\vb{P}^m, \va*{f}}
+\end{align*}
+\newpage
+\subsection{Stationary Distribution}
+Suppose $X_0 \sim \va{\mu}$ then the distribution for $X_n \sim \va\mu(n)$ then what is the limit of $\va\mu(n)$ as $n\to \infty$. 
+Suppose the limit $\nlim{n}{\infty}\va\mu P^n = \va\pi$ exists then we can write 
+\begin{align*}
+\va*{\pi} = \nlim{n}{\infty}\va*{\mu}\vb{P}^n = \nlim{n}{\infty}\va*{\mu}\vb{P}^{n-1}P = \nlim{n}{\infty} \va*{\mu}(n-1)\vb{P} = \va*{\pi}\vb{P}
+\end{align*}
+So $\va\pi$ is an \texttt{left eigenvector of $\vb{P}$} with \texttt{eigenvalue 1}. 
+
+\begin{defn}[Stationary Distribution]
+A probability vector $\va*{\pi}$ is the Stationary Distribution for the stochastic matrix $\vb{P}$ if 
+\begin{align*}
+&\nsum{k}{}\va*\pi_k = 1\\
+&\va*{\pi}\vb{P} = \va*{\pi}
+\end{align*}
+\end{defn}
+\begin{defn}[Stationary Measure]
+A measure $\va\nu$ on $\mathcal{X}$ $\left(\va\nu \in \R^{\abs{\mathcal{X}}}\right)$ if 
+\begin{align*}
+&\va \nu_i \geq 0\\
+&\nsum{}{}\va\nu_i > 0\\
+&\va\nu \vb{P} = \va\nu
+\end{align*}
+\end{defn}
+\begin{prop}[Stationary Distribution from Measure]
+\label{statdm}
+If $\abs{X} < \infty$ and $\va\nu$ is a stationary measure on $\vb P$  
+\begin{align*}
+\va*\pi = \frac{1}{\nsum{i}{}\va\nu_i}\va\nu
+\end{align*}
+Then $\va*\pi$ is a stationary distribution by definition.
+\end{prop}
+\newpage
+\begin{defn}[Bi-stochastic Matrix]
+A \hyperref[stocmat]{stochastic matrix} is Bi-stochastic if 
+\begin{align*}
+&\nsum{\all(i)}{}P_{ij_0} = 1 & \text{ for fixed $j_0$}
+\end{align*}
+Sum of all rows = 1 and sum of all columns = 1.   
+\end{defn}
+
+\begin{prop}[Stationary Distribution for Bi-stochastic Matrices]
+If $\vb P$ is a \textbf{Bi-stochastic} transition matrix for Markov chain with finite state space $\mathcal{X}$ with $\abs{\mathcal{X}} = N$ then the stationary distribution is given by 
+\begin{align*}
+\va*\pi = \mqty(\frac{1}{N} & \frac{1}{N} & \cdots & \frac{1}{N})
+\end{align*}
+\end{prop}
+\begin{proof}
+Sketch. \\
+Let $\va\nu = \smqty[1 & 1 & \cdots & 1]$ be a vector
+\begin{align*}
+[\va\nu \vb P]_k = \sum_{j} \va\nu_j \vb P_{kj} = \sum_{j} \vb P_{kj} = 1 = \va\nu_k
+\end{align*}
+So $\va\nu$ is a measure on $\vb P$. Then \hyperref[statdm]{scaling $\va\nu$} gives us a stationary distribution with $\va*\pi_k = \frac{1}{N}$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
