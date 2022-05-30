@@ -39,7 +39,11 @@ Then for each eigenvalue $t=c$ we can solve the system of linear equations
 (\vb A - cI_n)\va* x = \va* 0
 \end{align*}
 $\va* x$ will be an eigenvector of $\vb A$. 
-
+\newpage
+\section*{Assignment Theorems}
+\begin{align*}
+\E[Xf(Y)] = \E[f(Y)\cdot\E(X\given Y)] \tag{hw1q6}
+\end{align*}
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
@@ -49,7 +53,7 @@ Let $(X_t)_{t\in T}$ be a collection of random variables this is called a Stocha
 Let $X_i\sim \iid$ where $X_i \in \{-1,1\}$ with 
 \begin{align*}
 P(X_i = 1) = \frac{1}{2}\\
-P(X_i = -1) = -\frac{1}{2}
+P(X_i = -1) = \frac{1}{2}
 \end{align*}
 now let 
 \begin{align*}
@@ -174,7 +178,6 @@ Since $X_t$ satisfies the Markov property we get
 \end{align*}
 By definition we have $P(X_{m+1+n} = y \given X_{n+m} = z) = P_zy$ and $P(X_{n+m} = z \given X_n = x) = [P(n, n+m)]_{xz}$. 
 \end{proof}
-\newpage
 Using \hyperref[lem114]{Lemma 1.14} we can prove the \hyperref[thm113]{Theorem 1.13}. \\
 Since  \hyperref[lem114]{1.14}'s result is the definition of matrix multiplication we get
 \begin{align*}
@@ -272,7 +275,6 @@ If $\abs{X} < \infty$ and $\va\nu$ is a stationary measure on $\vb P$
 \end{align*}
 Then $\va*\pi$ is a stationary distribution by definition.
 \end{prop}
-\newpage
 \begin{defn}[Bi-stochastic Matrix]
 A \hyperref[stocmat]{stochastic matrix} is Bi-stochastic if 
 \begin{align*}
@@ -287,32 +289,134 @@ If $\vb P$ is a \textbf{Bi-stochastic} transition matrix for Markov chain with f
 \va*\pi = \mqty(\frac{1}{N} & \frac{1}{N} & \cdots & \frac{1}{N})
 \end{align*}
 \end{prop}
-\begin{proof}
-Sketch. \\
-Let $\va\nu = \smqty[1 & 1 & \cdots & 1]$ be a vector
+\newpage
+\subsection{Detail Balance Condition}
+\begin{defn}[Detail Balance Condition]
+\label{detailb}
+$\va\pi$ has the detail balance condition if:  
 \begin{align*}
-[\va\nu \vb P]_k = \sum_{j} \va\nu_j \vb P_{kj} = \sum_{j} \vb P_{kj} = 1 = \va\nu_k
+\va\pi_x \vb{P}_{xy} = \va \pi_y \vb{P}_{yx}
 \end{align*}
-So $\va\nu$ is a measure on $\vb P$. Then \hyperref[statdm]{scaling $\va\nu$} gives us a stationary distribution with $\va*\pi_k = \frac{1}{N}$.
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{defn}
+\begin{note}
+Detail balance condition means $\P(X_1 = x, X_0 = y) = \P(X_1 = y , X_0 = x)$. 
+\end{note}
+\begin{thm}[Detail Balance and Stationary Distribution]
+If $X_0 \sim \va\pi$ and $\va\pi$ satisfies the \hyperref[detailb]{detail balance condition} then $X_n \sim \va \pi$ for all $n\geq 1$
+\end{thm}
+\fig{fig1}{0.2}
+\newpage
+\section{Week 3}
+\subsection{Communicating States}
+\begin{defn}[communicating states]
+A state $x$ communicates with $y$ if $\exists n\geq 1$ such that 
+\begin{align*}
+[\vb P^n]_{xy} > 0
+\end{align*}
+denoted by $x \to y$. 
+\end{defn}
+\begin{note}
+$\P(A \given X_{n-1} = x) = \P_x(A)$ and $\E(\cdot \given X_n = x) = \E_x(\cdot)$
+\end{note}
+\begin{defn}[Time of the first return / first hitting time]
+\[\tau_x = \min \{n \given X_n = x\}\]
+\[\rho_{xy} = \P_x(\tau_y < \infty)\]
+$\rho_{xy} = \P(\text{$X_n$ returns to $y$ given it starts at $x$)}$. 
+\end{defn}
+\begin{note}
+\[1 - \rho_{xy} = \P_x(\tau_y = \infty)\]
+\end{note}
+\begin{lemma}[Communicating states and return probability]
+$x\to y \iff \rho_{xy} > 0$.  
+\end{lemma}
+\begin{lemma}[Transitivity]
+$x\to y$ and $y\to z \Rightarrow x \to z$
+\end{lemma}
+\begin{defn}[Time of $k-th$ return]
+\label{kthret}
+\begin{align*}
+\tau_x^k = \min \{n > \tau_x^{k-1} \given X_n = x\}
+\end{align*}
+where $\tau_x^1 = \tau_x$. 
+\end{defn}
+\subsection{Recurrent and Transient States}
+\begin{defn}[Recurrent and Transient States]
+\label{recurrent}
+A state $x\in \mathcal{X}$ is called \textbf{recurrent} if 
+\begin{align*}
+\rho_{xx} = 1
+\end{align*}
+and \textbf{transient} if 
+\begin{align*}
+\rho_{xx} < 1
+\end{align*}
+\end{defn}
+\begin{thm}[Escaping path]
+\label{escpath}
+If $x\to y$ and $\rho_{xy} < 1$ then $x$ is transient.
+\end{thm}
+\begin{thm}[Corollary of {Escaping Path theorem}]
+If $x\to y$ and $x$ is recurrent then $\rho_{xy} = 1$. 
+\end{thm}
+\newpage
+\subsection{Strong Markov Property}
+\begin{defn}[Stopping Time]
+$T$ is a stopping time if the occurrence (or non occurrence) of the event $\{T = n\}$ can be determined by $\{X_0, \ldots, X_n\}$. 
+\end{defn}
+\begin{thm}[Strong Markov Property]
+Suppose $T$ is a stopping time. Given $T = n$ and $X_T = y$ the random variables $\{X_{T+k}\}_{k=0}^\infty$ behave like a Markov chain starting from initial state $y$. That is 
+\begin{align*}
+\P(X_{T+1} = z \given X_T = y, T = n) = \P(X_1 = z\given X_0 = y) =\vb P_{yz}
+\end{align*}
+\end{thm}
+\begin{lemma}[$k-$th return time and the strong Markov property]
+Let $\tau_y^k$ be the \hyperref[kthret]{$k-$th return time to $y$}. Then the strong Markov property implies 
+\begin{align*}
+\P_x(\tau_y^k < \infty) = \rho_{xy}\rho_{yy}^{k-1}
+\textbf{ or }
+\P_y(\tau_y^k < \infty) = \rho_{yy}^{k} &&\forall k \geq 1
+\end{align*}
+\end{lemma}
+\begin{note}
+From the above \textbf{lemma} if we have $\rho_{yy} = 1$ ($y$ is recurrent) then the chain returns to $y$ for infinitely many $k$ and it continually
+recurs in the Markov chain.\\
+Otherwise if $\rho_{yy} < 1$ ($y$ is transient) then $\rho_{yy}^k \to 0$ as $k\to \infty$ so after sometime $y$ is never visited in the chain.  
+\end{note}
+\newpage
+\section{Week 4}
+\subsection{Classification of States}
+\begin{defn}[Closed]
+\label{closed}
+A set $A$ is \textbf{closed} if  it is impossible to get out. Formally $c\in A$ and $y\notin A$ then $P_{xy} = 0$
+\end{defn}
+\begin{defn}[irreducible]
+\label{irreducible}
+A set $B$ is irreducible if every state is reachable from another in $k$ steps or every state communicates with with all other states. Formally 
+\begin{align*}
+x,y\in B \Rightarrow x \to y
+\end{align*}
+\end{defn}
+\fig{fig2}{0.7}
+\begin{lemma}[Commutating recurrent states]
+If $x$ is \hyperref[recurrent]{recurrent} and $x\to y$ then $y$ is recurrent
+\end{lemma}
+\begin{lemma}[Existence of recurrent states in finite closed sets]
+If $A$ is finite and \hyperref[closed]{closed} then $\exists x \in A$ such that $x$ is \hyperref[recurrent]{recurrent}. 
+\end{lemma}
+\begin{thm}[Closed and irreducible sets are recurrent]
+If $C\subseteq \mathcal{X}$ is \textbf{finite}, \hyperref[closed]{closed} and \hyperref[irreducible]{irreducible} then all $x\in C$ are \hyperref[recurrent]{recurrent}. 
+\end{thm}
+\begin{thm}[Decomposition Theorem]
+If $\mathcal{X}$ is finite then 
+\begin{align*}
+\mathcal{X} = T \cup R_1 \cup R_2 \cup \cdots \cup R_k
+\end{align*}
+where $T$ is the set of transient states and $R_i$ for $1\leq i \leq k$ are are
+closed irreducible sets of recurrent states. 
+\end{thm}
+\begin{defn}[Number of visits]
+$N(y)$ is the number of visits to $y$ after initial time.  
+\end{defn}
 
 
 
