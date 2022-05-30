@@ -401,6 +401,7 @@ x,y\in B \Rightarrow x \to y
 If $x$ is \hyperref[recurrent]{recurrent} and $x\to y$ then $y$ is recurrent
 \end{lemma}
 \begin{lemma}[Existence of recurrent states in finite closed sets]
+\label{finiteclosed}
 If $A$ is finite and \hyperref[closed]{closed} then $\exists x \in A$ such that $x$ is \hyperref[recurrent]{recurrent}. 
 \end{lemma}
 \begin{thm}[Closed and irreducible sets are recurrent]
@@ -417,13 +418,40 @@ closed irreducible sets of recurrent states.
 \begin{defn}[Number of visits]
 $N(y)$ is the number of visits to $y$ after initial time.  
 \end{defn}
+\begin{lemma}[Expected number of visits]
+\begin{align*}
+\E_x[N(y)] = \begin{cases}
+0 & \rho_{xy} = 0\\
+\frac{\rho_{xy}}{1-\rho_{yy}} & \rho_{xy} > 0
+\end{cases}
+\end{align*}
+\end{lemma}
+\newpage
+\begin{lemma}[Expected number of visits II]
+\begin{align*}
+\E_x[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
+\end{align*}
+\end{lemma}
 
-
-
-
-
-
-
+\begin{thm}[Equivalent condition for recurrence]
+$y$ is recurrent if and only if 
+\begin{align*}
+\nsum{n=1}{\infty} [\vb P^n]_{yy} = \E_y[N(y)] = \infty
+\end{align*}
+\end{thm}
+\subsection{Existence of Stationary measure}
+\begin{thm}[Existence of Stationary measure]
+Suppose $\cal X$ is \hyperref[irreducible]{irreducible} and \hyperref[recurrent]{recurrent} there  exists a stationary measure $\va\mu$ with 
+\begin{align*}
+0<\mu_y < \infty && y\in \cal X
+\end{align*}
+Let $x\in \cal X$ be recurrent by \hyperref[finiteclosed]{Existence of recurrent states in finite closed sets}. We define $\va\mu^x$ as 
+\begin{align*}
+\mu_y^x = \E_x[\text{\# of visits to $y$ before $x$}] = \nsum{n=0}\infty \P_x(X_n = y, \tau_x > n)
+\end{align*}
+$\va\mu^x$ is a stationary measure for $\vb P$.
+\end{thm}
+\fig{fig3}{0.5}
 
 
 
