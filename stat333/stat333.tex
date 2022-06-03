@@ -44,6 +44,10 @@ $\va* x$ will be an eigenvector of $\vb A$.
 \begin{align*}
 \E[Xf(Y)] = \E[f(Y)\cdot\E(X\given Y)] \tag{hw1q6}
 \end{align*}
+\begin{align*}
+\E[X] = \nsum{k=1}{\infty}k\P(X=k) = \nsum{k=1}{\infty} \P(X\geq k) \tag{hw2q5}
+\end{align*}
+
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
@@ -452,6 +456,85 @@ Let $x\in \cal X$ be recurrent by \hyperref[finiteclosed]{Existence of recurrent
 $\va\mu^x$ is a stationary measure for $\vb P$.
 \end{thm}
 \fig{fig3}{0.5}
+
+\newpage
+\section{Week 5}
+\begin{defn}[Ergodicity]
+If $\va\pi$ is a stationary distribution given $X_0 \sim \va\mu$  if we have 
+\begin{align*}
+\va\mu \vb P^n \rightarrow \va\pi
+\end{align*}
+then $\vb P$ has Ergodicity. 
+\end{defn}
+\begin{thm}[Ergodicity equivalent definition]
+\begin{align*}
+\va\mu \vb P^n \rightarrow \pi \iff [P^n]_{xy} \rightarrow \va\pi_y && \forall x\in \cal X
+\end{align*}
+\end{thm}
+\begin{remark}
+If $y$ is \hyperref[recurrent]{transient} then $\E_X[N(y)] < \infty$. Then 
+\begin{align*}
+\E_X[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
+\end{align*}
+Then $[\vb P^n]_{xy} \rightarrow 0$. Meaning $\va\pi_y = 0$, so all transient states have Ergodicity.
+\end{remark}
+\begin{defn}[Periodicity]
+A state $x$ has a period $\dd_x$ if 
+\begin{align*}
+& I_x = \{n\geq 0 \given [P^n]_{xx} > 0\}
+&\dd_x = \gcd I_x 
+\end{align*}
+$x$ is {\color{deepred} aperiodic} if $\dd_x = 1$ and {\color{deepred} periodic} if $\dd_x > 1$.   
+\end{defn}
+
+\begin{defn}[Class property]
+A property $\cal K$ of a state $x$ is called a \textbf{class property} if 
+$x$ has $\cal K$, $x\to y$ and $y\to x$ then $y$ has $\cal K$. 
+\end{defn}
+
+\begin{lemma}{Periodicity is a class property}
+If $x\to y$ and $y\to x$ then $\dd_x = \dd_y$.
+\end{lemma}
+
+\begin{lemma}{$I_x$ is closed under addition}
+\begin{align*}
+a,b\in I_x \Rightarrow (a+b)\in I_x
+\end{align*}
+\end{lemma}
+
+\begin{lemma}{}
+If $x$ is aperiodic then $\exists n_0$ such that for all $n\geq n_0$ $n\in I_x$. 
+\end{lemma}
+
+\begin{lemma}{}
+If $P_{xx} > 0$ then $x$ is aperiodic.
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
