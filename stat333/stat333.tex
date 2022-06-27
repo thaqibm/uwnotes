@@ -12,9 +12,12 @@
 	doctype= Notes, 
 	boxed=false,] 
 {template}
+\renewcommand{\arraystretch}{3} % <--------------
+
 
 \author{Thaqib M}
 \title{stat333 Notes}
+
 \begin{document}
 \maketitle
 \newpage
@@ -47,7 +50,9 @@ $\va* x$ will be an eigenvector of $\vb A$.
 \begin{align*}
 \E[X] = \nsum{k=1}{\infty}k\P(X=k) = \nsum{k=1}{\infty} \P(X\geq k) \tag{hw2q5}
 \end{align*}
-
+\begin{align*}
+\{X_n\} \asto X \Rightarrow \{X_n\}\pto X \tag{hw3q5}
+\end{align*}
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
@@ -444,7 +449,7 @@ $y$ is recurrent if and only if
 \end{align*}
 \end{thm}
 \subsection{Existence of Stationary measure}
-\begin{thm}[Existence of Stationary measure]
+\begin{thm}[Existence of Stationary measure]\label{thm411}
 Suppose $\cal X$ is \hyperref[irreducible]{irreducible} and \hyperref[recurrent]{recurrent} there  exists a stationary measure $\va\mu$ with 
 \begin{align*}
 0<\mu_y < \infty && y\in \cal X
@@ -509,20 +514,127 @@ If $x$ is aperiodic then $\exists n_0$ such that for all $n\geq n_0$ $n\in I_x$.
 \begin{lemma}{}
 If $P_{xx} > 0$ then $x$ is aperiodic.
 \end{lemma}
+\newpage
+\section{Week 6} 
+\subsection{Convergence Theorems}
+\begin{note}
+\begin{align*}
+&\mathbf{I}: \text{Irreducible}\\
+&\mathbf{A}: \text{Aperiodic}\\
+&\mathbf{R}: \text{Recurrent}\\
+&\mathbf{S}: \text{Stationary distribution $\pi$ exists}
+\end{align*}
+\end{note}
+\begin{remark}
+$I, S \Rightarrow R$
+\end{remark}
+\begin{defn}[Convergence in Probability]
+$\{X_n\}\pto X$ if $\forall \epsilon > 0$
+\begin{align*}
+\nlim{n}{\infty} \P(|X_n - X| > \epsilon) = 0
+\end{align*}
+\end{defn}
+\begin{defn}[Almost surely convergence]
+$\{X_n\}\asto X$ if 
+\begin{align*}
+\P\left(\nlim{n}{\infty}X_n = X\right) = 1
+\end{align*}
+\end{defn}
+\begin{thm}[Weak Law of Large Numbers (WLLN)]
+Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
+\begin{align*}
+\frac{1}{n}\nsum{k=0}{n-1}X_k \pto \mu
+\end{align*}
+\end{thm}
+\begin{thm}[Strong Law of Large Numbers (SLLN)]
+Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
+\begin{align*}
+\frac{1}{n}\nsum{k=0}{n-1}X_k \asto \mu
+\end{align*}
+\end{thm}
+\begin{thm}[Convergence Theorem]\label{convthm}
+If $I,A,S$ hold then 
+\begin{align*}
+P_{xy}^n \to \pi_y && n\to \infty
+\end{align*}
+\end{thm}
+\begin{thm}[Asymptotic Frequency]\label{asymfreq}
+Suppose $I,R$ hold and let $N_n(y)$ be the number of visits to $y$ upto time $n$ then 
+\begin{align*}
+\frac{N_n(y)}{n} \asto \frac{1}{\E_y \tau_y}
+\end{align*} 
+\end{thm}
+\begin{proof}
+If $R(k)$ is the $k-$th return time to $y$ then by SLLN $\frac{R(k)}{k} \asto \E_y[\tau_y]$ then we use squeeze theorem to get the result.   
+\end{proof}
+\newpage
+\begin{lemma}[Recurrent States]
+If $\mathbf{S}$ holds and $\pi_y > 0 \Rightarrow y$ is recurrent. 
+\end{lemma}
 
+\begin{thm}[Stationary Distribution Uniqueness]\label{uniquedist}
+If $\mathbf{I}, \mathbf{S}$ hold then 
+\begin{align*}
+\pi_y = \frac{1}{\E_y[\tau_y]}
+\end{align*}
+\end{thm}
 
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{thm}[]\label{thm611}
+Consider $\va\mu^x$ from this \hyperref[thm411]{theorem}
+\begin{align*}
+\va\mu^x_y = \nsum{n=0}{\infty} \P_x(X_n=y, \tau_x > n)
+\end{align*}
+If $\mathbf{I}, (\mathbf{R}), \mathbf{S}$ hold then 
+\begin{align*}
+\va\mu^x_y  = \frac{\va\pi_y}{\va\pi_x}
+\end{align*} 
+\end{thm}
+\begin{proof}
+$\nsum{y\in \mathcal{X}}{}\va\mu_y^x = \nsum{n=0}{\infty}\P_x(\tau_x > n) = \E_x[\tau_x] = \frac{1}{\pi_y}$
+\end{proof}
+\begin{thm}[Expected value of function]\label{expfun}
+If $\mathbf{I}, \mathbf{S}$ hold and $\sum_x |f(x)|\va\pi_x < \infty$ then 
+\begin{align*}
+\frac{1}{n}\nsum{k=0}{n-1}f(X_k) \asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]
+\end{align*}
+\end{thm}
+\begin{thm}[Stationary measures uniqueness]
+If $\va\nu$ is a stationary measure then $\va\nu = \va\mu^x$ for some $x$. 
+\end{thm}
+\newpage
+\section{Summary of Convergence Theorems}
+\begin{tabular}{|c|c|c|}
+\hline 
+Name & Result & Conditions \\
+\hline 
+\hyperref[thm411]{Existence of stationary measure $\va\mu^x$} & 
+$\va\mu^x_y = \nsum{n=0}{\infty}\P_x(X_n = y, \tau_x > n)$
+ & $\mathbf{I}, \mathbf{R}$ \\ 
+\hline 
+\hyperref[convthm]{\textbf{Convergence Theorem}} & $[\vb P^n]_{xy} \to \va\pi_y$ as $n\to \infty$ & $\mathbf{I}, \mathbf{A}, \mathbf{S}$ \\
+\hline 
+\hyperref[asymfreq]{Asymptotic Frequency} & $\frac{N_n(y)}{n}\asto \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I, R}$ \\ 
+\hline 
+\hyperref[uniquedist]{Stationary Distribution Uniqueness} & $\va\pi = \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I,S}$ \\ 
+\hline 
+\hyperref[expfun]{Expected value of function} & 
+$\frac{1}{n}\nsum{n=0}{\infty}\asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]$
+ & $\mathbf{I, S}$, $\nsum{x\in \mathcal{X}}{}|f(x)|\va\pi_x < \infty$\\ 
+\hline 
+\hyperref[thm611]{Expected number of visits before $x$} & $\va\mu^x_y = \frac{\va\pi_y}{\va\pi_x}$ & $\mathbf{I, S}$ \\ 
+\hline 
+\end{tabular} 
+\begin{note}
+\begin{align*}
+&\mathbf{I}: \text{Irreducible}\\
+&\mathbf{A}: \text{Aperiodic}\\
+&\mathbf{R}: \text{Recurrent}\\
+&\mathbf{S}: \text{Stationary distribution $\pi$ exists}
+\end{align*}
+\end{note}
+\begin{remark}
+$I, S \Rightarrow R$
+\end{remark}
 
 
 
