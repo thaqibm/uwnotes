@@ -54,6 +54,11 @@ $\va* x$ will be an eigenvector of $\vb A$.
 \{X_n\} \asto X \Rightarrow \{X_n\}\pto X \tag{hw3q5}
 \end{align*}
 \newpage
+\section*{Stat}
+\begin{align*}
+\E[X] = \E[\E[X|Y]] \tag{tower rule}
+\end{align*}
+\newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
 Let $(X_t)_{t\in T}$ be a collection of random variables this is called a Stochastic Process. $T$ is the \textit{index set}. 
@@ -635,10 +640,52 @@ $\frac{1}{n}\nsum{n=0}{\infty}\asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{
 \begin{remark}
 $I, S \Rightarrow R$
 \end{remark}
+\newpage
+\section{Week 7}
+\subsection{Exit Distributions}
+\begin{defn}[Visiting Time for Set]
+\begin{align*}
+V_A = \min \{n\geq 1 : X_n \in A\}
+\end{align*}
+\end{defn}
+\begin{thm}[Exit Distribution]
+For a Markov chain on state space $\cal X$. Let $A, B \subseteq \cal X$ and let $C = {\cal X}\setminus (A\cup B)$ if we have 
+\begin{align*}
+&h(a) = 1 & a\in A\\
+&h(b) = 0 & b\in B\\
+&h(x) = \nsum{y\in {\cal X}}{}[\vb P]_{xy}h(y) & x\in C
+\end{align*}
+If $\P_x(V_A \wedge V_B < \infty)$ for all $x\in C$ then $h(x) = P_x(V_A < V_B)$ (Chain visits $A$ before $B$). 
+\end{thm}
 
-
-
-
+\subsection{Exit Times}
+\begin{thm}[Exit Time]
+Let $T = \min\{n\geq 0 : X_n \in A\}$ be the time to exit. Suppose $C = {\cal X}\setminus A$ is finite and $\P_x(T < \infty)>0$ for all $x\in C$. Then we define 
+\begin{align*}
+&g(a) = 0 & a\in A\\
+&g(x) = 1 + \nsum{y\in {\cal X}}{}P_{xy}g(y)
+\end{align*}
+Then $g(x) = \E_x[T]$
+\end{thm}
+\subsection{Laplace distribution}
+\begin{defn}[Laplace Matrix]
+The matrix $L = P - I$ is called the the Laplace matrix
+\end{defn}
+For the exit distribution $h(x) = \P_x(V_A < V_B)$ it satisfies the Laplace equation: 
+\begin{align*}
+\begin{cases}
+Lh = 0 & \text{on $C = {\cal X}\setminus (A\cup B)$}\\
+h = 1 & \text{on $A$}\\
+h = 0 & \text{on $B$}
+\end{cases}
+\end{align*}
+For the exit time $g(x) = \E_x[T]$ it solves the \textit{Poisson equation}
+\begin{align*}
+\begin{cases}
+Lg = -1 & \text{on $C$}\\
+g = 0 & \text{on ${\cal X}\setminus C$}
+\end{cases}
+\end{align*}
 
 
 
