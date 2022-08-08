@@ -50,6 +50,10 @@ $\va* x$ will be an eigenvector of $\vb A$.
 \begin{align*}
 \E[X] = \nsum{k=1}{\infty}k\P(X=k) = \nsum{k=1}{\infty} \P(X\geq k) \tag{hw2q5}
 \end{align*}
+If $P$ is a \textbf{tridiagonal matrix} then the Markov chain satisfies the detail balance condition. 
+\begin{align*}
+\pi_i P_{i, i+1} = \pi_{i+1}P_{i+1, i} \tag{hw2q7}
+\end{align*}
 \begin{align*}
 \{X_n\} \asto X \Rightarrow \{X_n\}\pto X \tag{hw3q5}
 \end{align*}
@@ -58,6 +62,17 @@ $\va* x$ will be an eigenvector of $\vb A$.
 \begin{align*}
 \E[X] = \E[\E[X|Y]] \tag{tower rule}
 \end{align*}
+\textbf{Walds Identity}:\\
+\text{If $N\geq 0$ is a random variable and $X_i\sim X_1$ \textbf{i.i.d} then}
+\begin{align*}
+&\E\left[\nsum{n=1}{N}X_n\right] = \E[N]\E[X_1] \tag{Walds identity}
+\end{align*}
+\textbf{Limit of Infinite sets}
+Suppose $A = \bigcap_{i=1}^\infty A_i$ and $A_1 \supseteq A_2 \supseteq \cdots $ then 
+\begin{align*}
+\P(A) = \nlim{n}{\infty} \P(A_n)
+\end{align*}
+
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
@@ -655,7 +670,7 @@ For a Markov chain on state space $\cal X$. Let $A, B \subseteq \cal X$ and let 
 &h(b) = 0 & b\in B\\
 &h(x) = \nsum{y\in {\cal X}}{}[\vb P]_{xy}h(y) & x\in C
 \end{align*}
-If $\P_x(V_A \wedge V_B < \infty)$ for all $x\in C$ then $h(x) = P_x(V_A < V_B)$ (Chain visits $A$ before $B$). 
+If $\P_x(V_A \wedge V_B < \infty) > 0$ for all $x\in C$ then $h(x) = P_x(V_A < V_B)$ (Chain visits $A$ before $B$). 
 \end{thm}
 
 \subsection{Exit Times}
@@ -667,7 +682,9 @@ Let $T = \min\{n\geq 0 : X_n \in A\}$ be the time to exit. Suppose $C = {\cal X}
 \end{align*}
 Then $g(x) = \E_x[T]$
 \end{thm}
-\subsection{Laplace distribution}
+\newpage
+\section{Infinite State Spaces}
+\subsection{Laplace Matrix}
 \begin{defn}[Laplace Matrix]
 The matrix $L = P - I$ is called the the Laplace matrix
 \end{defn}
@@ -687,10 +704,324 @@ g = 0 & \text{on ${\cal X}\setminus C$}
 \end{cases}
 \end{align*}
 
+\begin{defn}[Positive and Null Recurrent]
+$\;$\\
+A state is \textbf{positive recurrent} if $\E_x[\tau_x] < \infty$. A state $x$ is null recurrent if it is recurrent but not null recurrent. ($\P_x(\tau_x < \infty) = 1$ but $\E_x[\tau_x] = \infty$)
+\end{defn}
+\begin{example}
+Reflecting Random Walk. The probabilities are defined as 
+\begin{align*}
+&P_{i, i+1} = p\\
+&P_{i, i-1} = 1 - p & i \geq 1\\
+&P_{0,0} = 1-p
+\end{align*}
+Using the detail balance condition since the matrix is tridiagonal we can say that
+\begin{align*}
+&\pi_iP_{i, i+1} = \pi_{i+1}P_{i+1,i}\\
+&\pi_ip = \pi_{i+1}(1-p)\\
+&\pi_{i+1} = \frac{p}{1-p}\pi_i
+\end{align*}
+Let $\pi_0 = c$ then we have the solution $\pi_i =c\left( \frac{p}{1-p}\right)^i$. \\
+\textbf{Case I} $p < \frac{1}{2}$ then $\frac{p}{1-p} < 1$ then $\sum_i \pi_i < \infty$ then we can pick $c$ to make $\pi$ a stationary distribution.  This gives the solution $\pi_0 = \frac{1-2p}{1-p}$. Since $\E_0[\tau_0] = \frac{1}{\pi_0} < \infty$ \textbf{0 is positive recurrent}. \\
+\textbf{Case II} $p > \frac{1}{2}$ \textbf{all states are transient}\\
+\textbf{Case III} $p = \frac{1}{2}$ then \textbf{0 is null recurrent} 
+\end{example}
+\begin{thm}[equivalent conditions]
+For an \textbf{I}rreducible chain the following are equivalent:
+\begin{enumerate}[(i)]
+\item  Some state is positive recurrent.
+\item  There is a stationary distribution $\pi$
+\item  All states are positive recurrent
+\end{enumerate}
+\end{thm}
+\newpage
+\subsection{Galton Watson Process }
+\begin{enumerate}[(1)]
+\item Start with a single individual in generation 0
+\item This individual gives birth to $X\in \mathbb{N}$ random number of children with $\P(X = 0) > 0$ and $\mu = \E[X] < \infty$. 
+\item The $r-$th individual in the $n-$th generation gives birth to $X_{r,n}$ which has the same distribution as $X$ and independent of all other random variables.   
+\end{enumerate}
+Let $Z_n$ be the size of the $n$-th generation then 
+\begin{align*}
+\begin{cases}
+Z_{n+1} = X_{1,n} + X_{2,n} + \cdots + X_{Z_n, n}\\
+Z_{0} = 1
+\end{cases}
+\end{align*}
+$\{Z_n\}$ is a Markov chain. Using tower rule 
+\begin{align*}
+\E[Z_{n+1}] = \E[\E[Z_{n+1} | Z_{n}]] = \nsum{j=1}{\infty}\E[Z_{n+1} | Z_n = j]\P(Z_n = j) = \mu E[Z_{n}]
+\end{align*} 
+By induction we have $\E[Z_n] = \mu^n \E[Z_0]$ \\
+\textbf{Survival} and \textbf{Extinction}
+\begin{align*}
+&\{\text{Survival}\} = \bigcap \{Z_n \neq  0\}, & \{\text{Extinction}\} = \bigcup \{Z_n = 0\}\\ 
+&\P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0)
+\end{align*}
+\begin{example}
+Let $f_n = \E[\theta^{Z_n}]$ where $Z_n$ is the size of the generation from Galton Watson Process. Then $f_1 = \E[\theta^{Z_1}] = \E[\theta^{X}]$ then we also have 
+\begin{align*}
+f_{n+1}(\theta) = f_n(f_1(\theta)) = \underbrace{f_1\circ f_1 \circ f_1 \cdots \circ f_1(\theta)}_{\text{$n-$times}} = f_1(f_n(\theta))
+\end{align*}
+Assuming $\nlim{n}{\infty}f_n(0)$ exists we have $s = \nlim{n}{\infty}f_{n+1}(0) = f_1(\nlim{n}{\infty}f_n(0)) = f_1(s)$. So $s$ is a \textbf{fixed-point} of $f_1$. Since $f_n(0) = \P(Z_n = 0)$ so 
+\begin{align*}
+\P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0) = s
+\end{align*}
+Meaning $\P(\text{Extinction})$ is a fixed point of $f_1$. 
+\end{example}
+\begin{thm}[Fixed points and $\P(\text{Extinction})$]
+If $\E[X] > 1$ then the extinction probability is the unique root of the equation $p = f_1(p)$ such that $p\in (0,1)$. If $\E[X] \leq 1$ then $\P(\text{Extinction}) = 1$. 
+\end{thm}
+\newpage
+\section{Generating Functions}
+\begin{defn}[Probability generating function (pgf)]
+The \textbf{pgf} of a non-negative integer valued  random variable $X$,$G_X: [0,1] \to [0,1]$ is defined as:
+\begin{align*}
+G_X(\theta) = \E[\theta^X] &= \nsum{k=0}{\infty}\theta^k \P(X = k)\\
+&= \P(X = 0) + \theta \P(X = 1) + \theta^2\P(X = 2) + \cdots + \theta^k\P(X = k) + \cdots
+\end{align*} 
+\end{defn}
+\begin{defn}[Moment generating function (mgf)]
+The moment generating function $M_X$ for a non-negative integer valued  random variable $X$ is the function $M_X: (-r, r) \to \mathbb{R}$ is defined as:
+\begin{align*}
+M_X(t) = \E[e^{tX}] &= \nsum{k=0}{\infty}e^{tk}\P(X = k)\\
+&= 1 + t\E[X] + \frac{t^2}{2!}\E[X^2] + \frac{t^3}{3!}\E[X^3] + \cdots + \frac{t^k}{k!}\E[X^k]
+\end{align*}
+and $r>0$ such that the value exists on $(-r,r)$.
+\end{defn}
 
+\begin{thm}[Properties of generating functions]
+\begin{align*}
+&G_X(0) = \P(X = 0)\\
+&\P(X = n) = \frac{1}{n!}\left.\dv[n]{G_X}{\theta}\right\vert_0\\
+&G'_X(\theta) = \E[X\theta^{X-1}] & G'_X(1) = \E[X]\\
+&\left.\dv[n]{M_X}{t}\right\vert_0 = \E[X^n]
+\end{align*}
+\end{thm}
 
+\begin{lemma}[Generating functions are unique]
+If 2 random variables have the same moment generating functions they have the same distribution. 
+\end{lemma}
 
+\newpage
+\section{Exponential Distribution}
+\begin{defn}[Exponential cdf]
+If $T \sim EXP(\lambda)$ then 
+\begin{align*}
+\P(T\leq t) = 1-e^{-\lambda t}
+\end{align*}
+Moreover 
+\begin{align*}
+&\E[T] = \frac{1}{\lambda}\\
+&\E[T^2] = \frac{2}{\lambda^2}\\
+&\Var[T] = \E[T^2] - (\E[T])^2 = \frac{1}{\lambda^2}
+\end{align*}
+\end{defn}
 
+\begin{thm}[Memoryless property]
+Let $T\sim \EXP(\lambda)$ then $\forall t,s\leq 0$
+\begin{align*}
+\P(T > t+s | T > t) = \P(T > s)
+\end{align*}
+\end{thm}
+\begin{thm}[Exponential Races]
+Let $V = \min\{T_1, \ldots, T_n\}$ such that $T_i = \EXP(\lambda_i)$ independently and let $I$ be the index of the minimum $T_i$ then 
+\begin{align*}
+&V = \EXP\left(\sum \lambda_i\right)\\
+&\P(I = i) = \frac{\lambda_i}{\nsum{k=1}n \lambda_k}
+\end{align*}
+and $V,I$ are independent. 
+\end{thm}
+\begin{proof}
+Sketch. $\P(\min\{T,S\} > t) = \P(T>t)\P(S>t)$ and induction.
+\end{proof}
+
+\begin{thm}[Sum of exponential variables]
+Let $\tau_1, \ldots, \tau_n$ be $\EXP(\lambda)$ then the sum $T_n = \tau_1 + \tau_2 + \cdots + \tau_n$ has a gamma($n, \lambda$) distribution. 
+\begin{align*}
+&f_{T_n}(t) = \lambda e^{-\lambda t} \frac{(\lambda t)^{n-1}}{(n-1)!} & t \geq 0
+\end{align*}
+\end{thm}
+\newpage
+\section{Poisson Process}
+\begin{defn}[Poisson Distribution]
+$X$ has a Poisson distribution with mean $\lambda$ if 
+\begin{align*}
+&P(X = n) = \frac{\lambda^n e^{-\lambda}}{n!} & \text{for $n = 0,1,2\ldots$}
+\end{align*} 
+\begin{enumerate}[(1)]
+\item $\E[X] = \lambda$
+\item $\Var[X] = \lambda$
+\item \textbf{m.g.f} is $M_X(t) = e^{\lambda(e^t - 1)}$
+\end{enumerate}
+\end{defn}
+
+\begin{thm}[Limit of binomial is Poisson]
+Let $Y_n$ be binomial$(n, \frac{\lambda}{n})$ and $X = $ poisson($\lambda$) then 
+\begin{align*}
+\nlim{n}{\infty}\P(Y_n = k) = \P(X = k)
+\end{align*}
+\end{thm}
+\begin{thm}[Sum of poisson is poisson]
+If $X_i \sim \poisson(\lambda_i)$ for $1\leq i \leq n$ independently then 
+\begin{align*}
+S = \nsum{i=1}{n}X_i \sim \poisson(\lambda_1 + \lambda_2 + \cdots + \lambda_n)
+\end{align*}
+\end{thm}
+
+\begin{defn}[Poisson Process]
+Let $N(t)$ be the number of occurrences/arrivals in $[0,t]$. Then $\{N(t) : t\geq 0\}$ is a (homogeneous) poisson process if:
+\begin{enumerate}[(1)]
+\item $N(0) = 0$
+\item $N(t+s) - N(s) = \poisson(t\lambda)$
+\item $N(t)$ has \textbf{independent increments}
+\end{enumerate}
+\end{defn}
+\newpage
+\subsection{Constructing the Poisson Process}
+\begin{defn}[]
+Let $\tau_1, \tau_2, \ldots, \tau_n$ be independent $\EXP(\lambda)$ variables and let 
+$T = \tau_1 + \tau_2 + \cdots + \tau_n$ and define $N(s) = \max\{n : T_n \leq s\}$
+\end{defn}
+$\tau_i$ is the interval between arrivals implying $T_n$ is the time for the $n$-th arrival and $N(s)$ is the number of arrivals by time $s$. 
+
+\fig{fig4}{0.4}
+\begin{enumerate}[(i)]
+\item $N(s)$ has a Poisson distribution with mean $\lambda s$
+\item $N(t+s) - N(s) = \poisson(\lambda t)$ and is independent of $N(r), 0 \leq r\leq s$. 
+\item $N(t)$ has independent increments.  
+\end{enumerate}
+\newpage
+\section{More complex models}
+\begin{defn}[Measure]
+A \textbf{signed} measure $\mu : \Sigma \to \mathbb{R}$ on $(\Omega, \Sigma)$ such that
+$\Sigma \subseteq \mathrm{Pow}(\Omega)$ such that 
+\begin{enumerate}[(1)]
+\item $\mu(\varnothing) = 0$
+\item $\mu$ has countable additivity. If $\{E_i\}_{i=1}^\infty$ are mutually disjoint then $\mu(\cup E_i) = \sum_i \mu(E_i)$
+\item $\mu(\Omega) = 1$ (For distributions)
+\end{enumerate}
+\end{defn}
+\begin{defn}[Metric]
+A \textbf{distance} function is a metric if
+\begin{enumerate}[(i)]
+\item $d(x,y) \geq 0$ and $d(x,y) = 0 \iff x = y$ (Positive)
+\item $d(x,y) = d(y,x)$ (Symmetry)
+\item $d(x,y) \leq d(x,z) + d(z,y)$ (Triangle inequality)
+\end{enumerate}
+
+\end{defn}
+\begin{defn}[Total variation Distance/Measure]
+Suppose $\mu$ is a signed measure on $(\Sigma, \Omega)$ then 
+\begin{align*}
+\norm{\mu}_{TV} = \sup\{\mu(A) | A\in \Sigma\} - \inf\{\mu(A) | A\in \Sigma\}
+\end{align*}
+If $X,Y$ are \textbf{integer valued} random variables then
+\begin{align*}
+d_{TV}(X,Y) = \max_{A\subseteq \mathbb{Z}}|\P(X\in A) - \P(Y\in A)|
+\end{align*}
+$d_{TV}$ is a \textbf{metric}.
+\end{defn}
+\begin{remark}
+$d_{TV}(X,Y) = \norm{X-Y}_{TV} = \frac{1}{2}\nsum{k}{} |\P(X=k) - \P(Y=k)|$
+\end{remark}
+\begin{defn}[Convergence in $TV$ norm]
+$X_n \to X$ in $TV$ if 
+\begin{align*}
+\nlim{n}{\infty} \norm{X_n - X}_{TV} = 0
+\end{align*}
+\end{defn}
+
+\newpage
+
+\begin{thm}[]
+Suppose $X_{n,m}\sim $Bernoulli($p_{n,m}$) are independent and let 
+$S_n = \nsum{m=1}{n}X_{n,m}$ and $\lambda_n = \E[S_n] = \nsum{m=1}{n}p_{n,m}$ and $Y_n = \poisson(\lambda_n)$ then
+\begin{align*}
+\norm{S_n - Y_n}_{TV} \leq \nsum{m=1}{n}p^2_{n,m}
+\end{align*}
+If moreover, $\sup_{m}p_{n,m} \rightarrow 0$ and $\lambda_n\to \lambda$ as $n\to \infty$ and $Y = \poisson(\lambda)$ then 
+\begin{align*}
+\nlim{n}{\infty}\norm{S_n - Y}_{TV} = 0
+\end{align*}
+That is $S_n \to Y$ in $TV$-norm.
+\end{thm}
+
+\begin{example}
+Let $\lambda: [0,1] \to \mathbb{R}_{+}$ be continuous and let $p_{n,m} = \frac{1}{n}\lambda(\frac{m}{n})$ then 
+\begin{align*}
+0\leq \nlim{n}{\infty}p_{n,m} \leq \nlim{n}{\infty}\frac{\max(\lambda(t) : t\in [0,1])}{n} = 0
+\end{align*}
+and $\lambda_n = \nsum{m=1}{n}\frac{1}{n}\lambda(\frac{m}{n})$, This is a Riemann sum and $\nlim{n}{\infty}\lambda_n = \int_0^1 \lambda(t)\dd{t}$ by \textbf{Theorem 13.6} we have 
+\begin{align*}
+S_n \to \poisson\left(\int_0^1\lambda(t)\dd{t}\right)
+\end{align*}
+\end{example}
+\begin{defn}[Non-homogeneous poisson process]
+Let $N(t)$ be the total number of occurrences in $[0,t]$.
+$\{N(s) : s\geq 0\}$ is a Non-homogeneous poisson process if
+\begin{itemize}[(i)]
+\item $N(0) = 0$
+\item $N(t+s) - N(s) = \poisson\left(\int_{s}^{t+s}\lambda(t)\dd{r} \right)$
+\item $N(t)$ has independent increments. 
+\end{itemize}
+\end{defn}
+\newpage
+\section{Compound Poisson Process}
+\begin{thm}[Compound Expectation]
+Let $Y_1, Y_2, \ldots$ be \textbf{i.i.d} and let $N$ be an integer valued non-negative random variable. Such that $\E|Y_i|, \E[N] < \infty$ and we define $S = \nsum{i=1}{N}Y_i$ then using 
+\begin{enumerate}[(i)]
+\item $\E[S] = \E[N]\E[Y_i]$
+\item If $\E[Y^2], \E[N^2] < \infty$ then 
+\begin{align*}
+\Var[S] = \E[N]\Var[Y_i] + \Var[N]\left(\E[Y_i]\right)^2 \tag{ii}
+\end{align*}
+\item If $N = poisson(\lambda)$ and $\E[Y^2]<\infty$ then 
+\begin{align*}
+\Var[S] = \lambda\E[Y_i^2] \tag{iii}
+\end{align*}
+\end{enumerate} 
+\end{thm}
+\subsection{Thinning}
+\begin{thm}[Thinning]
+Let $\{N(t) : t\geq 0\}$ be a poisson process with rate $\lambda(r)$ for each arrival $i$, $Y_i$ is \textbf{i.i.d} $Y_i \sim Y$. Then let 
+\begin{align*}
+N_j(t) = \#\{i \leq N(t) : Y_i = j\}
+\end{align*}
+Then $N_j(t)$ are \textbf{independent} rate $\lambda(r) \P(Y = j)$ poisson processes. 
+\end{thm}
+\fig{fig5}{1.3}
+\newpage
+\subsection{M/G/$\infty$ Queue}
+\begin{thm}[M/G/$\infty$]
+Suppose the number of arrivals follow a poisson process with rate $\lambda$, duration of each arrival is \textbf{i.i.d} $X$ with c.d.f $G$ and $\E[X] = \mu$. Then the arrivals still in progress at time $t$ is 
+\begin{align*}
+\poisson\left(\lambda \int_0^t[1-G(r)]\dd{r}\right)
+\end{align*}
+\end{thm}
+\begin{cor}[$\infty$]
+The number of arrivals in progress at $t=\infty$ is $\poisson\left(\mu\lambda\right)$ 
+\end{cor}
+\subsection{Superposition}
+\begin{thm}[•]
+Suppose $\{N_1(t)\},\{N_2(t)\}, \cdots, \{N_k(t)\}$ are independent poisson processes then $\{N(t) = N_1(t) + N_2(t) + \cdots + N_k(t) : t\geq 0\}$ is a poisson process with rate $\lambda_1 + \lambda_2 + \cdots + \lambda_k$ 
+\end{thm}
+\fig{fig6}{1}
+\newpage
+\subsection{Conditioning}
+Let $T_1, T_2, \ldots, T_n$ be the arrival time of a poisson process with rate $\lambda$ and let $U_1, U_2, \ldots, U_n$ be uniformly distributed on $[0,t]$ and let $V_1 < V_2 < \cdots < V_n$ be the $U_i$ in sorted order. 
+
+\begin{thm}[Poisson Conditioning]
+If we condition on $N(t) = n$ then the vector $(T_1, \ldots, T_n)$ has the same distribution as $(V_1, V_2, \ldots, V_n)$ and the set $\{T_1, T_2, \ldots, T_n\}$ has the same distribution as $\{U_1, U_2, \ldots, U_n\}$
+\end{thm}
+\begin{thm}[Conditioning Binomial Distribution]
+If $0\leq r < t$ and $0\leq m \leq n$ then 
+\begin{align*}
+\P(N(r) = m | N(t) = n) = {n\choose m}\left(\frac{r}{t}\right)^m\left(\right)^{n-m}
+\end{align*}
+The distribution of $N(r)$ given $\{N(t) = n\}$ is  binomial$(n, \frac{r}{t})$ and does not depend on $\lambda$. 
+\end{thm}
+\fig{fig7}{0.5}
 
 
 
