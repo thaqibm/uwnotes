@@ -38,26 +38,26 @@
 
 
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
-    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
-	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-	}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+}
 
 \pagestyle{empty}
 \makeatletter
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
-                                {-1ex plus -.5ex minus -.2ex}%
-                                {0.5ex plus .2ex}%x
-                                {\normalfont\large\bfseries}}
+{-1ex plus -.5ex minus -.2ex}%
+{0.5ex plus .2ex}%x
+{\normalfont\large\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
-                                {-1explus -.5ex minus -.2ex}%
-                                {0.5ex plus .2ex}%
-                                {\normalfont\normalsize\bfseries}}
+{-1explus -.5ex minus -.2ex}%
+{0.5ex plus .2ex}%
+{\normalfont\normalsize\bfseries}}
 \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-                                {-1ex plus -.5ex minus -.2ex}%
-                                {1ex plus .2ex}%
-                                {\normalfont\small\bfseries}}
+{-1ex plus -.5ex minus -.2ex}%
+{1ex plus .2ex}%
+{\normalfont\small\bfseries}}
 \makeatother
 \setcounter{secnumdepth}{0}
 \setlength{\parindent}{0pt}
@@ -75,263 +75,263 @@
 \footnotesize
 
 \begin{center}
-     \Large{\textbf{CS 371}} \\
+    \Large{\textbf{CS 371}} \\
 \end{center}
 \begin{multicols}{3}
-\setlength{\premulticols}{1pt}
-\setlength{\postmulticols}{1pt}
-\setlength{\multicolsep}{1pt}
-\setlength{\columnsep}{2pt}
+    \setlength{\premulticols}{1pt}
+    \setlength{\postmulticols}{1pt}
+    \setlength{\multicolsep}{1pt}
+    \setlength{\columnsep}{2pt}
 
-\subsection{Condition of a problem}
-\begin{align*}
-&\kappa_A = \frac{||\Delta z||}{||\Delta x||}\\
-& \kappa_R = \frac{\left(
-\frac{||\Delta z||}{||z||}\right)}{\left(\frac{||\Delta x||}{||x||}\right)}\\
-&\Delta{x} = x-\hat{x} \;\; \delta x = \frac{|\Delta x|}{x}\\
-&||x||_1 = \sum_{i=1}^n |x_i|
-\;\;\;||x||_p = \sqrt[p]{\sum_{i=1}^n x_i^p}\\
-&||x||_\infty = \max_{1\leq i\leq n}|x_i|\\
-&|x\cdot y| \leq ||x||\times||y|| \;\; \text{(Cauchy-Schwartz Inequality.)}\\
-&||x||_\infty \leq ||x||_2 \leq ||x||_1 \leq n||x||_\infty \\ &||x||_\infty\leq ||x||_p \leq n||x||_\infty
-\end{align*}
-\begin{align*}
-&e^x = \sum_{n=1}^\infty \frac{x^n}{n!}\\
-& \cos(x) = \sum_{n=1}^\infty \frac{(-1)^n}{(2n)!}x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \\
-& \sin(x) = \sum_{n=1}^\infty\sum_{n=1}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
-\end{align*}
-\subsection{Numerical Linear Algebra}
-\begin{align*}
-&\underbrace{A}_{n\times p}\overbrace{B}^{p\times m} & \text{flops = $nm(p+p-1)$}
-\end{align*}
-\subsubsection*{LU Factorization}
-\begin{align*}
-&P\vb{A} = \underbrace{LU}_{\text{Lower and upper triangular matrix}}\\
-&\vb{A} \underset{\text{row operations}}{\Rightarrow} U\\
-&\vb{I_n} \underset{\text{same row operations}}{\Rightarrow} L' \underset{\text{flip off-diagonal elements}}{\Rightarrow} L\\
-&\underset{\text{forward sub}}{L\va{y} = \va{b}} \Rightarrow \underset{\text{back sub}}{U\va{x} = \va{y}}
-\end{align*}
-\subsection{Computational cost}
-\textbf{Decomposing:} $\frac{2n^3}{3} + O(n^2)$\\
-\textbf{Forward and backward sub:} $n^2 + O(n)$
-\subsection{Determinants}
-1. $\det(BC) = \det(B)\det(C)$\\
-2. $\vb U$ upper triangular $\Rightarrow \det U = \prod_{i=1}^n u_{ii}$\\
-3. $\vb L$ lower triangular $\Rightarrow \det U = \prod_{i=1}^n u_{ii}$\\
-4. $\vb P$ Permutation matrix $\Rightarrow$  $\det P_{\text{even}} = +1$, $\det P_{\text{odd}} = -1$\\
-5. If $\det\vb A \neq 0$ then $\vb{A}x = b$ has \textbf{unique solution}\\
-6. If $\det \vb A = 0$ then $\vb{A}x = b$ has 0 or infinite solutions.\\
-\textbf{Condition and Stability}
-\begin{align*}
-&\norm{\vb A}_p = \max_{\norm{\va x}_p \neq 0} \frac{\norm{\vb{A}\va{x}}_p}{\norm{\va{x}}_p}\\
-&\norm{\vb A}_1 = \text{maximum abs column sum}\\
-&\norm{\vb A}_\infty = \max{\text{maximum abs row sum}}\\
-&\norm{A}_p = 0 \iff \norm{A} = 0,
-\;\;\norm{cA}_p = |c|\norm{A}_p, \\
-&\norm{A+B}_p \leq \norm{A}_p + \norm{B}_p \\
-&\kappa_p(A) = \norm{A}_p\norm{A^{-1}}_p \;\; \text{(Condition number)}\\
-&\kappa_2(A) = \sqrt{\frac{\lambda_{\max}(A^TA)}{\lambda_{\min}(A^TA)}}\\
-&\kappa(B) = \infty \text{ if $B$ is singular}\\
-&\frac{1}{\kappa(B)} \text{ how close $B$ is to a singular matrix}\\
-&\va{r} = \va{b} - A\va{u}  \tag{residual}
-\end{align*}
-\section{Root finding}
-\textbf{Bisection Method} make intervals $[a_k, b_k]$, $f(a_0)f(b_0)\leq 0$ (Opposite signs)
-\begin{align*}
-a_k = \begin{cases}
-a_{k-1} & f(\frac{a_{k-1}+b_{k-1}}{2})\cdot f(a_{k-1}) \leq 0\\
-\frac{a_{k-1}+b_{k-1}}{2} & \text{otherwise}
-\end{cases}\\
-b_k = \begin{cases}
-b_{k-1} & f(\frac{a_{k-1}+b_{k-1}}{2})\cdot f(a_{k-1}) > 0\\
-\frac{a_{k-1}+b_{k-1}}{2} & \text{otherwise}
-\end{cases}
-\end{align*}
-\# of steps for tolerance $t \geq \frac{|b_0-a_0|}{2^N}$\\
-\textbf{Newton’s Method}
-\begin{align*}
-x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
-\end{align*}
-\textbf{Secant Method}
-\begin{align*}
-x_{k+1}= x_k - f(x_k)\left[\frac{x_k - x_{k-1}}{f(x_k)-f(x_{k-1})}\right]
-\end{align*}
-\columnbreak
-\subsection{Rate of Convergence}
-\textbf{Error:} $e_k = x_k - x^*$\\
-\textbf{Order of convergence:} ${x_k}$ converges with order $q$ if and only if $x_i \to x^*$
-\begin{align*}
-&\lim c_i = N \in [0, \infty)\\
-&|e_{i+1}| = c_i|e_i|^q
-&\begin{cases}
-\text{Bisection Method} & q = 1\\
-\text{Secant Method} & q = \frac{1+\sqrt{5}}{2}\\
-\text{Newton's Method} & q = 2
-\end{cases}
-\end{align*}
-\subsection{Fourier Series}
-\begin{align*}
-&\omega = 2\pi f \\
-&g_n(x) = \frac{a_0}{2} + \sum_{k=0}^n \left[a_k\cos(k\frac{2\pi}{b-a}) + b_k\sin(k\frac{2\pi}{b-a})\right]\\
-&a_k = \frac{2}{b-a}\int_a^b f(x)\cos(k\frac{2\pi x}{b-a})\\
-&b_k = \frac{2}{b-a}\int_a^b f(x)\sin(k\frac{2\pi x}{b-a})\\
-&c_k = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)\exp(ikt)\dd{t}\; [a,b] = [-\pi,\pi]\\ 
-&c_k = \frac{1}{2}\left(a_k + ib_k\right)\\
-&f(x) = f(-x) \text{ Even }\\
-&f(-x) = -f(x) \text{ Odd }\\
-&f(t) \text{ even } \Rightarrow b_k = 0 \;\;\forall k \;\; (\cos(x)=\cos(-x))\\
-&f(t) \text{ odd } \Rightarrow a_k = 0 \;\;\forall k\;\; (\sin(-x)=-sin(x))\\
-&V = \left\{f(x) : \sqrt{\int_a^b |f(x)|^2\dd{x}} < \infty\right\}\\
-&\text{If $f(x) \in V$, Fourier series of $g_n(x) \to f(x)$ on $[a,b]$}\\
-&\bar{c_k} = c_{-k}\\
-&a_{-k} = a_k \;\; b_{-k} = -b_{-k}\\
-&a_{k} = 2\Re(c_k) \;,\; b_k = -2\Im(c_k)\;,\; b_0 = 0 \;,\; c_0 = \frac{1}{2}a_0
-\end{align*}
-\subsection{Roots of unity}
-\begin{align*}
-&W_N = \exp(\frac{2\pi i}{N}) \text{ $n-$th root of unity}\\
-&W_N^k = \exp(\frac{2k\pi}{N})\\
-&(W_N^k)^N = 1 \\
-&(W_N)^{-k} = W_N^{N-k}
-\end{align*}
-\newpage
-\subsection{DFT}
-$f[i] = f(i)$ for $0 \leq i \leq N-1$ (Sampled for $N$ points)
-\begin{align*}
-&F[k] = DFT\{f[n]\} = \frac{1}{N}\sum_{n=0}^{N-1}f[n]W_N^{-kn}\\
-&f[n] = IDFT\{F[k]\} = \sum_{k=0}^{N-1}F[k]W_N^{kn} \\
-&\Vec{F} = W\Vec{f}\\
-&W_{ij} = \frac{1}{N} W_N^{-ij} \text{ for $0\leq i,j\leq N-1$}\\
-&W^{-1}_{ij} = W_N^{ij} \text{ for $0\leq i,j\leq N-1$}\;\;\;W^{-1}_{ij} = N(\overline{W_{ij}})\\
-&\text{Properties of $F$}\\
-&F[k] = F[k+sN] \text{ for $s\in \mathbb{Z}$}\\
-&\overline{F[k]} = F[-k]\\
-&\Re{F[k]} \text{ is even in $k$}\\
-&\Im{F[k]} \text{ is odd in $k$}\\
-&f[n] = f[N-n] = f[-n] \text{ $f$ is even in $n$}\\
-&f[n] = -f[N-n] = -f[-n]\text{ $f$ is odd in $n$}\\
-&\text{$f[n]$ is even in $n \Rightarrow \Im(F[k]) = 0$ (DFT is real)}\\
-&\text{$f[n]$ is odd in $n \Rightarrow \Re(F[k]) = 0$ (DFT is purely imaginary)}
-\end{align*}
-\section{Aliasing and the Sample Theorem}
-$f_s = \frac{N}{T} \text{ Sampling Rate}$\\
-\textbf{Sampling Theorem}: If a function $f(t)$ is bandwidth limited to frequencies smaller than $f_c$ (max frequency $\leq f_c$) and $f(t)$ is sampled at a rate $\boxed{f_s \geq 2f_c}$ then the function is completely determined by its samples $f[n]$. 
-\\
-\textbf{Sampling Theorem(ii)}: For a fixed sample $f[n]$ with a fixed sampling rate $f_s$. Then if the maximum frequency of a signal $f_c \leq \frac{f_s}{2}$ that can be deconstructed from $f[n]$ such that is free of aliasing errors (DFT if free of aliasing errors).  
-\subsection{Fast Fourier Transform}
-$\flops F[k] = 2N  \Rightarrow \flops\Vec{F} = 2N^2$ (Using sums)
-\begin{align*}
-&E[k] \tag{DFT of even indexed part}\\
-&O[k] \tag{DFT of odd indexed part}\\
-&F[k] = \frac{1}{2}\left(
-E[k] + W_N^{-k}O[k]
-\right) \text{ for $k = 0, \ldots, \frac{N}{2} - 1$}\\
-&F[k+\frac{N}{2}] = \frac{1}{2}\left(
-E[k] - W_N^{-k}O[k]
-\right) \text{ for $k = 0, \ldots, \frac{N}{2} - 1$}\\
-&\flops{\Vec{F}} = \frac{5}{2}N\log_2(N)
-\end{align*}
-\linebreak
-\subsubsection{Power Spectrum and Parseval’s Theorem}
-\textbf{Power spectrum} of $f(t)$ or $f[n]$ is $|F[k]|^2$\\
-\textbf{Parseval’s Theorem (Continous)}
-\begin{align*}
-\frac{1}{b-a}\int_a^b f(t)^2 \dd{t} = \sum_{k=-\infty}^{\infty} |c_k|^2
-\end{align*}
-\textbf{Parseval’s Theorem (Discrete)}
-\begin{align*}
-\frac{1}{N}\sum_{k=0}^{N-1}|f[n]|^2 = \sum_{k=0}^{N-1} |F[k]|^2
-\end{align*}
-\section{Interpolation}
-For a basis $B = \{\phi_j(x)\}_{j=0}^m$ interpolating points $\{(x_i, f_i)\}_{i=0}^n$ 
-\begin{align*}
-&y(x) = \sum_{i=0}^m a_i\phi_i(x)\\
-&\Phi = \smqty(
-\phi_0(x_0) & \phi_1(x_0) & \cdots &\phi_m(x_0) \\
-\phi_0(x_1) & \phi_1(x_1) & \cdots &\phi_m(x_1) \\
-\vdots & \vdots & \cdots & \vdots\\
-\phi_0(x_n) & \phi_1(x_n) & \cdots &\phi_m(x_n) \\
-)\\
-&\Phi \Vec{a} = \Vec{f} \tag{Solves for $a_i$}
-\end{align*}
-\textbf{Vandermonde Polynomial: $y(x) = a_0 + a_1x + a_2x^2 + \ldots a_nx^n$} for $(n+1)$ points $(x_i, f_i)$. 
-\begin{align*}
-&\Phi = V = \mqty(
-1 & x_0 & x_0^2 &\ldots & x_0^n\\
-1 & x_1 & x_1^2 &\ldots & x_1^n\\
-\vdots & \vdots & \vdots & \ldots &\vdots\\
-1 & x_n & x_n^2 & \ldots &x_n^n\\
-)\mqty(a_0 \\ a_1 \\ \vdots \\ a_n) = \mqty(f_0 \\ f_1 \\ \vdots \\ f_n)\\
-&\det(V) = \prod_{0\leq i < j \leq n}(x_j - x_i)\\
-&\text{Computing $V$ takes $\Theta(N^3) \;\flops$}\\
-&\text{Computing $y(x)$ takes $3N \;\flops$}
-\end{align*}
-\textbf{Lagrange Interpolation} The Lagrange basis functions are defined as
-\begin{align*}
-&\ell_i(x_j) = \begin{cases}
-1 & \text{if $i = j$}\\
-0 & \text{otherwise}
-\end{cases}\\
-&\ell_i(x) = \prod_{j=0, j\neq i}^n \frac{x-x_j}{x_i-x_j} \tag{basis}\\
-&\Phi = L = I_{n\times n} \\
-&\text{Computing $I$ takes $0 \;\flops$}\\
-&\text{Computing pre-computed terms takes $2N^2 + 2N \;\flops$}\\
-&\text{Computing $y(x)$ takes $5N \;\flops$}
-\end{align*}
-\textbf{Newton Interpolation}
-\begin{align*}
-&\pi_j(x) = \prod_{i=0}^{j-1} (x-x_i)\;\; \pi_0(x) = 1 \tag{basis}\\
-&\pi_j(x_i) = 0 \text{ if $i < j$} \\
-&\mathbf{\Pi} = \smqty(
-\pi_0(x_0) & \cdots &\mathbf{0}\\
-\vdots & \ddots & \mathbf{0}\\
-\pi_n(x_n) & \cdots & \pi_n(x_n)
-) \tag{$\Pi$ is lower triangular}\\
-&\text{Computing $\Pi$ takes $\Theta(N^2) \;\flops$}\\
-&\text{Computing pre-computed terms takes $\Theta(N^2) \;\flops$}\\
-&\text{Computing $y(x)$ takes $\Theta(N) \;\flops$}
-\end{align*}
-\textbf{Extending newton polynomial} with additional point $(x_{n+1}, f_{n+1})$
-\begin{align*}
-&y_{n+1}(x) = y_n(x) + a_{n+1}\pi_{n+1}(x) & a_{n+1} = \frac{f_{n+1} - y_n(x_{n+1})}{\pi_{n+1}(x)}
-\end{align*}
-\textbf{Hermite Interpolation} Given $\{(x_i, f_i, f'_i)\}_{i=0}^n$ interpolating polynomial has degree $\boxed{2n+1}$.\\
-\textbf{Chebyshev Points} on interval $[a,b]$ the $n+1$ points are
-\begin{align*}
-x_j = \frac{a+b}{2} +\frac{b-a}{2}\cos(\frac{2j+1}{2n+2}\pi) \text{ for $j = 0, \ldots, n$}
-\end{align*}
-\textbf{Cubic Splines}
-\textit{Smoothness conditions:} $y_j'(x_j) = y_{j+1}'(x_j)$ and $y_j''(x_j) = y_{j+1}''(x_j)$ for cubic splines\\
-\textit{free boundary}: $y_1''(x_0) = 0, y_n''(x_n) = 0$,  \textit{clamped boundary}: $y_1''(x_0) = f'_0, y_n''(x_n) = f'_n$, \textit{periodic boundary} if $f_0 = f_n$: $y_1'(x_0) = y_n'(x_n)$ and $y_1''(x_0) = y_n''(x_n)$. Cubic splines can be solved in $\Theta(N) \;\flops$
-\subsection{Regression}
-$\Phi$ with fewer basis function $m+1 < n+1$. the system is over-determined we can find solution $\Vec{a}$ such that the residue $\min \norm{\Phi\Vec{a} - \Vec{f}}_2^2$ is minimized. 
-\begin{align*}
-&\underbrace{\Phi}_{(n+1)\times (m+1)}\underbrace{\Vec{a}}_{(m+1)\times 1} + \Vec{r} = \Vec{f}\\
-&\boxed{\Phi^T\Phi \Vec{a} = \Phi^T\Vec{f}} \tag{normal equation}\\
-&\mqty(a\\b) = \frac{1}{(n+1)\sum x_i^2 - \left(\sum x_i\right)^2}\smqty(
-\left(\sum x_i^2\right)\left(
-\sum f_i  
-\right) - \left(\sum x_i\right)\left(
-\sum x_if_i
-\right)\\
-(n+1)\left(\sum x_if_i\right) - \left(\sum x_i\right) \left(\sum f_i\right) 
-)
-\end{align*}
-\subsection{Numerical Integration}
-\begin{align*}
-&I_M = \sum_{i=1}^n(x_i - x_{i-1})f\left(\frac{x_i-x_{i-1}}{2}\right) \tag{Midpoint rule}\\
-&I_T = \sum_{i=1}^n \frac{(x_i - x_{i-1})}{2}\left(f(x_{i-1})+f(x_i)\right) \tag{Trapezoid Rule}\\
-&I_S = \sum_{i=1}^n \frac{x_i - x_{i-1}}{6}\left[f(x_{i-1}) + 4f(x_{i-\frac{1}{2}}) + f(x_i)\right]\\
-&\text{Where $x_{i-\frac{1}{2}} = \frac{x_{i-1} + x_i}{2}$} \tag{Simpsons Rule}
-\end{align*}
-\subsection{Error Bounds}
-\begin{align*}
-&|E_M| \leq \frac{(b-a)^3}{24n^2}\max_{x\in [a,b]}{\abs{f''(x)}} \tag{Midpoint rule error bound}\\
-&|E_T| \leq \frac{(b-a)^3}{12n^2}\max_{x\in [a,b]}{\abs{f''(x)}}\tag{Trapezoid rule error bound}\\
-&|E_S| \leq \frac{(b-a)^5}{2880n^4}\max_{x\in [a,b]}{\abs{f^{(4)}(x)}}\tag{Simpsons rule error bound}\\
-\end{align*}
-\textbf{Degree of precision}: $\hat{I}$ has degree of precision $m$ if $E = I - \hat{I} = 0$ for polynomial $p(x)$ such that $\deg p \leq m$. Or $\hat{I}$ integrates any polynomial $p$ with $\deg p \leq m$ \textit{exactly}.
-Midpoint and Trapezium rule: $\deg_p = 1$, Simpsons rule: $\deg_p = 3$. 
+    \subsection{Condition of a problem}
+    \begin{align*}
+        &\kappa_A = \frac{||\Delta z||}{||\Delta x||}\\
+        & \kappa_R = \frac{\left(
+        \frac{||\Delta z||}{||z||}\right)}{\left(\frac{||\Delta x||}{||x||}\right)}\\
+        &\Delta{x} = x-\hat{x} \;\; \delta x = \frac{|\Delta x|}{x}\\
+        &||x||_1 = \sum_{i=1}^n |x_i|
+        \;\;\;||x||_p = \sqrt[p]{\sum_{i=1}^n x_i^p}\\
+        &||x||_\infty = \max_{1\leq i\leq n}|x_i|\\
+        &|x\cdot y| \leq ||x||\times||y|| \;\; \text{(Cauchy-Schwartz Inequality.)}\\
+        &||x||_\infty \leq ||x||_2 \leq ||x||_1 \leq n||x||_\infty \\ &||x||_\infty\leq ||x||_p \leq n||x||_\infty
+    \end{align*}
+    \begin{align*}
+        &e^x = \sum_{n=1}^\infty \frac{x^n}{n!}\\
+        & \cos(x) = \sum_{n=1}^\infty \frac{(-1)^n}{(2n)!}x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \\
+        & \sin(x) = \sum_{n=1}^\infty\sum_{n=1}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+    \end{align*}
+    \subsection{Numerical Linear Algebra}
+    \begin{align*}
+        &\underbrace{A}_{n\times p}\overbrace{B}^{p\times m} & \text{flops = $nm(p+p-1)$}
+    \end{align*}
+    \subsubsection*{LU Factorization}
+    \begin{align*}
+        &P\vb{A} = \underbrace{LU}_{\text{Lower and upper triangular matrix}}\\
+        &\vb{A} \underset{\text{row operations}}{\Rightarrow} U\\
+        &\vb{I_n} \underset{\text{same row operations}}{\Rightarrow} L' \underset{\text{flip off-diagonal elements}}{\Rightarrow} L\\
+        &\underset{\text{forward sub}}{L\va{y} = \va{b}} \Rightarrow \underset{\text{back sub}}{U\va{x} = \va{y}}
+    \end{align*}
+    \subsection{Computational cost}
+    \textbf{Decomposing:} $\frac{2n^3}{3} + O(n^2)$\\
+    \textbf{Forward and backward sub:} $n^2 + O(n)$
+    \subsection{Determinants}
+    1. $\det(BC) = \det(B)\det(C)$\\
+    2. $\vb U$ upper triangular $\Rightarrow \det U = \prod_{i=1}^n u_{ii}$\\
+    3. $\vb L$ lower triangular $\Rightarrow \det U = \prod_{i=1}^n u_{ii}$\\
+    4. $\vb P$ Permutation matrix $\Rightarrow$  $\det P_{\text{even}} = +1$, $\det P_{\text{odd}} = -1$\\
+    5. If $\det\vb A \neq 0$ then $\vb{A}x = b$ has \textbf{unique solution}\\
+    6. If $\det \vb A = 0$ then $\vb{A}x = b$ has 0 or infinite solutions.\\
+    \textbf{Condition and Stability}
+    \begin{align*}
+        &\norm{\vb A}_p = \max_{\norm{\va x}_p \neq 0} \frac{\norm{\vb{A}\va{x}}_p}{\norm{\va{x}}_p}\\
+        &\norm{\vb A}_1 = \text{maximum abs column sum}\\
+        &\norm{\vb A}_\infty = \max{\text{maximum abs row sum}}\\
+        &\norm{A}_p = 0 \iff \norm{A} = 0,
+        \;\;\norm{cA}_p = |c|\norm{A}_p, \\
+        &\norm{A+B}_p \leq \norm{A}_p + \norm{B}_p \\
+        &\kappa_p(A) = \norm{A}_p\norm{A^{-1}}_p \;\; \text{(Condition number)}\\
+        &\kappa_2(A) = \sqrt{\frac{\lambda_{\max}(A^TA)}{\lambda_{\min}(A^TA)}}\\
+        &\kappa(B) = \infty \text{ if $B$ is singular}\\
+        &\frac{1}{\kappa(B)} \text{ how close $B$ is to a singular matrix}\\
+        &\va{r} = \va{b} - A\va{u}  \tag{residual}
+    \end{align*}
+    \section{Root finding}
+    \textbf{Bisection Method} make intervals $[a_k, b_k]$, $f(a_0)f(b_0)\leq 0$ (Opposite signs)
+    \begin{align*}
+        a_k = \begin{cases}
+            a_{k-1} & f(\frac{a_{k-1}+b_{k-1}}{2})\cdot f(a_{k-1}) \leq 0\\
+            \frac{a_{k-1}+b_{k-1}}{2} & \text{otherwise}
+        \end{cases}\\
+        b_k = \begin{cases}
+            b_{k-1} & f(\frac{a_{k-1}+b_{k-1}}{2})\cdot f(a_{k-1}) > 0\\
+            \frac{a_{k-1}+b_{k-1}}{2} & \text{otherwise}
+        \end{cases}
+    \end{align*}
+    \# of steps for tolerance $t \geq \frac{|b_0-a_0|}{2^N}$\\
+    \textbf{Newton’s Method}
+    \begin{align*}
+        x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
+    \end{align*}
+    \textbf{Secant Method}
+    \begin{align*}
+        x_{k+1}= x_k - f(x_k)\left[\frac{x_k - x_{k-1}}{f(x_k)-f(x_{k-1})}\right]
+    \end{align*}
+    \columnbreak
+    \subsection{Rate of Convergence}
+    \textbf{Error:} $e_k = x_k - x^*$\\
+    \textbf{Order of convergence:} ${x_k}$ converges with order $q$ if and only if $x_i \to x^*$
+    \begin{align*}
+        &\lim c_i = N \in [0, \infty)\\
+        &|e_{i+1}| = c_i|e_i|^q
+        &\begin{cases}
+            \text{Bisection Method} & q = 1\\
+            \text{Secant Method} & q = \frac{1+\sqrt{5}}{2}\\
+            \text{Newton's Method} & q = 2
+        \end{cases}
+    \end{align*}
+    \subsection{Fourier Series}
+    \begin{align*}
+        &\omega = 2\pi f \\
+        &g_n(x) = \frac{a_0}{2} + \sum_{k=0}^n \left[a_k\cos(k\frac{2\pi}{b-a}) + b_k\sin(k\frac{2\pi}{b-a})\right]\\
+        &a_k = \frac{2}{b-a}\int_a^b f(x)\cos(k\frac{2\pi x}{b-a})\\
+        &b_k = \frac{2}{b-a}\int_a^b f(x)\sin(k\frac{2\pi x}{b-a})\\
+        &c_k = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)\exp(ikt)\dd{t}\; [a,b] = [-\pi,\pi]\\ 
+        &c_k = \frac{1}{2}\left(a_k + ib_k\right)\\
+        &f(x) = f(-x) \text{ Even }\\
+        &f(-x) = -f(x) \text{ Odd }\\
+        &f(t) \text{ even } \Rightarrow b_k = 0 \;\;\forall k \;\; (\cos(x)=\cos(-x))\\
+        &f(t) \text{ odd } \Rightarrow a_k = 0 \;\;\forall k\;\; (\sin(-x)=-sin(x))\\
+        &V = \left\{f(x) : \sqrt{\int_a^b |f(x)|^2\dd{x}} < \infty\right\}\\
+        &\text{If $f(x) \in V$, Fourier series of $g_n(x) \to f(x)$ on $[a,b]$}\\
+        &\bar{c_k} = c_{-k}\\
+        &a_{-k} = a_k \;\; b_{-k} = -b_{-k}\\
+        &a_{k} = 2\Re(c_k) \;,\; b_k = -2\Im(c_k)\;,\; b_0 = 0 \;,\; c_0 = \frac{1}{2}a_0
+    \end{align*}
+    \subsection{Roots of unity}
+    \begin{align*}
+        &W_N = \exp(\frac{2\pi i}{N}) \text{ $n-$th root of unity}\\
+        &W_N^k = \exp(\frac{2k\pi}{N})\\
+        &(W_N^k)^N = 1 \\
+        &(W_N)^{-k} = W_N^{N-k}
+    \end{align*}
+    \newpage
+    \subsection{DFT}
+    $f[i] = f(i)$ for $0 \leq i \leq N-1$ (Sampled for $N$ points)
+    \begin{align*}
+        &F[k] = DFT\{f[n]\} = \frac{1}{N}\sum_{n=0}^{N-1}f[n]W_N^{-kn}\\
+        &f[n] = IDFT\{F[k]\} = \sum_{k=0}^{N-1}F[k]W_N^{kn} \\
+        &\Vec{F} = W\Vec{f}\\
+        &W_{ij} = \frac{1}{N} W_N^{-ij} \text{ for $0\leq i,j\leq N-1$}\\
+        &W^{-1}_{ij} = W_N^{ij} \text{ for $0\leq i,j\leq N-1$}\;\;\;W^{-1}_{ij} = N(\overline{W_{ij}})\\
+        &\text{Properties of $F$}\\
+        &F[k] = F[k+sN] \text{ for $s\in \mathbb{Z}$}\\
+        &\overline{F[k]} = F[-k]\\
+        &\Re{F[k]} \text{ is even in $k$}\\
+        &\Im{F[k]} \text{ is odd in $k$}\\
+        &f[n] = f[N-n] = f[-n] \text{ $f$ is even in $n$}\\
+        &f[n] = -f[N-n] = -f[-n]\text{ $f$ is odd in $n$}\\
+        &\text{$f[n]$ is even in $n \Rightarrow \Im(F[k]) = 0$ (DFT is real)}\\
+        &\text{$f[n]$ is odd in $n \Rightarrow \Re(F[k]) = 0$ (DFT is purely imaginary)}
+    \end{align*}
+    \section{Aliasing and the Sample Theorem}
+    $f_s = \frac{N}{T} \text{ Sampling Rate}$\\
+    \textbf{Sampling Theorem}: If a function $f(t)$ is bandwidth limited to frequencies smaller than $f_c$ (max frequency $\leq f_c$) and $f(t)$ is sampled at a rate $\boxed{f_s \geq 2f_c}$ then the function is completely determined by its samples $f[n]$. 
+    \\
+    \textbf{Sampling Theorem(ii)}: For a fixed sample $f[n]$ with a fixed sampling rate $f_s$. Then if the maximum frequency of a signal $f_c \leq \frac{f_s}{2}$ that can be deconstructed from $f[n]$ such that is free of aliasing errors (DFT if free of aliasing errors).  
+    \subsection{Fast Fourier Transform}
+    $\flops F[k] = 2N  \Rightarrow \flops\Vec{F} = 2N^2$ (Using sums)
+    \begin{align*}
+        &E[k] \tag{DFT of even indexed part}\\
+        &O[k] \tag{DFT of odd indexed part}\\
+        &F[k] = \frac{1}{2}\left(
+        E[k] + W_N^{-k}O[k]
+        \right) \text{ for $k = 0, \ldots, \frac{N}{2} - 1$}\\
+        &F[k+\frac{N}{2}] = \frac{1}{2}\left(
+        E[k] - W_N^{-k}O[k]
+        \right) \text{ for $k = 0, \ldots, \frac{N}{2} - 1$}\\
+        &\flops{\Vec{F}} = \frac{5}{2}N\log_2(N)
+    \end{align*}
+    \linebreak
+    \subsubsection{Power Spectrum and Parseval’s Theorem}
+    \textbf{Power spectrum} of $f(t)$ or $f[n]$ is $|F[k]|^2$\\
+    \textbf{Parseval’s Theorem (Continous)}
+    \begin{align*}
+        \frac{1}{b-a}\int_a^b f(t)^2 \dd{t} = \sum_{k=-\infty}^{\infty} |c_k|^2
+    \end{align*}
+    \textbf{Parseval’s Theorem (Discrete)}
+    \begin{align*}
+        \frac{1}{N}\sum_{k=0}^{N-1}|f[n]|^2 = \sum_{k=0}^{N-1} |F[k]|^2
+    \end{align*}
+    \section{Interpolation}
+    For a basis $B = \{\phi_j(x)\}_{j=0}^m$ interpolating points $\{(x_i, f_i)\}_{i=0}^n$ 
+    \begin{align*}
+        &y(x) = \sum_{i=0}^m a_i\phi_i(x)\\
+        &\Phi = \smqty(
+        \phi_0(x_0) & \phi_1(x_0) & \cdots &\phi_m(x_0) \\
+        \phi_0(x_1) & \phi_1(x_1) & \cdots &\phi_m(x_1) \\
+        \vdots & \vdots & \cdots & \vdots\\
+        \phi_0(x_n) & \phi_1(x_n) & \cdots &\phi_m(x_n) \\
+        )\\
+        &\Phi \Vec{a} = \Vec{f} \tag{Solves for $a_i$}
+    \end{align*}
+    \textbf{Vandermonde Polynomial: $y(x) = a_0 + a_1x + a_2x^2 + \ldots a_nx^n$} for $(n+1)$ points $(x_i, f_i)$. 
+    \begin{align*}
+        &\Phi = V = \mqty(
+        1 & x_0 & x_0^2 &\ldots & x_0^n\\
+        1 & x_1 & x_1^2 &\ldots & x_1^n\\
+        \vdots & \vdots & \vdots & \ldots &\vdots\\
+        1 & x_n & x_n^2 & \ldots &x_n^n\\
+        )\mqty(a_0 \\ a_1 \\ \vdots \\ a_n) = \mqty(f_0 \\ f_1 \\ \vdots \\ f_n)\\
+        &\det(V) = \prod_{0\leq i < j \leq n}(x_j - x_i)\\
+        &\text{Computing $V$ takes $\Theta(N^3) \;\flops$}\\
+        &\text{Computing $y(x)$ takes $3N \;\flops$}
+    \end{align*}
+    \textbf{Lagrange Interpolation} The Lagrange basis functions are defined as
+    \begin{align*}
+        &\ell_i(x_j) = \begin{cases}
+            1 & \text{if $i = j$}\\
+            0 & \text{otherwise}
+        \end{cases}\\
+        &\ell_i(x) = \prod_{j=0, j\neq i}^n \frac{x-x_j}{x_i-x_j} \tag{basis}\\
+        &\Phi = L = I_{n\times n} \\
+        &\text{Computing $I$ takes $0 \;\flops$}\\
+        &\text{Computing pre-computed terms takes $2N^2 + 2N \;\flops$}\\
+        &\text{Computing $y(x)$ takes $5N \;\flops$}
+    \end{align*}
+    \textbf{Newton Interpolation}
+    \begin{align*}
+        &\pi_j(x) = \prod_{i=0}^{j-1} (x-x_i)\;\; \pi_0(x) = 1 \tag{basis}\\
+        &\pi_j(x_i) = 0 \text{ if $i < j$} \\
+        &\mathbf{\Pi} = \smqty(
+        \pi_0(x_0) & \cdots &\mathbf{0}\\
+        \vdots & \ddots & \mathbf{0}\\
+        \pi_n(x_n) & \cdots & \pi_n(x_n)
+        ) \tag{$\Pi$ is lower triangular}\\
+        &\text{Computing $\Pi$ takes $\Theta(N^2) \;\flops$}\\
+        &\text{Computing pre-computed terms takes $\Theta(N^2) \;\flops$}\\
+        &\text{Computing $y(x)$ takes $\Theta(N) \;\flops$}
+    \end{align*}
+    \textbf{Extending newton polynomial} with additional point $(x_{n+1}, f_{n+1})$
+    \begin{align*}
+        &y_{n+1}(x) = y_n(x) + a_{n+1}\pi_{n+1}(x) & a_{n+1} = \frac{f_{n+1} - y_n(x_{n+1})}{\pi_{n+1}(x)}
+    \end{align*}
+    \textbf{Hermite Interpolation} Given $\{(x_i, f_i, f'_i)\}_{i=0}^n$ interpolating polynomial has degree $\boxed{2n+1}$.\\
+    \textbf{Chebyshev Points} on interval $[a,b]$ the $n+1$ points are
+    \begin{align*}
+        x_j = \frac{a+b}{2} +\frac{b-a}{2}\cos(\frac{2j+1}{2n+2}\pi) \text{ for $j = 0, \ldots, n$}
+    \end{align*}
+    \textbf{Cubic Splines}
+    \textit{Smoothness conditions:} $y_j'(x_j) = y_{j+1}'(x_j)$ and $y_j''(x_j) = y_{j+1}''(x_j)$ for cubic splines\\
+    \textit{free boundary}: $y_1''(x_0) = 0, y_n''(x_n) = 0$,  \textit{clamped boundary}: $y_1''(x_0) = f'_0, y_n''(x_n) = f'_n$, \textit{periodic boundary} if $f_0 = f_n$: $y_1'(x_0) = y_n'(x_n)$ and $y_1''(x_0) = y_n''(x_n)$. Cubic splines can be solved in $\Theta(N) \;\flops$
+    \subsection{Regression}
+    $\Phi$ with fewer basis function $m+1 < n+1$. the system is over-determined we can find solution $\Vec{a}$ such that the residue $\min \norm{\Phi\Vec{a} - \Vec{f}}_2^2$ is minimized. 
+    \begin{align*}
+        &\underbrace{\Phi}_{(n+1)\times (m+1)}\underbrace{\Vec{a}}_{(m+1)\times 1} + \Vec{r} = \Vec{f}\\
+        &\boxed{\Phi^T\Phi \Vec{a} = \Phi^T\Vec{f}} \tag{normal equation}\\
+        &\mqty(a\\b) = \frac{1}{(n+1)\sum x_i^2 - \left(\sum x_i\right)^2}\smqty(
+        \left(\sum x_i^2\right)\left(
+        \sum f_i  
+        \right) - \left(\sum x_i\right)\left(
+        \sum x_if_i
+        \right)\\
+        (n+1)\left(\sum x_if_i\right) - \left(\sum x_i\right) \left(\sum f_i\right) 
+        )
+    \end{align*}
+    \subsection{Numerical Integration}
+    \begin{align*}
+        &I_M = \sum_{i=1}^n(x_i - x_{i-1})f\left(\frac{x_i-x_{i-1}}{2}\right) \tag{Midpoint rule}\\
+        &I_T = \sum_{i=1}^n \frac{(x_i - x_{i-1})}{2}\left(f(x_{i-1})+f(x_i)\right) \tag{Trapezoid Rule}\\
+        &I_S = \sum_{i=1}^n \frac{x_i - x_{i-1}}{6}\left[f(x_{i-1}) + 4f(x_{i-\frac{1}{2}}) + f(x_i)\right]\\
+        &\text{Where $x_{i-\frac{1}{2}} = \frac{x_{i-1} + x_i}{2}$} \tag{Simpsons Rule}
+    \end{align*}
+    \subsection{Error Bounds}
+    \begin{align*}
+        &|E_M| \leq \frac{(b-a)^3}{24n^2}\max_{x\in [a,b]}{\abs{f''(x)}} \tag{Midpoint rule error bound}\\
+        &|E_T| \leq \frac{(b-a)^3}{12n^2}\max_{x\in [a,b]}{\abs{f''(x)}}\tag{Trapezoid rule error bound}\\
+        &|E_S| \leq \frac{(b-a)^5}{2880n^4}\max_{x\in [a,b]}{\abs{f^{(4)}(x)}}\tag{Simpsons rule error bound}\\
+    \end{align*}
+    \textbf{Degree of precision}: $\hat{I}$ has degree of precision $m$ if $E = I - \hat{I} = 0$ for polynomial $p(x)$ such that $\deg p \leq m$. Or $\hat{I}$ integrates any polynomial $p$ with $\deg p \leq m$ \textit{exactly}.
+    Midpoint and Trapezium rule: $\deg_p = 1$, Simpsons rule: $\deg_p = 3$. 
 
 
 
