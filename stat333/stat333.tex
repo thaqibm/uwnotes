@@ -7,10 +7,10 @@
 
 
 \usepackage[
-	name=Thaqib\ M, 
-	class= stat333, 
-	doctype= Notes, 
-	boxed=false,] 
+    name=Thaqib\ M, 
+    class= stat333, 
+    doctype= Notes, 
+    boxed=false,] 
 {template}
 \renewcommand{\arraystretch}{3} % <--------------
 
@@ -24,201 +24,201 @@
 \section*{Linear Algebra}
 \subsubsection*{Matrix multiplication} If $A$ is a $n\times m$ matrix and $B$ is a $m\times k$ matrix then the matrix $AB$ of $\dim$ $n\times k$ is defined by: 
 \begin{align*}
-{\bf[}AB{\bf]}_{xy} = \nsum{\all(z)}{}A_{xz}B_{zy}
+    {\bf[}AB{\bf]}_{xy} = \nsum{\all(z)}{}A_{xz}B_{zy}
 \end{align*}
 \\
 \subsubsection*{Inner Product} The inner product (dot product) of 2 vectors $\vec{a}, \vec{b}$ in $\R^n$ is defined as
 \begin{align*}
-\va{a}\cdot \va{b} = \innerp{\va{a},\va{b}} = \nsum{k=1}{n}a_kb_k
+    \va{a}\cdot \va{b} = \innerp{\va{a},\va{b}} = \nsum{k=1}{n}a_kb_k
 \end{align*}
 \subsubsection*{Eigenvalues and Eigenvectors}
 We can find eigenvalues by solving for the roots of the characteristic polynomial of the matrix $\vb A$.
 \begin{align*}
-\det(\vb A-tI_n) = 0
+    \det(\vb A-tI_n) = 0
 \end{align*}
 Where $I_n$ is the $n\times n$ identity matrix.
 Then for each eigenvalue $t=c$ we can solve the system of linear equations 
 \begin{align*}
-(\vb A - cI_n)\va* x = \va* 0
+    (\vb A - cI_n)\va* x = \va* 0
 \end{align*}
 $\va* x$ will be an eigenvector of $\vb A$. 
 \newpage
 \section*{Assignment Theorems}
 \begin{align*}
-\E[Xf(Y)] = \E[f(Y)\cdot\E(X\given Y)] \tag{hw1q6}
+    \E[Xf(Y)] = \E[f(Y)\cdot\E(X\given Y)] \tag{hw1q6}
 \end{align*}
 \begin{align*}
-\E[X] = \nsum{k=1}{\infty}k\P(X=k) = \nsum{k=1}{\infty} \P(X\geq k) \tag{hw2q5}
+    \E[X] = \nsum{k=1}{\infty}k\P(X=k) = \nsum{k=1}{\infty} \P(X\geq k) \tag{hw2q5}
 \end{align*}
 If $P$ is a \textbf{tridiagonal matrix} then the Markov chain satisfies the detail balance condition. 
 \begin{align*}
-\pi_i P_{i, i+1} = \pi_{i+1}P_{i+1, i} \tag{hw2q7}
+    \pi_i P_{i, i+1} = \pi_{i+1}P_{i+1, i} \tag{hw2q7}
 \end{align*}
 \begin{align*}
-\{X_n\} \asto X \Rightarrow \{X_n\}\pto X \tag{hw3q5}
+    \{X_n\} \asto X \Rightarrow \{X_n\}\pto X \tag{hw3q5}
 \end{align*}
 \newpage
 \section*{Stat}
 \begin{align*}
-\E[X] = \E[\E[X|Y]] \tag{tower rule}
+    \E[X] = \E[\E[X|Y]] \tag{tower rule}
 \end{align*}
 \textbf{Walds Identity}:\\
 \text{If $N\geq 0$ is a random variable and $X_i\sim X_1$ \textbf{i.i.d} then}
 \begin{align*}
-&\E\left[\nsum{n=1}{N}X_n\right] = \E[N]\E[X_1] \tag{Walds identity}
+    &\E\left[\nsum{n=1}{N}X_n\right] = \E[N]\E[X_1] \tag{Walds identity}
 \end{align*}
 \textbf{Limit of Infinite sets}
 Suppose $A = \bigcap_{i=1}^\infty A_i$ and $A_1 \supseteq A_2 \supseteq \cdots $ then 
 \begin{align*}
-\P(A) = \nlim{n}{\infty} \P(A_n)
+    \P(A) = \nlim{n}{\infty} \P(A_n)
 \end{align*}
 
 \newpage
 \section{Week 1}
 \begin{defn}[\textbf{Stochastic Process}]
-Let $(X_t)_{t\in T}$ be a collection of random variables this is called a Stochastic Process. $T$ is the \textit{index set}. 
+    Let $(X_t)_{t\in T}$ be a collection of random variables this is called a Stochastic Process. $T$ is the \textit{index set}. 
 \end{defn}
 \begin{example}[Simple Random Walk on $\Z$]
-Let $X_i\sim \iid$ where $X_i \in \{-1,1\}$ with 
-\begin{align*}
-P(X_i = 1) = \frac{1}{2}\\
-P(X_i = -1) = \frac{1}{2}
-\end{align*}
-now let 
-\begin{align*}
-S_n = \sum_{i=0}^n X_i
-\end{align*}
-Then $(S_i)_{k=0}^\infty$ is a stochastic process.  
+    Let $X_i\sim \iid$ where $X_i \in \{-1,1\}$ with 
+    \begin{align*}
+        P(X_i = 1) = \frac{1}{2}\\
+        P(X_i = -1) = \frac{1}{2}
+    \end{align*}
+    now let 
+    \begin{align*}
+        S_n = \sum_{i=0}^n X_i
+    \end{align*}
+    Then $(S_i)_{k=0}^\infty$ is a stochastic process.  
 \end{example}
 
 \begin{defn}[\textbf{Transition Probability}]
-Given $(X_s)_{s \leq t}$ we need the probability for $X_{t+1}$.
-\begin{align*}
-P(X_{(t+1)} = x_{t+1} \vert X_1 = x_1 , X_2 = x_2, \ldots X_t = x_t)
-\end{align*}
+    Given $(X_s)_{s \leq t}$ we need the probability for $X_{t+1}$.
+    \begin{align*}
+        P(X_{(t+1)} = x_{t+1} \vert X_1 = x_1 , X_2 = x_2, \ldots X_t = x_t)
+    \end{align*}
 \end{defn}
 
 
 \begin{note}{Conditional Probability Properties}
-\begin{align*}
-&P(A | B) = \frac{P(AB)}{P(B)} \; P(B) > 0\\
-&P(ABC) = P(A|BC) \cdot P(B|C) \cdot P(C)
-\end{align*}
+    \begin{align*}
+        &P(A | B) = \frac{P(AB)}{P(B)} \; P(B) > 0\\
+        &P(ABC) = P(A|BC) \cdot P(B|C) \cdot P(C)
+    \end{align*}
 \end{note}
 
 \begin{example}{Transition Probabilities for SRW on $\Z^d$}
-\begin{align*}
-P\left(\norm{X_{t+1} - X_{t}} \given (X_{s})_{s \leq t} \right) = \frac{1}{2d} 
-\end{align*}
+    \begin{align*}
+        P\left(\norm{X_{t+1} - X_{t}} \given (X_{s})_{s \leq t} \right) = \frac{1}{2d} 
+    \end{align*}
 \end{example}
 \newpage
 \subsection{Markov Chains}
 \begin{defn}[{Markov Property}]
-\label{markovprop}
-A process has the Markov property if:
-\begin{align*}
-P(X_{t+1}= x_{t+1} \given (X_{s})_{s\leq t}) = P(X_{t+1} = x_{t+1} \given X_{t} = x_t)
-\end{align*}
-(Next outcome only depends on the previous outcome)
+    \label{markovprop}
+    A process has the Markov property if:
+    \begin{align*}
+        P(X_{t+1}= x_{t+1} \given (X_{s})_{s\leq t}) = P(X_{t+1} = x_{t+1} \given X_{t} = x_t)
+    \end{align*}
+    (Next outcome only depends on the previous outcome)
 \end{defn}
 
 \begin{note}[Markov Chain]
-A stochastic process that satisfies the \hyperref[markovprop]{Markov property} is called a Markov chain.
+    A stochastic process that satisfies the \hyperref[markovprop]{Markov property} is called a Markov chain.
 \end{note}
 
 \begin{defn}[Time Homogeneous Markov Chain]
-A Markov Chain is called time homogeneous if the following is true
-\begin{align*}
-P(X_{t+1} = j \given X_t = i) = P(X_1 = j \given X_0 = i)
-\end{align*}
+    A Markov Chain is called time homogeneous if the following is true
+    \begin{align*}
+        P(X_{t+1} = j \given X_t = i) = P(X_1 = j \given X_0 = i)
+    \end{align*}
 \end{defn}
 
 \begin{defn}[Stochastic Matrix]
-\label{stocmat}
+    \label{stocmat}
 
-A matrix $\mathbf{P}$ is called stochastic if
-\begin{align*}
-&\mathbf{P} = \mqty(
-p_{00} & p_{01} & \ldots \\
-p_{10} & p_{11} & \ldots \\
-\vdots  & \ddots &
-)\\
-&0\leq p_{ij} \leq 1\\
-&\nsum{all(j)}{} p_{i_0j} = 1 \; \text{ for fixed $i_0$}
-\end{align*}
+    A matrix $\mathbf{P}$ is called stochastic if
+    \begin{align*}
+        &\mathbf{P} = \mqty(
+        p_{00} & p_{01} & \ldots \\
+        p_{10} & p_{11} & \ldots \\
+        \vdots  & \ddots &
+        )\\
+        &0\leq p_{ij} \leq 1\\
+        &\nsum{all(j)}{} p_{i_0j} = 1 \; \text{ for fixed $i_0$}
+    \end{align*}
 \end{defn}
 \begin{defn}[Transition Matrix]
-Let $\mathbf{P}$ be a \hyperref[stocmat]{Stochastic matrix} and let $p_{ij} = $ value in $i-$th row and $j-$th column.
-We define $p_{ij}$ as
-\begin{align*}
-&p_{ij} = P(X_{t} = j \given X_{t-1} = i)\\
-\end{align*}
-(probability of going from state $i$ to state $j$ in the chain). \\
-This is called the transition matrix for $(X_t)_{t \in T}$.
+    Let $\mathbf{P}$ be a \hyperref[stocmat]{Stochastic matrix} and let $p_{ij} = $ value in $i-$th row and $j-$th column.
+    We define $p_{ij}$ as
+    \begin{align*}
+        &p_{ij} = P(X_{t} = j \given X_{t-1} = i)\\
+    \end{align*}
+    (probability of going from state $i$ to state $j$ in the chain). \\
+    This is called the transition matrix for $(X_t)_{t \in T}$.
 \end{defn}
 \newpage
 \begin{example}{Transition Matrix}
-Consider this transition matrix 
-The transition matrix for this Markov Chain is
-\[
-\begin{blockarray}{cccc}
-& 1 & 2 & 3 \\
-\begin{block}{c(ccc)}
-1 & 0 & \frac{1}{2} & \frac{1}{2} \\
-2 & \frac{1}{3} & 0 & \frac{2}{3} \\
-3 & \frac{1}{3} & \frac{2}{3} & 0 \\
-\end{block}
-\end{blockarray}
-\]
-this can be visualized as: 
-\fig{fig0}{0.5}
+    Consider this transition matrix 
+    The transition matrix for this Markov Chain is
+    \[
+        \begin{blockarray}{cccc}
+            & 1 & 2 & 3 \\
+            \begin{block}{c(ccc)}
+                1 & 0 & \frac{1}{2} & \frac{1}{2} \\
+                2 & \frac{1}{3} & 0 & \frac{2}{3} \\
+                3 & \frac{1}{3} & \frac{2}{3} & 0 \\
+            \end{block}
+        \end{blockarray}
+    \]
+    this can be visualized as: 
+    \fig{fig0}{0.5}
 \end{example}
 \newpage
 \subsubsection{Multistep Transition Probabilities}
 \begin{defn}
-\begin{align*}
-[P(n, n+m)]_{xy} = P(X_{n+m} = y \given X_{n} = x)
-\end{align*}
+    \begin{align*}
+        [P(n, n+m)]_{xy} = P(X_{n+m} = y \given X_{n} = x)
+    \end{align*}
 \end{defn}
 
 \begin{thm}{Multistep Transition Probability Matrix}
-\label{thm113}
-Let $(X_t)_{t\in T}$ be a stochastic process satisfying the Markov property and be \textit{time homogeneous} and let $\bf P$ be the transition matrix.  
-\begin{align*}
-[P(n, n+m)]_{xy} = \mathbf{P}^m_{xy}
-\end{align*}
+    \label{thm113}
+    Let $(X_t)_{t\in T}$ be a stochastic process satisfying the Markov property and be \textit{time homogeneous} and let $\bf P$ be the transition matrix.  
+    \begin{align*}
+        [P(n, n+m)]_{xy} = \mathbf{P}^m_{xy}
+    \end{align*}
 \end{thm}
 \begin{lemma}{}
-\label{lem114}
-\begin{align*}
-[P(n, m+1+n)]_{xy} = \nsum{\mathrm{all}(z)}{}[P(n,m+n)]_{xz}P_{zy}
-\end{align*}
+    \label{lem114}
+    \begin{align*}
+        [P(n, m+1+n)]_{xy} = \nsum{\mathrm{all}(z)}{}[P(n,m+n)]_{xz}P_{zy}
+    \end{align*}
 \end{lemma}
 \begin{proof}
-To go from state $x \to y$ we must add up all probabilities of going to an intermediate state $\bf z$, $x \to {\bf z} \to y$ we add possibilities of $\bf z$. 
-\begin{align*}
-&[P(n, m+1+n)]_{xy} = P(X_{m+1+n} = y \given X_{n} = x)\\
-&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y, X_{n+m} = z \given X_{n} = x) \text{ Marginal probability function (stat240) }\\
-&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z , X_{n} = x)P(X_{n+m} = z \given X_n = x) \text{ conditional probability }
-\end{align*}
-Since $X_t$ satisfies the Markov property we get
-\begin{align*}
-&= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z)P(X_{n+m} = z \given X_n = x)
-\end{align*}
-By definition we have $P(X_{m+1+n} = y \given X_{n+m} = z) = P_zy$ and $P(X_{n+m} = z \given X_n = x) = [P(n, n+m)]_{xz}$. 
+    To go from state $x \to y$ we must add up all probabilities of going to an intermediate state $\bf z$, $x \to {\bf z} \to y$ we add possibilities of $\bf z$. 
+    \begin{align*}
+        &[P(n, m+1+n)]_{xy} = P(X_{m+1+n} = y \given X_{n} = x)\\
+        &= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y, X_{n+m} = z \given X_{n} = x) \text{ Marginal probability function (stat240) }\\
+        &= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z , X_{n} = x)P(X_{n+m} = z \given X_n = x) \text{ conditional probability }
+    \end{align*}
+    Since $X_t$ satisfies the Markov property we get
+    \begin{align*}
+        &= \nsum{\mathrm{all}(z)}{} P(X_{m+1+n} = y \given X_{n+m} = z)P(X_{n+m} = z \given X_n = x)
+    \end{align*}
+    By definition we have $P(X_{m+1+n} = y \given X_{n+m} = z) = P_zy$ and $P(X_{n+m} = z \given X_n = x) = [P(n, n+m)]_{xz}$. 
 \end{proof}
 Using \hyperref[lem114]{Lemma 1.14} we can prove the \hyperref[thm113]{Theorem 1.13}. \\
 Since  \hyperref[lem114]{1.14}'s result is the definition of matrix multiplication we get
 \begin{align*}
-[P(n, m+1+n)]_{xy} = [P(n, m+n)P]_{xy}
+    [P(n, m+1+n)]_{xy} = [P(n, m+n)P]_{xy}
 \end{align*}
 by induction on $m$ with base case $P(n, n+1) = P$ we get
 \begin{align*}
-&[P(n, m+1+n)]_{xy} = {\bf P}^m
+    &[P(n, m+1+n)]_{xy} = {\bf P}^m
 \end{align*}
 Since RHS does not depend on $n$ we can write $P(n, n+m) = P(m)$ and time homogeneity applies for any $m$ number of steps. 
 \begin{align*}
-P(X_{n+m} = y \given X_n = x) = P(X_{m} = y \given X_0 = x)
+    P(X_{n+m} = y \given X_n = x) = P(X_{m} = y \given X_0 = x)
 \end{align*}  
 
 \newpage 
@@ -227,31 +227,31 @@ P(X_{n+m} = y \given X_n = x) = P(X_{m} = y \given X_0 = x)
 \subsection{Initial Data}
 Let $(X_n)_{n\in I}$ be a time homogeneous Markov chain. We denote these by $0, 1, 2, \ldots \abs{I} - 1$. We represent the state space as:
 \begin{align*}
-\{i_1, i_2, \ldots, i_{\abs{I}}\} = \mathcal{X}
+    \{i_1, i_2, \ldots, i_{\abs{I}}\} = \mathcal{X}
 \end{align*}
 Let $\bf P$ be the transition matrix for this Markov chain. 
 \begin{defn}[Distribution Row Vector]
-\begin{align*}
-\mu_j = P(X_0 = i_j)
-\end{align*}
-Then the row vector $\vec{\mu}$ of $\dim = 1 \times \abs{I}$ is defined as 
-\begin{align*}
-\vec{\mu} = \left[\mu_1, \mu_2, \ldots, \mu_{\abs{I}}\right]
-\end{align*} 
-$\vec{\mu}$ is called the distribution of $X_0$ denoted by $X_0 \sim \vec{mu}$.\\
-The distribution vector for $X_n$ is denoted by $\mu(n)$. 
+    \begin{align*}
+        \mu_j = P(X_0 = i_j)
+    \end{align*}
+    Then the row vector $\vec{\mu}$ of $\dim = 1 \times \abs{I}$ is defined as 
+    \begin{align*}
+        \vec{\mu} = \left[\mu_1, \mu_2, \ldots, \mu_{\abs{I}}\right]
+    \end{align*} 
+    $\vec{\mu}$ is called the distribution of $X_0$ denoted by $X_0 \sim \vec{mu}$.\\
+    The distribution vector for $X_n$ is denoted by $\mu(n)$. 
 \end{defn}
 
 
 \begin{thm}{Distribution of $X_n$}
-The distribution row vector of $X_n$ for a time homogeneous Markov chain is given by $\mu P^n$  
+    The distribution row vector of $X_n$ for a time homogeneous Markov chain is given by $\mu P^n$  
 \end{thm}
 \begin{proof}
-\textit{Sketch}. 
-\begin{align*}
-P(X_n = i_k) = \nsum{j=1}{\abs{I}}P(X_n = i_k \given X_0 = i_j)P(X_0 = i_j) = \sum \vec{\mu_j} P_{jk} = \left[\vec{\mu}P\right]_k
-\end{align*}
-Implies $X_n \sim \vec{\mu}P^n$
+    \textit{Sketch}. 
+    \begin{align*}
+        P(X_n = i_k) = \nsum{j=1}{\abs{I}}P(X_n = i_k \given X_0 = i_j)P(X_0 = i_j) = \sum \vec{\mu_j} P_{jk} = \left[\vec{\mu}P\right]_k
+    \end{align*}
+    Implies $X_n \sim \vec{\mu}P^n$
 \end{proof}
 \newpage
 \subsection{Conditional Expectation}
@@ -259,752 +259,752 @@ Given $f: \mathcal{X}\to \mathbb{R}$ what is the expected value of $f(X_m)$ give
 \\
 The function $f$ on a finite state space $\mathcal{X}$ is equivalent to a vector $\vec{f} \in \R^{\abs{\mathcal{X}}}$
 \begin{align*}
-\vec{f} = \mqty(f(1)\\f(2)\\ \ldots \\ f(n))
+    \vec{f} = \mqty(f(1)\\f(2)\\ \ldots \\ f(n))
 \end{align*}  
 The conditional expectation for $f(X_m)$ given $X_0 \sim \vec{\mu}$ is denoted by 
 \begin{align*}
-\E(f(X_m) \given X_0 \sim \vec{\mu})
+    \E(f(X_m) \given X_0 \sim \vec{\mu})
 \end{align*} 
 By definition of conditional expectation we get
 \begin{align*}
-\E(f(X_m) \given X_0 \sim \vec{\mu}) &= \nsum{k=1}{\abs{\mathcal{X}}} f(i_k)P(X_m = i_k \given X_0 \sim \vec{\mu})\\
-&= \nsum{\all(k)}{} f(i_k) \left[\va*{\mu} \vb{P}^m \right]_k\\
-&= \nsum{\all(k)}{} \va*{f}_k \left[\va*{\mu} \vb{P}^m \right]_k\\
-&= \innerp{\va*{\mu}\vb{P}^m, \va*{f}}
+    \E(f(X_m) \given X_0 \sim \vec{\mu}) &= \nsum{k=1}{\abs{\mathcal{X}}} f(i_k)P(X_m = i_k \given X_0 \sim \vec{\mu})\\
+    &= \nsum{\all(k)}{} f(i_k) \left[\va*{\mu} \vb{P}^m \right]_k\\
+    &= \nsum{\all(k)}{} \va*{f}_k \left[\va*{\mu} \vb{P}^m \right]_k\\
+    &= \innerp{\va*{\mu}\vb{P}^m, \va*{f}}
 \end{align*}
 \newpage
 \subsection{Stationary Distribution}
 Suppose $X_0 \sim \va{\mu}$ then the distribution for $X_n \sim \va\mu(n)$ then what is the limit of $\va\mu(n)$ as $n\to \infty$. 
 Suppose the limit $\nlim{n}{\infty}\va\mu P^n = \va\pi$ exists then we can write 
 \begin{align*}
-\va*{\pi} = \nlim{n}{\infty}\va*{\mu}\vb{P}^n = \nlim{n}{\infty}\va*{\mu}\vb{P}^{n-1}P = \nlim{n}{\infty} \va*{\mu}(n-1)\vb{P} = \va*{\pi}\vb{P}
+    \va*{\pi} = \nlim{n}{\infty}\va*{\mu}\vb{P}^n = \nlim{n}{\infty}\va*{\mu}\vb{P}^{n-1}P = \nlim{n}{\infty} \va*{\mu}(n-1)\vb{P} = \va*{\pi}\vb{P}
 \end{align*}
 So $\va\pi$ is an \texttt{left eigenvector of $\vb{P}$} with \texttt{eigenvalue 1}. 
 
 \begin{defn}[Stationary Distribution]
-A probability vector $\va*{\pi}$ is the Stationary Distribution for the stochastic matrix $\vb{P}$ if 
-\begin{align*}
-&\nsum{k}{}\va*\pi_k = 1\\
-&\va*{\pi}\vb{P} = \va*{\pi}
-\end{align*}
+    A probability vector $\va*{\pi}$ is the Stationary Distribution for the stochastic matrix $\vb{P}$ if 
+    \begin{align*}
+        &\nsum{k}{}\va*\pi_k = 1\\
+        &\va*{\pi}\vb{P} = \va*{\pi}
+    \end{align*}
 \end{defn}
 \begin{defn}[Stationary Measure]
-A measure $\va\nu$ on $\mathcal{X}$ $\left(\va\nu \in \R^{\abs{\mathcal{X}}}\right)$ if 
-\begin{align*}
-&\va \nu_i \geq 0\\
-&\nsum{}{}\va\nu_i > 0\\
-&\va\nu \vb{P} = \va\nu
-\end{align*}
+    A measure $\va\nu$ on $\mathcal{X}$ $\left(\va\nu \in \R^{\abs{\mathcal{X}}}\right)$ if 
+    \begin{align*}
+        &\va \nu_i \geq 0\\
+        &\nsum{}{}\va\nu_i > 0\\
+        &\va\nu \vb{P} = \va\nu
+    \end{align*}
 \end{defn}
 \begin{prop}[Stationary Distribution from Measure]
-\label{statdm}
-If $\abs{X} < \infty$ and $\va\nu$ is a stationary measure on $\vb P$  
-\begin{align*}
-\va*\pi = \frac{1}{\nsum{i}{}\va\nu_i}\va\nu
-\end{align*}
-Then $\va*\pi$ is a stationary distribution by definition.
+    \label{statdm}
+    If $\abs{X} < \infty$ and $\va\nu$ is a stationary measure on $\vb P$  
+    \begin{align*}
+        \va*\pi = \frac{1}{\nsum{i}{}\va\nu_i}\va\nu
+    \end{align*}
+    Then $\va*\pi$ is a stationary distribution by definition.
 \end{prop}
 \begin{defn}[Bi-stochastic Matrix]
-A \hyperref[stocmat]{stochastic matrix} is Bi-stochastic if 
-\begin{align*}
-&\nsum{\all(i)}{}P_{ij_0} = 1 & \text{ for fixed $j_0$}
-\end{align*}
-Sum of all rows = 1 and sum of all columns = 1.   
+    A \hyperref[stocmat]{stochastic matrix} is Bi-stochastic if 
+    \begin{align*}
+        &\nsum{\all(i)}{}P_{ij_0} = 1 & \text{ for fixed $j_0$}
+    \end{align*}
+    Sum of all rows = 1 and sum of all columns = 1.   
 \end{defn}
 
 \begin{prop}[Stationary Distribution for Bi-stochastic Matrices]
-If $\vb P$ is a \textbf{Bi-stochastic} transition matrix for Markov chain with finite state space $\mathcal{X}$ with $\abs{\mathcal{X}} = N$ then the stationary distribution is given by 
-\begin{align*}
-\va*\pi = \mqty(\frac{1}{N} & \frac{1}{N} & \cdots & \frac{1}{N})
-\end{align*}
+    If $\vb P$ is a \textbf{Bi-stochastic} transition matrix for Markov chain with finite state space $\mathcal{X}$ with $\abs{\mathcal{X}} = N$ then the stationary distribution is given by 
+    \begin{align*}
+        \va*\pi = \mqty(\frac{1}{N} & \frac{1}{N} & \cdots & \frac{1}{N})
+    \end{align*}
 \end{prop}
 \newpage
 \subsection{Detail Balance Condition}
 \begin{defn}[Detail Balance Condition]
-\label{detailb}
-$\va\pi$ has the detail balance condition if:  
-\begin{align*}
-\va\pi_x \vb{P}_{xy} = \va \pi_y \vb{P}_{yx}
-\end{align*}
+    \label{detailb}
+    $\va\pi$ has the detail balance condition if:  
+    \begin{align*}
+        \va\pi_x \vb{P}_{xy} = \va \pi_y \vb{P}_{yx}
+    \end{align*}
 \end{defn}
 \begin{note}
-Detail balance condition means $\P(X_1 = x, X_0 = y) = \P(X_1 = y , X_0 = x)$. 
+    Detail balance condition means $\P(X_1 = x, X_0 = y) = \P(X_1 = y , X_0 = x)$. 
 \end{note}
 \begin{thm}[Detail Balance and Stationary Distribution]
-If $X_0 \sim \va\pi$ and $\va\pi$ satisfies the \hyperref[detailb]{detail balance condition} then $X_n \sim \va \pi$ for all $n\geq 1$
+    If $X_0 \sim \va\pi$ and $\va\pi$ satisfies the \hyperref[detailb]{detail balance condition} then $X_n \sim \va \pi$ for all $n\geq 1$
 \end{thm}
 \fig{fig1}{0.2}
 \newpage
 \section{Week 3}
 \subsection{Communicating States}
 \begin{defn}[communicating states]
-A state $x$ communicates with $y$ if $\exists n\geq 1$ such that 
-\begin{align*}
-[\vb P^n]_{xy} > 0
-\end{align*}
-denoted by $x \to y$. 
+    A state $x$ communicates with $y$ if $\exists n\geq 1$ such that 
+    \begin{align*}
+        [\vb P^n]_{xy} > 0
+    \end{align*}
+    denoted by $x \to y$. 
 \end{defn}
 \begin{note}
-$\P(A \given X_{n-1} = x) = \P_x(A)$ and $\E(\cdot \given X_n = x) = \E_x(\cdot)$
+    $\P(A \given X_{n-1} = x) = \P_x(A)$ and $\E(\cdot \given X_n = x) = \E_x(\cdot)$
 \end{note}
 \begin{defn}[Time of the first return / first hitting time]
-\[\tau_x = \min \{n \given X_n = x\}\]
-\[\rho_{xy} = \P_x(\tau_y < \infty)\]
-$\rho_{xy} = \P(\text{$X_n$ returns to $y$ given it starts at $x$)}$. 
+    \[\tau_x = \min \{n \given X_n = x\}\]
+    \[\rho_{xy} = \P_x(\tau_y < \infty)\]
+    $\rho_{xy} = \P(\text{$X_n$ returns to $y$ given it starts at $x$)}$. 
 \end{defn}
 \begin{note}
-\[1 - \rho_{xy} = \P_x(\tau_y = \infty)\]
+    \[1 - \rho_{xy} = \P_x(\tau_y = \infty)\]
 \end{note}
 \begin{lemma}[Communicating states and return probability]
-$x\to y \iff \rho_{xy} > 0$.  
+    $x\to y \iff \rho_{xy} > 0$.  
 \end{lemma}
 \begin{lemma}[Transitivity]
-$x\to y$ and $y\to z \Rightarrow x \to z$
+    $x\to y$ and $y\to z \Rightarrow x \to z$
 \end{lemma}
 \begin{defn}[Time of $k-th$ return]
-\label{kthret}
-\begin{align*}
-\tau_x^k = \min \{n > \tau_x^{k-1} \given X_n = x\}
-\end{align*}
-where $\tau_x^1 = \tau_x$. 
+    \label{kthret}
+    \begin{align*}
+        \tau_x^k = \min \{n > \tau_x^{k-1} \given X_n = x\}
+    \end{align*}
+    where $\tau_x^1 = \tau_x$. 
 \end{defn}
 \subsection{Recurrent and Transient States}
 \begin{defn}[Recurrent and Transient States]
-\label{recurrent}
-A state $x\in \mathcal{X}$ is called \textbf{recurrent} if 
-\begin{align*}
-\rho_{xx} = 1
-\end{align*}
-and \textbf{transient} if 
-\begin{align*}
-\rho_{xx} < 1
-\end{align*}
+    \label{recurrent}
+    A state $x\in \mathcal{X}$ is called \textbf{recurrent} if 
+    \begin{align*}
+        \rho_{xx} = 1
+    \end{align*}
+    and \textbf{transient} if 
+    \begin{align*}
+        \rho_{xx} < 1
+    \end{align*}
 \end{defn}
 \begin{thm}[Escaping path]
-\label{escpath}
-If $x\to y$ and $\rho_{yx} < 1$ then $x$ is transient.
+    \label{escpath}
+    If $x\to y$ and $\rho_{yx} < 1$ then $x$ is transient.
 \end{thm}
 \begin{thm}[Corollary of {Escaping Path theorem}]
-If $x\to y$ and $x$ is recurrent then $\rho_{yx} = 1$. 
+    If $x\to y$ and $x$ is recurrent then $\rho_{yx} = 1$. 
 \end{thm}
 \newpage
 \subsection{Strong Markov Property}
 \begin{defn}[Stopping Time]
-$T$ is a stopping time if the occurrence (or non occurrence) of the event $\{T = n\}$ can be determined by $\{X_0, \ldots, X_n\}$. 
+    $T$ is a stopping time if the occurrence (or non occurrence) of the event $\{T = n\}$ can be determined by $\{X_0, \ldots, X_n\}$. 
 \end{defn}
 \begin{thm}[Strong Markov Property]
-Suppose $T$ is a stopping time. Given $T = n$ and $X_T = y$ the random variables $\{X_{T+k}\}_{k=0}^\infty$ behave like a Markov chain starting from initial state $y$. That is 
-\begin{align*}
-\P(X_{T+1} = z \given X_T = y, T = n) = \P(X_1 = z\given X_0 = y) =\vb P_{yz}
-\end{align*}
+    Suppose $T$ is a stopping time. Given $T = n$ and $X_T = y$ the random variables $\{X_{T+k}\}_{k=0}^\infty$ behave like a Markov chain starting from initial state $y$. That is 
+    \begin{align*}
+        \P(X_{T+1} = z \given X_T = y, T = n) = \P(X_1 = z\given X_0 = y) =\vb P_{yz}
+    \end{align*}
 \end{thm}
 \begin{lemma}[$k-$th return time and the strong Markov property]
-Let $\tau_y^k$ be the \hyperref[kthret]{$k-$th return time to $y$}. Then the strong Markov property implies 
-\begin{align*}
-\P_x(\tau_y^k < \infty) = \rho_{xy}\rho_{yy}^{k-1}
-\textbf{ or }
-\P_y(\tau_y^k < \infty) = \rho_{yy}^{k} &&\forall k \geq 1
-\end{align*}
+    Let $\tau_y^k$ be the \hyperref[kthret]{$k-$th return time to $y$}. Then the strong Markov property implies 
+    \begin{align*}
+        \P_x(\tau_y^k < \infty) = \rho_{xy}\rho_{yy}^{k-1}
+        \textbf{ or }
+        \P_y(\tau_y^k < \infty) = \rho_{yy}^{k} &&\forall k \geq 1
+    \end{align*}
 \end{lemma}
 \begin{note}
-From the above \textbf{lemma} if we have $\rho_{yy} = 1$ ($y$ is recurrent) then the chain returns to $y$ for infinitely many $k$ and it continually
-recurs in the Markov chain.\\
-Otherwise if $\rho_{yy} < 1$ ($y$ is transient) then $\rho_{yy}^k \to 0$ as $k\to \infty$ so after sometime $y$ is never visited in the chain.  
+    From the above \textbf{lemma} if we have $\rho_{yy} = 1$ ($y$ is recurrent) then the chain returns to $y$ for infinitely many $k$ and it continually
+    recurs in the Markov chain.\\
+    Otherwise if $\rho_{yy} < 1$ ($y$ is transient) then $\rho_{yy}^k \to 0$ as $k\to \infty$ so after sometime $y$ is never visited in the chain.  
 \end{note}
 \newpage
 \section{Week 4}
 \subsection{Classification of States}
 \begin{defn}[Closed]
-\label{closed}
-A set $A$ is \textbf{closed} if  it is impossible to get out. Formally $c\in A$ and $y\notin A$ then $P_{xy} = 0$
+    \label{closed}
+    A set $A$ is \textbf{closed} if  it is impossible to get out. Formally $c\in A$ and $y\notin A$ then $P_{xy} = 0$
 \end{defn}
 \begin{defn}[irreducible]
-\label{irreducible}
-A set $B$ is irreducible if every state is reachable from another in $k$ steps or every state communicates with with all other states. Formally 
-\begin{align*}
-x,y\in B \Rightarrow x \to y
-\end{align*}
+    \label{irreducible}
+    A set $B$ is irreducible if every state is reachable from another in $k$ steps or every state communicates with with all other states. Formally 
+    \begin{align*}
+        x,y\in B \Rightarrow x \to y
+    \end{align*}
 \end{defn}
 \fig{fig2}{0.7}
 \begin{lemma}[Commutating recurrent states]
-If $x$ is \hyperref[recurrent]{recurrent} and $x\to y$ then $y$ is recurrent
+    If $x$ is \hyperref[recurrent]{recurrent} and $x\to y$ then $y$ is recurrent
 \end{lemma}
 \begin{lemma}[Existence of recurrent states in finite closed sets]
-\label{finiteclosed}
-If $A$ is finite and \hyperref[closed]{closed} then $\exists x \in A$ such that $x$ is \hyperref[recurrent]{recurrent}. 
+    \label{finiteclosed}
+    If $A$ is finite and \hyperref[closed]{closed} then $\exists x \in A$ such that $x$ is \hyperref[recurrent]{recurrent}. 
 \end{lemma}
 \begin{thm}[Closed and irreducible sets are recurrent]
-If $C\subseteq \mathcal{X}$ is \textbf{finite}, \hyperref[closed]{closed} and \hyperref[irreducible]{irreducible} then all $x\in C$ are \hyperref[recurrent]{recurrent}. 
+    If $C\subseteq \mathcal{X}$ is \textbf{finite}, \hyperref[closed]{closed} and \hyperref[irreducible]{irreducible} then all $x\in C$ are \hyperref[recurrent]{recurrent}. 
 \end{thm}
 \begin{thm}[Decomposition Theorem]
-If $\mathcal{X}$ is finite then 
-\begin{align*}
-\mathcal{X} = T \cup R_1 \cup R_2 \cup \cdots \cup R_k
-\end{align*}
-where $T$ is the set of transient states and $R_i$ for $1\leq i \leq k$ are are
-closed irreducible sets of recurrent states. 
+    If $\mathcal{X}$ is finite then 
+    \begin{align*}
+        \mathcal{X} = T \cup R_1 \cup R_2 \cup \cdots \cup R_k
+    \end{align*}
+    where $T$ is the set of transient states and $R_i$ for $1\leq i \leq k$ are are
+    closed irreducible sets of recurrent states. 
 \end{thm}
 \begin{defn}[Number of visits]
-$N(y)$ is the number of visits to $y$ after initial time.  
+    $N(y)$ is the number of visits to $y$ after initial time.  
 \end{defn}
 \begin{lemma}[Expected number of visits]
-\begin{align*}
-\E_x[N(y)] = \begin{cases}
-0 & \rho_{xy} = 0\\
-\frac{\rho_{xy}}{1-\rho_{yy}} & \rho_{xy} > 0
-\end{cases}
-\end{align*}
+    \begin{align*}
+        \E_x[N(y)] = \begin{cases}
+            0 & \rho_{xy} = 0\\
+            \frac{\rho_{xy}}{1-\rho_{yy}} & \rho_{xy} > 0
+        \end{cases}
+    \end{align*}
 \end{lemma}
 \newpage
 \begin{lemma}[Expected number of visits II]
-\begin{align*}
-\E_x[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
-\end{align*}
+    \begin{align*}
+        \E_x[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
+    \end{align*}
 \end{lemma}
 
 \begin{thm}[Equivalent condition for recurrence]
-$y$ is recurrent if and only if 
-\begin{align*}
-\nsum{n=1}{\infty} [\vb P^n]_{yy} = \E_y[N(y)] = \infty
-\end{align*}
+    $y$ is recurrent if and only if 
+    \begin{align*}
+        \nsum{n=1}{\infty} [\vb P^n]_{yy} = \E_y[N(y)] = \infty
+    \end{align*}
 \end{thm}
 \subsection{Existence of Stationary measure}
 \begin{thm}[Existence of Stationary measure]\label{thm411}
-Suppose $\cal X$ is \hyperref[irreducible]{irreducible} and \hyperref[recurrent]{recurrent} there  exists a stationary measure $\va\mu$ with 
-\begin{align*}
-0<\mu_y < \infty && y\in \cal X
-\end{align*}
-Let $x\in \cal X$ be recurrent by \hyperref[finiteclosed]{Existence of recurrent states in finite closed sets}. We define $\va\mu^x$ as 
-\begin{align*}
-\mu_y^x = \E_x[\text{\# of visits to $y$ before $x$}] = \nsum{n=0}\infty \P_x(X_n = y, \tau_x > n)
-\end{align*}
-$\va\mu^x$ is a stationary measure for $\vb P$.
+    Suppose $\cal X$ is \hyperref[irreducible]{irreducible} and \hyperref[recurrent]{recurrent} there  exists a stationary measure $\va\mu$ with 
+    \begin{align*}
+        0<\mu_y < \infty && y\in \cal X
+    \end{align*}
+    Let $x\in \cal X$ be recurrent by \hyperref[finiteclosed]{Existence of recurrent states in finite closed sets}. We define $\va\mu^x$ as 
+    \begin{align*}
+        \mu_y^x = \E_x[\text{\# of visits to $y$ before $x$}] = \nsum{n=0}\infty \P_x(X_n = y, \tau_x > n)
+    \end{align*}
+    $\va\mu^x$ is a stationary measure for $\vb P$.
 \end{thm}
 \fig{fig3}{0.5}
 
 \newpage
 \section{Week 5}
 \begin{defn}[Ergodicity]
-If $\va\pi$ is a stationary distribution given $X_0 \sim \va\mu$  if we have 
-\begin{align*}
-\va\mu \vb P^n \rightarrow \va\pi
-\end{align*}
-then $\vb P$ has Ergodicity. 
+    If $\va\pi$ is a stationary distribution given $X_0 \sim \va\mu$  if we have 
+    \begin{align*}
+        \va\mu \vb P^n \rightarrow \va\pi
+    \end{align*}
+    then $\vb P$ has Ergodicity. 
 \end{defn}
 \begin{thm}[Ergodicity equivalent definition]
-\begin{align*}
-\va\mu \vb P^n \rightarrow \pi \iff [P^n]_{xy} \rightarrow \va\pi_y && \forall x\in \cal X
-\end{align*}
+    \begin{align*}
+        \va\mu \vb P^n \rightarrow \pi \iff [P^n]_{xy} \rightarrow \va\pi_y && \forall x\in \cal X
+    \end{align*}
 \end{thm}
 \begin{remark}
-If $y$ is \hyperref[recurrent]{transient} then $\E_X[N(y)] < \infty$. Then 
-\begin{align*}
-\E_X[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
-\end{align*}
-Then $[\vb P^n]_{xy} \rightarrow 0$. Meaning $\va\pi_y = 0$, so all transient states have Ergodicity.
+    If $y$ is \hyperref[recurrent]{transient} then $\E_X[N(y)] < \infty$. Then 
+    \begin{align*}
+        \E_X[N(y)] = \nsum{n=1}{\infty} [\vb P^n]_{xy}
+    \end{align*}
+    Then $[\vb P^n]_{xy} \rightarrow 0$. Meaning $\va\pi_y = 0$, so all transient states have Ergodicity.
 \end{remark}
 \begin{defn}[Periodicity]
-A state $x$ has a period $\dd_x$ if 
-\begin{align*}
-& I_x = \{n\geq 0 \given [P^n]_{xx} > 0\}
-&\dd_x = \gcd I_x 
-\end{align*}
-$x$ is {\color{deepred} aperiodic} if $\dd_x = 1$ and {\color{deepred} periodic} if $\dd_x > 1$.   
+    A state $x$ has a period $\dd_x$ if 
+    \begin{align*}
+        & I_x = \{n\geq 0 \given [P^n]_{xx} > 0\}
+        &\dd_x = \gcd I_x 
+    \end{align*}
+    $x$ is {\color{deepred} aperiodic} if $\dd_x = 1$ and {\color{deepred} periodic} if $\dd_x > 1$.   
 \end{defn}
 
 \begin{defn}[Class property]
-A property $\cal K$ of a state $x$ is called a \textbf{class property} if 
-$x$ has $\cal K$, $x\to y$ and $y\to x$ then $y$ has $\cal K$. 
+    A property $\cal K$ of a state $x$ is called a \textbf{class property} if 
+    $x$ has $\cal K$, $x\to y$ and $y\to x$ then $y$ has $\cal K$. 
 \end{defn}
 
 \begin{lemma}{Periodicity is a class property}
-If $x\to y$ and $y\to x$ then $\dd_x = \dd_y$.
+    If $x\to y$ and $y\to x$ then $\dd_x = \dd_y$.
 \end{lemma}
 
 \begin{lemma}{$I_x$ is closed under addition}
-\begin{align*}
-a,b\in I_x \Rightarrow (a+b)\in I_x
-\end{align*}
+    \begin{align*}
+        a,b\in I_x \Rightarrow (a+b)\in I_x
+    \end{align*}
 \end{lemma}
 
 \begin{lemma}{}
-If $x$ is aperiodic then $\exists n_0$ such that for all $n\geq n_0$ $n\in I_x$. 
+    If $x$ is aperiodic then $\exists n_0$ such that for all $n\geq n_0$ $n\in I_x$. 
 \end{lemma}
 
 \begin{lemma}{}
-If $P_{xx} > 0$ then $x$ is aperiodic.
+    If $P_{xx} > 0$ then $x$ is aperiodic.
 \end{lemma}
 \newpage
 \section{Week 6} 
 \subsection{Convergence Theorems}
 \begin{note}
-\begin{align*}
-&\mathbf{I}: \text{Irreducible}\\
-&\mathbf{A}: \text{Aperiodic}\\
-&\mathbf{R}: \text{Recurrent}\\
-&\mathbf{S}: \text{Stationary distribution $\pi$ exists}
-\end{align*}
+    \begin{align*}
+        &\mathbf{I}: \text{Irreducible}\\
+        &\mathbf{A}: \text{Aperiodic}\\
+        &\mathbf{R}: \text{Recurrent}\\
+        &\mathbf{S}: \text{Stationary distribution $\pi$ exists}
+    \end{align*}
 \end{note}
 \begin{remark}
-$I, S \Rightarrow R$
+    $I, S \Rightarrow R$
 \end{remark}
 \begin{defn}[Convergence in Probability]
-$\{X_n\}\pto X$ if $\forall \epsilon > 0$
-\begin{align*}
-\nlim{n}{\infty} \P(|X_n - X| > \epsilon) = 0
-\end{align*}
+    $\{X_n\}\pto X$ if $\forall \epsilon > 0$
+    \begin{align*}
+        \nlim{n}{\infty} \P(|X_n - X| > \epsilon) = 0
+    \end{align*}
 \end{defn}
 \begin{defn}[Almost surely convergence]
-$\{X_n\}\asto X$ if 
-\begin{align*}
-\P\left(\nlim{n}{\infty}X_n = X\right) = 1
-\end{align*}
+    $\{X_n\}\asto X$ if 
+    \begin{align*}
+        \P\left(\nlim{n}{\infty}X_n = X\right) = 1
+    \end{align*}
 \end{defn}
 \begin{thm}[Weak Law of Large Numbers (WLLN)]
-Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
-\begin{align*}
-\frac{1}{n}\nsum{k=0}{n-1}X_k \pto \mu
-\end{align*}
+    Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
+    \begin{align*}
+        \frac{1}{n}\nsum{k=0}{n-1}X_k \pto \mu
+    \end{align*}
 \end{thm}
 \begin{thm}[Strong Law of Large Numbers (SLLN)]
-Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
-\begin{align*}
-\frac{1}{n}\nsum{k=0}{n-1}X_k \asto \mu
-\end{align*}
+    Let $\{X_k\}_{k\in \mathbb{N}} \sim \iid$ with $\E[X_k] = \mu$ then 
+    \begin{align*}
+        \frac{1}{n}\nsum{k=0}{n-1}X_k \asto \mu
+    \end{align*}
 \end{thm}
 \begin{thm}[Convergence Theorem]\label{convthm}
-If $I,A,S$ hold then 
-\begin{align*}
-P_{xy}^n \to \pi_y && n\to \infty
-\end{align*}
+    If $I,A,S$ hold then 
+    \begin{align*}
+        P_{xy}^n \to \pi_y && n\to \infty
+    \end{align*}
 \end{thm}
 \begin{thm}[Asymptotic Frequency]\label{asymfreq}
-Suppose $I,R$ hold and let $N_n(y)$ be the number of visits to $y$ upto time $n$ then 
-\begin{align*}
-\frac{N_n(y)}{n} \asto \frac{1}{\E_y \tau_y}
-\end{align*} 
+    Suppose $I,R$ hold and let $N_n(y)$ be the number of visits to $y$ upto time $n$ then 
+    \begin{align*}
+        \frac{N_n(y)}{n} \asto \frac{1}{\E_y \tau_y}
+    \end{align*} 
 \end{thm}
 \begin{proof}
-If $R(k)$ is the $k-$th return time to $y$ then by SLLN $\frac{R(k)}{k} \asto \E_y[\tau_y]$ then we use squeeze theorem to get the result.   
+    If $R(k)$ is the $k-$th return time to $y$ then by SLLN $\frac{R(k)}{k} \asto \E_y[\tau_y]$ then we use squeeze theorem to get the result.   
 \end{proof}
 \newpage
 \begin{lemma}[Recurrent States]
-If $\mathbf{S}$ holds and $\pi_y > 0 \Rightarrow y$ is recurrent. 
+    If $\mathbf{S}$ holds and $\pi_y > 0 \Rightarrow y$ is recurrent. 
 \end{lemma}
 
 \begin{thm}[Stationary Distribution Uniqueness]\label{uniquedist}
-If $\mathbf{I}, \mathbf{S}$ hold then 
-\begin{align*}
-\pi_y = \frac{1}{\E_y[\tau_y]}
-\end{align*}
+    If $\mathbf{I}, \mathbf{S}$ hold then 
+    \begin{align*}
+        \pi_y = \frac{1}{\E_y[\tau_y]}
+    \end{align*}
 \end{thm}
 
 \begin{thm}[]\label{thm611}
-Consider $\va\mu^x$ from this \hyperref[thm411]{theorem}
-\begin{align*}
-\va\mu^x_y = \nsum{n=0}{\infty} \P_x(X_n=y, \tau_x > n)
-\end{align*}
-If $\mathbf{I}, (\mathbf{R}), \mathbf{S}$ hold then 
-\begin{align*}
-\va\mu^x_y  = \frac{\va\pi_y}{\va\pi_x}
-\end{align*} 
+    Consider $\va\mu^x$ from this \hyperref[thm411]{theorem}
+    \begin{align*}
+        \va\mu^x_y = \nsum{n=0}{\infty} \P_x(X_n=y, \tau_x > n)
+    \end{align*}
+    If $\mathbf{I}, (\mathbf{R}), \mathbf{S}$ hold then 
+    \begin{align*}
+        \va\mu^x_y  = \frac{\va\pi_y}{\va\pi_x}
+    \end{align*} 
 \end{thm}
 \begin{proof}
-$\nsum{y\in \mathcal{X}}{}\va\mu_y^x = \nsum{n=0}{\infty}\P_x(\tau_x > n) = \E_x[\tau_x] = \frac{1}{\pi_y}$
+    $\nsum{y\in \mathcal{X}}{}\va\mu_y^x = \nsum{n=0}{\infty}\P_x(\tau_x > n) = \E_x[\tau_x] = \frac{1}{\pi_y}$
 \end{proof}
 \begin{thm}[Expected value of function]\label{expfun}
-If $\mathbf{I}, \mathbf{S}$ hold and $\sum_x |f(x)|\va\pi_x < \infty$ then 
-\begin{align*}
-\frac{1}{n}\nsum{k=0}{n-1}f(X_k) \asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]
-\end{align*}
+    If $\mathbf{I}, \mathbf{S}$ hold and $\sum_x |f(x)|\va\pi_x < \infty$ then 
+    \begin{align*}
+        \frac{1}{n}\nsum{k=0}{n-1}f(X_k) \asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]
+    \end{align*}
 \end{thm}
 \begin{thm}[Stationary measures uniqueness]
-If $\va\nu$ is a stationary measure then $\va\nu = \va\mu^x$ for some $x$. 
+    If $\va\nu$ is a stationary measure then $\va\nu = \va\mu^x$ for some $x$. 
 \end{thm}
 \newpage
 \section{Summary of Convergence Theorems}
 \begin{tabular}{|c|c|c|}
-\hline 
-Name & Result & Conditions \\
-\hline 
-\hyperref[thm411]{Existence of stationary measure $\va\mu^x$} & 
-$\va\mu^x_y = \nsum{n=0}{\infty}\P_x(X_n = y, \tau_x > n)$
- & $\mathbf{I}, \mathbf{R}$ \\ 
-\hline 
-\hyperref[convthm]{\textbf{Convergence Theorem}} & $[\vb P^n]_{xy} \to \va\pi_y$ as $n\to \infty$ & $\mathbf{I}, \mathbf{A}, \mathbf{S}$ \\
-\hline 
-\hyperref[asymfreq]{Asymptotic Frequency} & $\frac{N_n(y)}{n}\asto \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I, R}$ \\ 
-\hline 
-\hyperref[uniquedist]{Stationary Distribution Uniqueness} & $\va\pi = \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I,S}$ \\ 
-\hline 
-\hyperref[expfun]{Expected value of function} & 
-$\frac{1}{n}\nsum{n=0}{\infty}\asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]$
- & $\mathbf{I, S}$, $\nsum{x\in \mathcal{X}}{}|f(x)|\va\pi_x < \infty$\\ 
-\hline 
-\hyperref[thm611]{Expected number of visits before $x$} & $\va\mu^x_y = \frac{\va\pi_y}{\va\pi_x}$ & $\mathbf{I, S}$ \\ 
-\hline 
+    \hline 
+    Name & Result & Conditions \\
+    \hline 
+    \hyperref[thm411]{Existence of stationary measure $\va\mu^x$} & 
+    $\va\mu^x_y = \nsum{n=0}{\infty}\P_x(X_n = y, \tau_x > n)$
+    & $\mathbf{I}, \mathbf{R}$ \\ 
+    \hline 
+    \hyperref[convthm]{\textbf{Convergence Theorem}} & $[\vb P^n]_{xy} \to \va\pi_y$ as $n\to \infty$ & $\mathbf{I}, \mathbf{A}, \mathbf{S}$ \\
+    \hline 
+    \hyperref[asymfreq]{Asymptotic Frequency} & $\frac{N_n(y)}{n}\asto \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I, R}$ \\ 
+    \hline 
+    \hyperref[uniquedist]{Stationary Distribution Uniqueness} & $\va\pi = \frac{1}{\E_y[\tau_y]}$ & $\mathbf{I,S}$ \\ 
+    \hline 
+    \hyperref[expfun]{Expected value of function} & 
+    $\frac{1}{n}\nsum{n=0}{\infty}\asto \nsum{x\in \mathcal{X}}{}f(x)\va\pi_x = \E_{\va\pi}[f(X)]$
+    & $\mathbf{I, S}$, $\nsum{x\in \mathcal{X}}{}|f(x)|\va\pi_x < \infty$\\ 
+    \hline 
+    \hyperref[thm611]{Expected number of visits before $x$} & $\va\mu^x_y = \frac{\va\pi_y}{\va\pi_x}$ & $\mathbf{I, S}$ \\ 
+    \hline 
 \end{tabular} 
 \begin{note}
-\begin{align*}
-&\mathbf{I}: \text{Irreducible}\\
-&\mathbf{A}: \text{Aperiodic}\\
-&\mathbf{R}: \text{Recurrent}\\
-&\mathbf{S}: \text{Stationary distribution $\pi$ exists}
-\end{align*}
+    \begin{align*}
+        &\mathbf{I}: \text{Irreducible}\\
+        &\mathbf{A}: \text{Aperiodic}\\
+        &\mathbf{R}: \text{Recurrent}\\
+        &\mathbf{S}: \text{Stationary distribution $\pi$ exists}
+    \end{align*}
 \end{note}
 \begin{remark}
-$I, S \Rightarrow R$
+    $I, S \Rightarrow R$
 \end{remark}
 \newpage
 \section{Week 7}
 \subsection{Exit Distributions}
 \begin{defn}[Visiting Time for Set]
-\begin{align*}
-V_A = \min \{n\geq 1 : X_n \in A\}
-\end{align*}
+    \begin{align*}
+        V_A = \min \{n\geq 1 : X_n \in A\}
+    \end{align*}
 \end{defn}
 \begin{thm}[Exit Distribution]
-For a Markov chain on state space $\cal X$. Let $A, B \subseteq \cal X$ and let $C = {\cal X}\setminus (A\cup B)$ if we have 
-\begin{align*}
-&h(a) = 1 & a\in A\\
-&h(b) = 0 & b\in B\\
-&h(x) = \nsum{y\in {\cal X}}{}[\vb P]_{xy}h(y) & x\in C
-\end{align*}
-If $\P_x(V_A \wedge V_B < \infty) > 0$ for all $x\in C$ then $h(x) = P_x(V_A < V_B)$ (Chain visits $A$ before $B$). 
+    For a Markov chain on state space $\cal X$. Let $A, B \subseteq \cal X$ and let $C = {\cal X}\setminus (A\cup B)$ if we have 
+    \begin{align*}
+        &h(a) = 1 & a\in A\\
+        &h(b) = 0 & b\in B\\
+        &h(x) = \nsum{y\in {\cal X}}{}[\vb P]_{xy}h(y) & x\in C
+    \end{align*}
+    If $\P_x(V_A \wedge V_B < \infty) > 0$ for all $x\in C$ then $h(x) = P_x(V_A < V_B)$ (Chain visits $A$ before $B$). 
 \end{thm}
 
 \subsection{Exit Times}
 \begin{thm}[Exit Time]
-Let $T = \min\{n\geq 0 : X_n \in A\}$ be the time to exit. Suppose $C = {\cal X}\setminus A$ is finite and $\P_x(T < \infty)>0$ for all $x\in C$. Then we define 
-\begin{align*}
-&g(a) = 0 & a\in A\\
-&g(x) = 1 + \nsum{y\in {\cal X}}{}P_{xy}g(y)
-\end{align*}
-Then $g(x) = \E_x[T]$
+    Let $T = \min\{n\geq 0 : X_n \in A\}$ be the time to exit. Suppose $C = {\cal X}\setminus A$ is finite and $\P_x(T < \infty)>0$ for all $x\in C$. Then we define 
+    \begin{align*}
+        &g(a) = 0 & a\in A\\
+        &g(x) = 1 + \nsum{y\in {\cal X}}{}P_{xy}g(y)
+    \end{align*}
+    Then $g(x) = \E_x[T]$
 \end{thm}
 \newpage
 \section{Infinite State Spaces}
 \subsection{Laplace Matrix}
 \begin{defn}[Laplace Matrix]
-The matrix $L = P - I$ is called the the Laplace matrix
+    The matrix $L = P - I$ is called the the Laplace matrix
 \end{defn}
 For the exit distribution $h(x) = \P_x(V_A < V_B)$ it satisfies the Laplace equation: 
 \begin{align*}
-\begin{cases}
-Lh = 0 & \text{on $C = {\cal X}\setminus (A\cup B)$}\\
-h = 1 & \text{on $A$}\\
-h = 0 & \text{on $B$}
-\end{cases}
+    \begin{cases}
+        Lh = 0 & \text{on $C = {\cal X}\setminus (A\cup B)$}\\
+        h = 1 & \text{on $A$}\\
+        h = 0 & \text{on $B$}
+    \end{cases}
 \end{align*}
 For the exit time $g(x) = \E_x[T]$ it solves the \textit{Poisson equation}
 \begin{align*}
-\begin{cases}
-Lg = -1 & \text{on $C$}\\
-g = 0 & \text{on ${\cal X}\setminus C$}
-\end{cases}
+    \begin{cases}
+        Lg = -1 & \text{on $C$}\\
+        g = 0 & \text{on ${\cal X}\setminus C$}
+    \end{cases}
 \end{align*}
 
 \begin{defn}[Positive and Null Recurrent]
-$\;$\\
-A state is \textbf{positive recurrent} if $\E_x[\tau_x] < \infty$. A state $x$ is null recurrent if it is recurrent but not null recurrent. ($\P_x(\tau_x < \infty) = 1$ but $\E_x[\tau_x] = \infty$)
+    $\;$\\
+    A state is \textbf{positive recurrent} if $\E_x[\tau_x] < \infty$. A state $x$ is null recurrent if it is recurrent but not null recurrent. ($\P_x(\tau_x < \infty) = 1$ but $\E_x[\tau_x] = \infty$)
 \end{defn}
 \begin{example}
-Reflecting Random Walk. The probabilities are defined as 
-\begin{align*}
-&P_{i, i+1} = p\\
-&P_{i, i-1} = 1 - p & i \geq 1\\
-&P_{0,0} = 1-p
-\end{align*}
-Using the detail balance condition since the matrix is tridiagonal we can say that
-\begin{align*}
-&\pi_iP_{i, i+1} = \pi_{i+1}P_{i+1,i}\\
-&\pi_ip = \pi_{i+1}(1-p)\\
-&\pi_{i+1} = \frac{p}{1-p}\pi_i
-\end{align*}
-Let $\pi_0 = c$ then we have the solution $\pi_i =c\left( \frac{p}{1-p}\right)^i$. \\
-\textbf{Case I} $p < \frac{1}{2}$ then $\frac{p}{1-p} < 1$ then $\sum_i \pi_i < \infty$ then we can pick $c$ to make $\pi$ a stationary distribution.  This gives the solution $\pi_0 = \frac{1-2p}{1-p}$. Since $\E_0[\tau_0] = \frac{1}{\pi_0} < \infty$ \textbf{0 is positive recurrent}. \\
-\textbf{Case II} $p > \frac{1}{2}$ \textbf{all states are transient}\\
-\textbf{Case III} $p = \frac{1}{2}$ then \textbf{0 is null recurrent} 
+    Reflecting Random Walk. The probabilities are defined as 
+    \begin{align*}
+        &P_{i, i+1} = p\\
+        &P_{i, i-1} = 1 - p & i \geq 1\\
+        &P_{0,0} = 1-p
+    \end{align*}
+    Using the detail balance condition since the matrix is tridiagonal we can say that
+    \begin{align*}
+        &\pi_iP_{i, i+1} = \pi_{i+1}P_{i+1,i}\\
+        &\pi_ip = \pi_{i+1}(1-p)\\
+        &\pi_{i+1} = \frac{p}{1-p}\pi_i
+    \end{align*}
+    Let $\pi_0 = c$ then we have the solution $\pi_i =c\left( \frac{p}{1-p}\right)^i$. \\
+    \textbf{Case I} $p < \frac{1}{2}$ then $\frac{p}{1-p} < 1$ then $\sum_i \pi_i < \infty$ then we can pick $c$ to make $\pi$ a stationary distribution.  This gives the solution $\pi_0 = \frac{1-2p}{1-p}$. Since $\E_0[\tau_0] = \frac{1}{\pi_0} < \infty$ \textbf{0 is positive recurrent}. \\
+    \textbf{Case II} $p > \frac{1}{2}$ \textbf{all states are transient}\\
+    \textbf{Case III} $p = \frac{1}{2}$ then \textbf{0 is null recurrent} 
 \end{example}
 \begin{thm}[equivalent conditions]
-For an \textbf{I}rreducible chain the following are equivalent:
-\begin{enumerate}[(i)]
-\item  Some state is positive recurrent.
-\item  There is a stationary distribution $\pi$
-\item  All states are positive recurrent
-\end{enumerate}
+    For an \textbf{I}rreducible chain the following are equivalent:
+    \begin{enumerate}[(i)]
+        \item  Some state is positive recurrent.
+        \item  There is a stationary distribution $\pi$
+        \item  All states are positive recurrent
+    \end{enumerate}
 \end{thm}
 \newpage
 \subsection{Galton Watson Process }
 \begin{enumerate}[(1)]
-\item Start with a single individual in generation 0
-\item This individual gives birth to $X\in \mathbb{N}$ random number of children with $\P(X = 0) > 0$ and $\mu = \E[X] < \infty$. 
-\item The $r-$th individual in the $n-$th generation gives birth to $X_{r,n}$ which has the same distribution as $X$ and independent of all other random variables.   
+    \item Start with a single individual in generation 0
+    \item This individual gives birth to $X\in \mathbb{N}$ random number of children with $\P(X = 0) > 0$ and $\mu = \E[X] < \infty$. 
+    \item The $r-$th individual in the $n-$th generation gives birth to $X_{r,n}$ which has the same distribution as $X$ and independent of all other random variables.   
 \end{enumerate}
 Let $Z_n$ be the size of the $n$-th generation then 
 \begin{align*}
-\begin{cases}
-Z_{n+1} = X_{1,n} + X_{2,n} + \cdots + X_{Z_n, n}\\
-Z_{0} = 1
-\end{cases}
+    \begin{cases}
+        Z_{n+1} = X_{1,n} + X_{2,n} + \cdots + X_{Z_n, n}\\
+        Z_{0} = 1
+    \end{cases}
 \end{align*}
 $\{Z_n\}$ is a Markov chain. Using tower rule 
 \begin{align*}
-\E[Z_{n+1}] = \E[\E[Z_{n+1} | Z_{n}]] = \nsum{j=1}{\infty}\E[Z_{n+1} | Z_n = j]\P(Z_n = j) = \mu E[Z_{n}]
+    \E[Z_{n+1}] = \E[\E[Z_{n+1} | Z_{n}]] = \nsum{j=1}{\infty}\E[Z_{n+1} | Z_n = j]\P(Z_n = j) = \mu E[Z_{n}]
 \end{align*} 
 By induction we have $\E[Z_n] = \mu^n \E[Z_0]$ \\
 \textbf{Survival} and \textbf{Extinction}
 \begin{align*}
-&\{\text{Survival}\} = \bigcap \{Z_n \neq  0\}, & \{\text{Extinction}\} = \bigcup \{Z_n = 0\}\\ 
-&\P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0)
+    &\{\text{Survival}\} = \bigcap \{Z_n \neq  0\}, & \{\text{Extinction}\} = \bigcup \{Z_n = 0\}\\ 
+    &\P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0)
 \end{align*}
 \begin{example}
-Let $f_n = \E[\theta^{Z_n}]$ where $Z_n$ is the size of the generation from Galton Watson Process. Then $f_1 = \E[\theta^{Z_1}] = \E[\theta^{X}]$ then we also have 
-\begin{align*}
-f_{n+1}(\theta) = f_n(f_1(\theta)) = \underbrace{f_1\circ f_1 \circ f_1 \cdots \circ f_1(\theta)}_{\text{$n-$times}} = f_1(f_n(\theta))
-\end{align*}
-Assuming $\nlim{n}{\infty}f_n(0)$ exists we have $s = \nlim{n}{\infty}f_{n+1}(0) = f_1(\nlim{n}{\infty}f_n(0)) = f_1(s)$. So $s$ is a \textbf{fixed-point} of $f_1$. Since $f_n(0) = \P(Z_n = 0)$ so 
-\begin{align*}
-\P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0) = s
-\end{align*}
-Meaning $\P(\text{Extinction})$ is a fixed point of $f_1$. 
+    Let $f_n = \E[\theta^{Z_n}]$ where $Z_n$ is the size of the generation from Galton Watson Process. Then $f_1 = \E[\theta^{Z_1}] = \E[\theta^{X}]$ then we also have 
+    \begin{align*}
+        f_{n+1}(\theta) = f_n(f_1(\theta)) = \underbrace{f_1\circ f_1 \circ f_1 \cdots \circ f_1(\theta)}_{\text{$n-$times}} = f_1(f_n(\theta))
+    \end{align*}
+    Assuming $\nlim{n}{\infty}f_n(0)$ exists we have $s = \nlim{n}{\infty}f_{n+1}(0) = f_1(\nlim{n}{\infty}f_n(0)) = f_1(s)$. So $s$ is a \textbf{fixed-point} of $f_1$. Since $f_n(0) = \P(Z_n = 0)$ so 
+    \begin{align*}
+        \P(\text{Extinction}) = \nlim{n}{\infty}\P(Z_n = 0) = s
+    \end{align*}
+    Meaning $\P(\text{Extinction})$ is a fixed point of $f_1$. 
 \end{example}
 \begin{thm}[Fixed points and $\P(\text{Extinction})$]
-If $\E[X] > 1$ then the extinction probability is the unique root of the equation $p = f_1(p)$ such that $p\in (0,1)$. If $\E[X] \leq 1$ then $\P(\text{Extinction}) = 1$. 
+    If $\E[X] > 1$ then the extinction probability is the unique root of the equation $p = f_1(p)$ such that $p\in (0,1)$. If $\E[X] \leq 1$ then $\P(\text{Extinction}) = 1$. 
 \end{thm}
 \newpage
 \section{Generating Functions}
 \begin{defn}[Probability generating function (pgf)]
-The \textbf{pgf} of a non-negative integer valued  random variable $X$,$G_X: [0,1] \to [0,1]$ is defined as:
-\begin{align*}
-G_X(\theta) = \E[\theta^X] &= \nsum{k=0}{\infty}\theta^k \P(X = k)\\
-&= \P(X = 0) + \theta \P(X = 1) + \theta^2\P(X = 2) + \cdots + \theta^k\P(X = k) + \cdots
-\end{align*} 
+    The \textbf{pgf} of a non-negative integer valued  random variable $X$,$G_X: [0,1] \to [0,1]$ is defined as:
+    \begin{align*}
+        G_X(\theta) = \E[\theta^X] &= \nsum{k=0}{\infty}\theta^k \P(X = k)\\
+        &= \P(X = 0) + \theta \P(X = 1) + \theta^2\P(X = 2) + \cdots + \theta^k\P(X = k) + \cdots
+    \end{align*} 
 \end{defn}
 \begin{defn}[Moment generating function (mgf)]
-The moment generating function $M_X$ for a non-negative integer valued  random variable $X$ is the function $M_X: (-r, r) \to \mathbb{R}$ is defined as:
-\begin{align*}
-M_X(t) = \E[e^{tX}] &= \nsum{k=0}{\infty}e^{tk}\P(X = k)\\
-&= 1 + t\E[X] + \frac{t^2}{2!}\E[X^2] + \frac{t^3}{3!}\E[X^3] + \cdots + \frac{t^k}{k!}\E[X^k]
-\end{align*}
-and $r>0$ such that the value exists on $(-r,r)$.
+    The moment generating function $M_X$ for a non-negative integer valued  random variable $X$ is the function $M_X: (-r, r) \to \mathbb{R}$ is defined as:
+    \begin{align*}
+        M_X(t) = \E[e^{tX}] &= \nsum{k=0}{\infty}e^{tk}\P(X = k)\\
+        &= 1 + t\E[X] + \frac{t^2}{2!}\E[X^2] + \frac{t^3}{3!}\E[X^3] + \cdots + \frac{t^k}{k!}\E[X^k]
+    \end{align*}
+    and $r>0$ such that the value exists on $(-r,r)$.
 \end{defn}
 
 \begin{thm}[Properties of generating functions]
-\begin{align*}
-&G_X(0) = \P(X = 0)\\
-&\P(X = n) = \frac{1}{n!}\left.\dv[n]{G_X}{\theta}\right\vert_0\\
-&G'_X(\theta) = \E[X\theta^{X-1}] & G'_X(1) = \E[X]\\
-&\left.\dv[n]{M_X}{t}\right\vert_0 = \E[X^n]
-\end{align*}
+    \begin{align*}
+        &G_X(0) = \P(X = 0)\\
+        &\P(X = n) = \frac{1}{n!}\left.\dv[n]{G_X}{\theta}\right\vert_0\\
+        &G'_X(\theta) = \E[X\theta^{X-1}] & G'_X(1) = \E[X]\\
+        &\left.\dv[n]{M_X}{t}\right\vert_0 = \E[X^n]
+    \end{align*}
 \end{thm}
 
 \begin{lemma}[Generating functions are unique]
-If 2 random variables have the same moment generating functions they have the same distribution. 
+    If 2 random variables have the same moment generating functions they have the same distribution. 
 \end{lemma}
 
 \newpage
 \section{Exponential Distribution}
 \begin{defn}[Exponential cdf]
-If $T \sim EXP(\lambda)$ then 
-\begin{align*}
-\P(T\leq t) = 1-e^{-\lambda t}
-\end{align*}
-Moreover 
-\begin{align*}
-&\E[T] = \frac{1}{\lambda}\\
-&\E[T^2] = \frac{2}{\lambda^2}\\
-&\Var[T] = \E[T^2] - (\E[T])^2 = \frac{1}{\lambda^2}
-\end{align*}
+    If $T \sim EXP(\lambda)$ then 
+    \begin{align*}
+        \P(T\leq t) = 1-e^{-\lambda t}
+    \end{align*}
+    Moreover 
+    \begin{align*}
+        &\E[T] = \frac{1}{\lambda}\\
+        &\E[T^2] = \frac{2}{\lambda^2}\\
+        &\Var[T] = \E[T^2] - (\E[T])^2 = \frac{1}{\lambda^2}
+    \end{align*}
 \end{defn}
 
 \begin{thm}[Memoryless property]
-Let $T\sim \EXP(\lambda)$ then $\forall t,s\leq 0$
-\begin{align*}
-\P(T > t+s | T > t) = \P(T > s)
-\end{align*}
+    Let $T\sim \EXP(\lambda)$ then $\forall t,s\leq 0$
+    \begin{align*}
+        \P(T > t+s | T > t) = \P(T > s)
+    \end{align*}
 \end{thm}
 \begin{thm}[Exponential Races]
-Let $V = \min\{T_1, \ldots, T_n\}$ such that $T_i = \EXP(\lambda_i)$ independently and let $I$ be the index of the minimum $T_i$ then 
-\begin{align*}
-&V = \EXP\left(\sum \lambda_i\right)\\
-&\P(I = i) = \frac{\lambda_i}{\nsum{k=1}n \lambda_k}
-\end{align*}
-and $V,I$ are independent. 
+    Let $V = \min\{T_1, \ldots, T_n\}$ such that $T_i = \EXP(\lambda_i)$ independently and let $I$ be the index of the minimum $T_i$ then 
+    \begin{align*}
+        &V = \EXP\left(\sum \lambda_i\right)\\
+        &\P(I = i) = \frac{\lambda_i}{\nsum{k=1}n \lambda_k}
+    \end{align*}
+    and $V,I$ are independent. 
 \end{thm}
 \begin{proof}
-Sketch. $\P(\min\{T,S\} > t) = \P(T>t)\P(S>t)$ and induction.
+    Sketch. $\P(\min\{T,S\} > t) = \P(T>t)\P(S>t)$ and induction.
 \end{proof}
 
 \begin{thm}[Sum of exponential variables]
-Let $\tau_1, \ldots, \tau_n$ be $\EXP(\lambda)$ then the sum $T_n = \tau_1 + \tau_2 + \cdots + \tau_n$ has a gamma($n, \lambda$) distribution. 
-\begin{align*}
-&f_{T_n}(t) = \lambda e^{-\lambda t} \frac{(\lambda t)^{n-1}}{(n-1)!} & t \geq 0
-\end{align*}
+    Let $\tau_1, \ldots, \tau_n$ be $\EXP(\lambda)$ then the sum $T_n = \tau_1 + \tau_2 + \cdots + \tau_n$ has a gamma($n, \lambda$) distribution. 
+    \begin{align*}
+        &f_{T_n}(t) = \lambda e^{-\lambda t} \frac{(\lambda t)^{n-1}}{(n-1)!} & t \geq 0
+    \end{align*}
 \end{thm}
 \newpage
 \section{Poisson Process}
 \begin{defn}[Poisson Distribution]
-$X$ has a Poisson distribution with mean $\lambda$ if 
-\begin{align*}
-&P(X = n) = \frac{\lambda^n e^{-\lambda}}{n!} & \text{for $n = 0,1,2\ldots$}
-\end{align*} 
-\begin{enumerate}[(1)]
-\item $\E[X] = \lambda$
-\item $\Var[X] = \lambda$
-\item \textbf{m.g.f} is $M_X(t) = e^{\lambda(e^t - 1)}$
-\end{enumerate}
+    $X$ has a Poisson distribution with mean $\lambda$ if 
+    \begin{align*}
+        &P(X = n) = \frac{\lambda^n e^{-\lambda}}{n!} & \text{for $n = 0,1,2\ldots$}
+    \end{align*} 
+    \begin{enumerate}[(1)]
+        \item $\E[X] = \lambda$
+        \item $\Var[X] = \lambda$
+        \item \textbf{m.g.f} is $M_X(t) = e^{\lambda(e^t - 1)}$
+    \end{enumerate}
 \end{defn}
 
 \begin{thm}[Limit of binomial is Poisson]
-Let $Y_n$ be binomial$(n, \frac{\lambda}{n})$ and $X = $ poisson($\lambda$) then 
-\begin{align*}
-\nlim{n}{\infty}\P(Y_n = k) = \P(X = k)
-\end{align*}
+    Let $Y_n$ be binomial$(n, \frac{\lambda}{n})$ and $X = $ poisson($\lambda$) then 
+    \begin{align*}
+        \nlim{n}{\infty}\P(Y_n = k) = \P(X = k)
+    \end{align*}
 \end{thm}
 \begin{thm}[Sum of poisson is poisson]
-If $X_i \sim \poisson(\lambda_i)$ for $1\leq i \leq n$ independently then 
-\begin{align*}
-S = \nsum{i=1}{n}X_i \sim \poisson(\lambda_1 + \lambda_2 + \cdots + \lambda_n)
-\end{align*}
+    If $X_i \sim \poisson(\lambda_i)$ for $1\leq i \leq n$ independently then 
+    \begin{align*}
+        S = \nsum{i=1}{n}X_i \sim \poisson(\lambda_1 + \lambda_2 + \cdots + \lambda_n)
+    \end{align*}
 \end{thm}
 
 \begin{defn}[Poisson Process]
-Let $N(t)$ be the number of occurrences/arrivals in $[0,t]$. Then $\{N(t) : t\geq 0\}$ is a (homogeneous) poisson process if:
-\begin{enumerate}[(1)]
-\item $N(0) = 0$
-\item $N(t+s) - N(s) = \poisson(t\lambda)$
-\item $N(t)$ has \textbf{independent increments}
-\end{enumerate}
+    Let $N(t)$ be the number of occurrences/arrivals in $[0,t]$. Then $\{N(t) : t\geq 0\}$ is a (homogeneous) poisson process if:
+    \begin{enumerate}[(1)]
+        \item $N(0) = 0$
+        \item $N(t+s) - N(s) = \poisson(t\lambda)$
+        \item $N(t)$ has \textbf{independent increments}
+    \end{enumerate}
 \end{defn}
 \newpage
 \subsection{Constructing the Poisson Process}
 \begin{defn}[]
-Let $\tau_1, \tau_2, \ldots, \tau_n$ be independent $\EXP(\lambda)$ variables and let 
-$T = \tau_1 + \tau_2 + \cdots + \tau_n$ and define $N(s) = \max\{n : T_n \leq s\}$
+    Let $\tau_1, \tau_2, \ldots, \tau_n$ be independent $\EXP(\lambda)$ variables and let 
+    $T = \tau_1 + \tau_2 + \cdots + \tau_n$ and define $N(s) = \max\{n : T_n \leq s\}$
 \end{defn}
 $\tau_i$ is the interval between arrivals implying $T_n$ is the time for the $n$-th arrival and $N(s)$ is the number of arrivals by time $s$. 
 
 \fig{fig4}{0.4}
 \begin{enumerate}[(i)]
-\item $N(s)$ has a Poisson distribution with mean $\lambda s$
-\item $N(t+s) - N(s) = \poisson(\lambda t)$ and is independent of $N(r), 0 \leq r\leq s$. 
-\item $N(t)$ has independent increments.  
+    \item $N(s)$ has a Poisson distribution with mean $\lambda s$
+    \item $N(t+s) - N(s) = \poisson(\lambda t)$ and is independent of $N(r), 0 \leq r\leq s$. 
+    \item $N(t)$ has independent increments.  
 \end{enumerate}
 \newpage
 \section{More complex models}
 \begin{defn}[Measure]
-A \textbf{signed} measure $\mu : \Sigma \to \mathbb{R}$ on $(\Omega, \Sigma)$ such that
-$\Sigma \subseteq \mathrm{Pow}(\Omega)$ such that 
-\begin{enumerate}[(1)]
-\item $\mu(\varnothing) = 0$
-\item $\mu$ has countable additivity. If $\{E_i\}_{i=1}^\infty$ are mutually disjoint then $\mu(\cup E_i) = \sum_i \mu(E_i)$
-\item $\mu(\Omega) = 1$ (For distributions)
-\end{enumerate}
+    A \textbf{signed} measure $\mu : \Sigma \to \mathbb{R}$ on $(\Omega, \Sigma)$ such that
+    $\Sigma \subseteq \mathrm{Pow}(\Omega)$ such that 
+    \begin{enumerate}[(1)]
+        \item $\mu(\varnothing) = 0$
+        \item $\mu$ has countable additivity. If $\{E_i\}_{i=1}^\infty$ are mutually disjoint then $\mu(\cup E_i) = \sum_i \mu(E_i)$
+        \item $\mu(\Omega) = 1$ (For distributions)
+    \end{enumerate}
 \end{defn}
 \begin{defn}[Metric]
-A \textbf{distance} function is a metric if
-\begin{enumerate}[(i)]
-\item $d(x,y) \geq 0$ and $d(x,y) = 0 \iff x = y$ (Positive)
-\item $d(x,y) = d(y,x)$ (Symmetry)
-\item $d(x,y) \leq d(x,z) + d(z,y)$ (Triangle inequality)
-\end{enumerate}
+    A \textbf{distance} function is a metric if
+    \begin{enumerate}[(i)]
+        \item $d(x,y) \geq 0$ and $d(x,y) = 0 \iff x = y$ (Positive)
+        \item $d(x,y) = d(y,x)$ (Symmetry)
+        \item $d(x,y) \leq d(x,z) + d(z,y)$ (Triangle inequality)
+    \end{enumerate}
 
 \end{defn}
 \begin{defn}[Total variation Distance/Measure]
-Suppose $\mu$ is a signed measure on $(\Sigma, \Omega)$ then 
-\begin{align*}
-\norm{\mu}_{TV} = \sup\{\mu(A) | A\in \Sigma\} - \inf\{\mu(A) | A\in \Sigma\}
-\end{align*}
-If $X,Y$ are \textbf{integer valued} random variables then
-\begin{align*}
-d_{TV}(X,Y) = \max_{A\subseteq \mathbb{Z}}|\P(X\in A) - \P(Y\in A)|
-\end{align*}
-$d_{TV}$ is a \textbf{metric}.
+    Suppose $\mu$ is a signed measure on $(\Sigma, \Omega)$ then 
+    \begin{align*}
+        \norm{\mu}_{TV} = \sup\{\mu(A) | A\in \Sigma\} - \inf\{\mu(A) | A\in \Sigma\}
+    \end{align*}
+    If $X,Y$ are \textbf{integer valued} random variables then
+    \begin{align*}
+        d_{TV}(X,Y) = \max_{A\subseteq \mathbb{Z}}|\P(X\in A) - \P(Y\in A)|
+    \end{align*}
+    $d_{TV}$ is a \textbf{metric}.
 \end{defn}
 \begin{remark}
-$d_{TV}(X,Y) = \norm{X-Y}_{TV} = \frac{1}{2}\nsum{k}{} |\P(X=k) - \P(Y=k)|$
+    $d_{TV}(X,Y) = \norm{X-Y}_{TV} = \frac{1}{2}\nsum{k}{} |\P(X=k) - \P(Y=k)|$
 \end{remark}
 \begin{defn}[Convergence in $TV$ norm]
-$X_n \to X$ in $TV$ if 
-\begin{align*}
-\nlim{n}{\infty} \norm{X_n - X}_{TV} = 0
-\end{align*}
+    $X_n \to X$ in $TV$ if 
+    \begin{align*}
+        \nlim{n}{\infty} \norm{X_n - X}_{TV} = 0
+    \end{align*}
 \end{defn}
 
 \newpage
 
 \begin{thm}[]
-Suppose $X_{n,m}\sim $Bernoulli($p_{n,m}$) are independent and let 
-$S_n = \nsum{m=1}{n}X_{n,m}$ and $\lambda_n = \E[S_n] = \nsum{m=1}{n}p_{n,m}$ and $Y_n = \poisson(\lambda_n)$ then
-\begin{align*}
-\norm{S_n - Y_n}_{TV} \leq \nsum{m=1}{n}p^2_{n,m}
-\end{align*}
-If moreover, $\sup_{m}p_{n,m} \rightarrow 0$ and $\lambda_n\to \lambda$ as $n\to \infty$ and $Y = \poisson(\lambda)$ then 
-\begin{align*}
-\nlim{n}{\infty}\norm{S_n - Y}_{TV} = 0
-\end{align*}
-That is $S_n \to Y$ in $TV$-norm.
+    Suppose $X_{n,m}\sim $Bernoulli($p_{n,m}$) are independent and let 
+    $S_n = \nsum{m=1}{n}X_{n,m}$ and $\lambda_n = \E[S_n] = \nsum{m=1}{n}p_{n,m}$ and $Y_n = \poisson(\lambda_n)$ then
+    \begin{align*}
+        \norm{S_n - Y_n}_{TV} \leq \nsum{m=1}{n}p^2_{n,m}
+    \end{align*}
+    If moreover, $\sup_{m}p_{n,m} \rightarrow 0$ and $\lambda_n\to \lambda$ as $n\to \infty$ and $Y = \poisson(\lambda)$ then 
+    \begin{align*}
+        \nlim{n}{\infty}\norm{S_n - Y}_{TV} = 0
+    \end{align*}
+    That is $S_n \to Y$ in $TV$-norm.
 \end{thm}
 
 \begin{example}
-Let $\lambda: [0,1] \to \mathbb{R}_{+}$ be continuous and let $p_{n,m} = \frac{1}{n}\lambda(\frac{m}{n})$ then 
-\begin{align*}
-0\leq \nlim{n}{\infty}p_{n,m} \leq \nlim{n}{\infty}\frac{\max(\lambda(t) : t\in [0,1])}{n} = 0
-\end{align*}
-and $\lambda_n = \nsum{m=1}{n}\frac{1}{n}\lambda(\frac{m}{n})$, This is a Riemann sum and $\nlim{n}{\infty}\lambda_n = \int_0^1 \lambda(t)\dd{t}$ by \textbf{Theorem 13.6} we have 
-\begin{align*}
-S_n \to \poisson\left(\int_0^1\lambda(t)\dd{t}\right)
-\end{align*}
+    Let $\lambda: [0,1] \to \mathbb{R}_{+}$ be continuous and let $p_{n,m} = \frac{1}{n}\lambda(\frac{m}{n})$ then 
+    \begin{align*}
+        0\leq \nlim{n}{\infty}p_{n,m} \leq \nlim{n}{\infty}\frac{\max(\lambda(t) : t\in [0,1])}{n} = 0
+    \end{align*}
+    and $\lambda_n = \nsum{m=1}{n}\frac{1}{n}\lambda(\frac{m}{n})$, This is a Riemann sum and $\nlim{n}{\infty}\lambda_n = \int_0^1 \lambda(t)\dd{t}$ by \textbf{Theorem 13.6} we have 
+    \begin{align*}
+        S_n \to \poisson\left(\int_0^1\lambda(t)\dd{t}\right)
+    \end{align*}
 \end{example}
 \begin{defn}[Non-homogeneous poisson process]
-Let $N(t)$ be the total number of occurrences in $[0,t]$.
-$\{N(s) : s\geq 0\}$ is a Non-homogeneous poisson process if
-\begin{itemize}[(i)]
-\item $N(0) = 0$
-\item $N(t+s) - N(s) = \poisson\left(\int_{s}^{t+s}\lambda(t)\dd{r} \right)$
-\item $N(t)$ has independent increments. 
-\end{itemize}
+    Let $N(t)$ be the total number of occurrences in $[0,t]$.
+    $\{N(s) : s\geq 0\}$ is a Non-homogeneous poisson process if
+    \begin{itemize}[(i)]
+        \item $N(0) = 0$
+        \item $N(t+s) - N(s) = \poisson\left(\int_{s}^{t+s}\lambda(t)\dd{r} \right)$
+        \item $N(t)$ has independent increments. 
+    \end{itemize}
 \end{defn}
 \newpage
 \section{Compound Poisson Process}
 \begin{thm}[Compound Expectation]
-Let $Y_1, Y_2, \ldots$ be \textbf{i.i.d} and let $N$ be an integer valued non-negative random variable. Such that $\E|Y_i|, \E[N] < \infty$ and we define $S = \nsum{i=1}{N}Y_i$ then using 
-\begin{enumerate}[(i)]
-\item $\E[S] = \E[N]\E[Y_i]$
-\item If $\E[Y^2], \E[N^2] < \infty$ then 
-\begin{align*}
-\Var[S] = \E[N]\Var[Y_i] + \Var[N]\left(\E[Y_i]\right)^2 \tag{ii}
-\end{align*}
-\item If $N = poisson(\lambda)$ and $\E[Y^2]<\infty$ then 
-\begin{align*}
-\Var[S] = \lambda\E[Y_i^2] \tag{iii}
-\end{align*}
-\end{enumerate} 
+    Let $Y_1, Y_2, \ldots$ be \textbf{i.i.d} and let $N$ be an integer valued non-negative random variable. Such that $\E|Y_i|, \E[N] < \infty$ and we define $S = \nsum{i=1}{N}Y_i$ then using 
+    \begin{enumerate}[(i)]
+        \item $\E[S] = \E[N]\E[Y_i]$
+        \item If $\E[Y^2], \E[N^2] < \infty$ then 
+            \begin{align*}
+                \Var[S] = \E[N]\Var[Y_i] + \Var[N]\left(\E[Y_i]\right)^2 \tag{ii}
+            \end{align*}
+        \item If $N = poisson(\lambda)$ and $\E[Y^2]<\infty$ then 
+            \begin{align*}
+                \Var[S] = \lambda\E[Y_i^2] \tag{iii}
+            \end{align*}
+    \end{enumerate} 
 \end{thm}
 \subsection{Thinning}
 \begin{thm}[Thinning]
-Let $\{N(t) : t\geq 0\}$ be a poisson process with rate $\lambda(r)$ for each arrival $i$, $Y_i$ is \textbf{i.i.d} $Y_i \sim Y$. Then let 
-\begin{align*}
-N_j(t) = \#\{i \leq N(t) : Y_i = j\}
-\end{align*}
-Then $N_j(t)$ are \textbf{independent} rate $\lambda(r) \P(Y = j)$ poisson processes. 
+    Let $\{N(t) : t\geq 0\}$ be a poisson process with rate $\lambda(r)$ for each arrival $i$, $Y_i$ is \textbf{i.i.d} $Y_i \sim Y$. Then let 
+    \begin{align*}
+        N_j(t) = \#\{i \leq N(t) : Y_i = j\}
+    \end{align*}
+    Then $N_j(t)$ are \textbf{independent} rate $\lambda(r) \P(Y = j)$ poisson processes. 
 \end{thm}
 \fig{fig5}{1.3}
 \newpage
 \subsection{M/G/$\infty$ Queue}
 \begin{thm}[M/G/$\infty$]
-Suppose the number of arrivals follow a poisson process with rate $\lambda$, duration of each arrival is \textbf{i.i.d} $X$ with c.d.f $G$ and $\E[X] = \mu$. Then the arrivals still in progress at time $t$ is 
-\begin{align*}
-\poisson\left(\lambda \int_0^t[1-G(r)]\dd{r}\right)
-\end{align*}
+    Suppose the number of arrivals follow a poisson process with rate $\lambda$, duration of each arrival is \textbf{i.i.d} $X$ with c.d.f $G$ and $\E[X] = \mu$. Then the arrivals still in progress at time $t$ is 
+    \begin{align*}
+        \poisson\left(\lambda \int_0^t[1-G(r)]\dd{r}\right)
+    \end{align*}
 \end{thm}
 \begin{cor}[$\infty$]
-The number of arrivals in progress at $t=\infty$ is $\poisson\left(\mu\lambda\right)$ 
+    The number of arrivals in progress at $t=\infty$ is $\poisson\left(\mu\lambda\right)$ 
 \end{cor}
 \subsection{Superposition}
 \begin{thm}[•]
-Suppose $\{N_1(t)\},\{N_2(t)\}, \cdots, \{N_k(t)\}$ are independent poisson processes then $\{N(t) = N_1(t) + N_2(t) + \cdots + N_k(t) : t\geq 0\}$ is a poisson process with rate $\lambda_1 + \lambda_2 + \cdots + \lambda_k$ 
+    Suppose $\{N_1(t)\},\{N_2(t)\}, \cdots, \{N_k(t)\}$ are independent poisson processes then $\{N(t) = N_1(t) + N_2(t) + \cdots + N_k(t) : t\geq 0\}$ is a poisson process with rate $\lambda_1 + \lambda_2 + \cdots + \lambda_k$ 
 \end{thm}
 \fig{fig6}{1}
 \newpage
@@ -1012,14 +1012,14 @@ Suppose $\{N_1(t)\},\{N_2(t)\}, \cdots, \{N_k(t)\}$ are independent poisson proc
 Let $T_1, T_2, \ldots, T_n$ be the arrival time of a poisson process with rate $\lambda$ and let $U_1, U_2, \ldots, U_n$ be uniformly distributed on $[0,t]$ and let $V_1 < V_2 < \cdots < V_n$ be the $U_i$ in sorted order. 
 
 \begin{thm}[Poisson Conditioning]
-If we condition on $N(t) = n$ then the vector $(T_1, \ldots, T_n)$ has the same distribution as $(V_1, V_2, \ldots, V_n)$ and the set $\{T_1, T_2, \ldots, T_n\}$ has the same distribution as $\{U_1, U_2, \ldots, U_n\}$
+    If we condition on $N(t) = n$ then the vector $(T_1, \ldots, T_n)$ has the same distribution as $(V_1, V_2, \ldots, V_n)$ and the set $\{T_1, T_2, \ldots, T_n\}$ has the same distribution as $\{U_1, U_2, \ldots, U_n\}$
 \end{thm}
 \begin{thm}[Conditioning Binomial Distribution]
-If $0\leq r < t$ and $0\leq m \leq n$ then 
-\begin{align*}
-\P(N(r) = m | N(t) = n) = {n\choose m}\left(\frac{r}{t}\right)^m\left(\right)^{n-m}
-\end{align*}
-The distribution of $N(r)$ given $\{N(t) = n\}$ is  binomial$(n, \frac{r}{t})$ and does not depend on $\lambda$. 
+    If $0\leq r < t$ and $0\leq m \leq n$ then 
+    \begin{align*}
+        \P(N(r) = m | N(t) = n) = {n\choose m}\left(\frac{r}{t}\right)^m\left(\right)^{n-m}
+    \end{align*}
+    The distribution of $N(r)$ given $\{N(t) = n\}$ is  binomial$(n, \frac{r}{t})$ and does not depend on $\lambda$. 
 \end{thm}
 \fig{fig7}{0.5}
 
