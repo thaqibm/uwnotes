@@ -1,0 +1,415 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% writeLaTeX Example: A quick guide to LaTeX
+%
+% Source: Dave Richeson (divisbyzero.com), Dickinson College
+% 
+% A one-size-fits-all LaTeX cheat sheet. Kept to two pages, so it 
+% can be printed (double-sided) on one piece of paper
+% 
+% Feel free to distribute this example, but please keep the referral
+% to divisbyzero.com
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letter, fleqn]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+
+\usepackage {template}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{Griffith QM Time Dependent Perturbation Theory CheatSheet}
+\setlength{\mathindent}{0pt}
+
+\renewcommand{\v}{\Vec}
+\newcommand{\vt}[1]{\Vec{#1}^{T}}
+\newcommand{\vcm}{\vb{\Sigma}}
+\newcommand{\MVN}{\operatorname{MVN}}
+
+\begin{document}
+
+\raggedright
+\footnotesize
+
+\begin{center}
+     \Large{\textbf{STAT 331}} \\
+\end{center}
+\begin{multicols}{3}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+% BEG
+\subsection{Simple Linear Regression}
+\begin{align*}
+    &\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} \;\; , \;\; \hat{\beta_0} = \bar{y} - \hat{\beta}_1\bar{x}\;\;,\;\; \mathrm{MSS} = \hat{\beta}_1^2S_{xx}\\
+    &\hat{\sigma}^2 = s^2 = \frac{1}{n - p - 1}\nsum{i=1}{n}r_i^2\\
+    &\Var(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}} \; ,\; \se(y_p - \hat{y_p}) = \sqrt{\hat{\sigma}^2\left[
+    1 + \frac{1}{n} + \frac{(x_p - \bar{x})^2}{S_{xx}}
+    \right]}
+\end{align*}
+\subsection{Random Vectors}
+\begin{align*}
+    &\Vec{Y} = \left(Y_1, Y_2, \ldots, Y_n\right)^T\\
+    &\E(\v{Y}) = \left(\E(Y_1), \E(Y_2), \ldots, \E(Y_n)\right)^T\\
+    &\Var{\v{Y}} = \E[(\v{Y} - \E(\v{Y})) (\v{Y} - \E(\v{Y}))^T] = \vb{\Sigma}\\
+    \\
+    &\vb{\Sigma} = \smqty[
+    \Var(Y_1) & \Cov(Y_1, Y_2) & \cdots & \Cov(Y_1, Y_n)\\
+    \Cov(Y_2, Y_1) & \Var(Y_2) & \cdots & \Cov(Y_2, Y_n)\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \cdots & \cdots & \cdots & \Var(Y_n)
+    ]
+\end{align*}
+
+\textbf{Properties of $\vcm$}
+\begin{enumerate}[(1)]
+    \item $\vcm$ is \textbf{Symmetric}. $\vcm = \vcm^T$
+    \item $\vcm$ is \textbf{positive semi-definite} ($\vec{a}^t\vcm\v{a} \geq 0 \;\; \forall \v{a}\in \R^n$)
+    \item If $Y_1, \ldots, Y_n$ are independent then $\Cov(Y_i, Y_j) = 0 \forall i\neq j$. $\vcm$ is a diagonal matrix.
+\end{enumerate}
+\textbf{Basic Properties of Random Vectors}\\
+Let $A$ be a $n\times n$ matrix of constants and $\v{b}$ be a $n\times 1$ vector of constants.
+\begin{enumerate}[(1)]
+    \item $\E({b}^T\v{Y}) = {b}^T\E(\v{Y})$
+    \item $\Var(b^T \v{Y}) = b^T\Var(\v{Y})b$
+    \item $\E[A\v{Y} + b] = A\E[Y] + b$
+    \item $\Var(A\v{Y} + b) = A\Var(\v{Y})A^T$
+\end{enumerate}
+
+
+\subsection{Multivariate Normal Distribution}
+$\v{Y}\sim MVN$ has the p.d.f
+\begin{align*}
+    &f(\v{y}) = (2\pi)^{\frac{-n}{2}}\abs{\vcm}^{\frac{-1}{2}}\exp(
+    \frac{-1}{2}(\v{y}-\v{\mu})^T \vcm^{-1}(\v{y}-\v{\mu}))\\
+    &\E[\v{Y}] = \v{\mu}\\
+    &\Var(\v{Y}) = \vcm
+\end{align*}
+Properties of $\MVN$
+\begin{enumerate}[(1)]
+    \item $A\v{Y} + b \sim \MVN(A\v{\mu} + b, A\vcm A^T)$, $b^T\v{Y} \sim N(b^T\v{\mu}, b^T\vcm b)$
+    \item $Y_i \sim N(\mu_i, \sigma_i^2)\;,\; \sigma_i^2 = \vcm_{ii}$ 
+    \item If $\v{Y}\sim \MVN$ then $\vcm$ is a diagonal matrix $\iff$ $Y_1, \ldots, Y_n$ are independent.
+    \item $\v{V} = A\v{Y}, \v{W} = B\v{Y}$. $V, W$ are independent $\iff A\vcm B^T = 0$ 
+\end{enumerate}
+\subsection{Vector-Matrix Differentiation}
+\begin{align*}
+    &\pdv{\v{x}}(a^T\v{x}) = a = \pdv{\v x}(\v{x}^Ta)\\
+    &\pdv{\v{x}}(\v{x}^TA\v{x}) = 2A\v{x}
+\end{align*}
+
+\subsection{Multiple Linear Regression Models}
+\begin{align*}
+    &Y_i = \beta_0 + \nsum{j=1}{p}\beta_jx_{ij} + R_i \;\;,\;\; R_i \sim N(0, \sigma^2)\\
+    &\mu_i = \beta_0 + \beta_1x_{i1} + \cdots \beta_px_{ip} = \mqty(1 & x_{i1} & \cdots & x_{ip})^T\v{\beta}\\
+    &\vb{Y} = \smqty(\beta_0 + \beta_1x_{11} + \cdots \beta_px_{1p}\\
+    \beta_0 + \beta_1x_{21} + \cdots \beta_px_{2p}\\
+    \vdots\\
+    \beta_0 + \beta_1x_{p1} + \cdots \beta_px_{pp} 
+    ) + \v{R} = \vb{X}\v{\beta} + \v{R}
+\end{align*}
+
+\subsubsection{Least Square Estimation}
+\begin{align*}
+    &\argmin_{\v\beta} \nsum{i=1}{n}(y_i - \vb{X}_i^T\v\beta)^2 = (\v y - \vb{X}\v\beta)(\v y - \vb{X}\v \beta)^T\\
+    &\pdv{\v\beta}(\v y - \vb{X}\v\beta)(\v y - \vb{X}\v \beta)^T = -2X^T\v{y} + 2(X^TX)\v\beta\\
+    &\hat{\v\beta} = (X^TX)^{-1}X^T\vec{y} \;\;,\;\; \tilde{\v\beta} = (X^TX)^{-1}X^T\vec{Y}\\
+    &\tilde{\sigma^2} = \frac{1}{n-p-1}\nsum{i=1}{n}\tilde{r_i^2}
+\end{align*}
+\subsection{Sampling Distribution of OLS}
+\begin{align*}
+    &\tilde{\beta} = (X^TX)^{-1}X^T\v{Y}\\
+    &\E(\tilde\beta) = \E((X^TX)^{-1}X^T\v{Y}) \\
+    &= (X^TX)^{-1}X^T\E(\v Y)\\
+    &= (X^TX)^{-1}X^TX\v\beta = \beta\\
+    &\Var(\tilde\beta) = \sigma^2(X^TX)^{-1}\\
+    &\tilde\beta \sim \MVN(\beta, \sigma^2(X^TX)^{-1}) \;\;,\;\; \tilde\beta_j \sim N(\beta_j, \Var(\tilde\beta_j))\\
+    &\frac{\nsum{i=1}{n}\tilde{r_i^2}}{\sigma^2} \sim \chi^2_{n-p-1}\\
+    &\E\left[\frac{\nsum{i=1}{n}\tilde{r_i^2}}{\sigma^2}\right] = n-p-1 \Rightarrow \E\left[\frac{1}{n-p-1}\nsum{i=1}{n}\tilde{r_i^2}\right] = \sigma^2
+\end{align*}
+\subsection{Fitted Values}
+\begin{align*}
+    \hat\mu = X\hat\beta = \underbrace{X(X^TX)^{-1}X^T}_{H}\v{Y}
+\end{align*}
+Let $H$ be the \textbf{Hat Matrix}.
+\begin{enumerate}[(1)]
+    \item $H$ is symmetric $H^T = H$
+    \item $H$ is idempotent $H = H^2$
+    \item $I-H$ is idempotent $(I-H) = (I-H)(I-H)$
+\end{enumerate}
+\begin{align*}
+    &\v r = \v y - \hat{\v\mu} = \v{y} - H\v{y} = (I-H)\v{y} \\
+    &\nsum{i=1}{n}\hat{r_i} = 0\\
+    &\nsum{i=1}{n}\hat{r_i}x_{ij} = 0\;,\; \vb{X}^T\hat{\v r} = \v{0}\\
+    &\nsum{i=1}{n}\hat{r_i}\hat\mu_i = 0
+\end{align*}
+Estimation of $\sigma^2$
+\begin{align*}
+    \tilde{\sigma^2} = \frac{1}{n - p - 1}\nsum{i=1}{n}\hat{r_i}
+\end{align*}
+\subsection{Inference in MLR}
+\subsubsection{Inference about $\beta_j$}
+\begin{align*}
+    &\tilde\beta_j \sim N(\beta_j, \sigma^2(X^TX)^{-1}_{jj})\\
+    &\frac{\tilde\beta_j - \beta_j}{\sqrt{\tilde{\sigma^2}(X^TX)^{-1}_{jj}}} \sim t_{n-p-1}\\
+    &\se(\tilde\beta_j) = \sqrt{\tilde{\sigma^2}(X^TX)^{-1}_{jj}}
+\end{align*}
+$(1-\alpha)100\%$ CI for $\tilde\beta_j$ is
+\[
+\hat{\beta}_j \pm t_{n-p-1}\left(1-\frac{\alpha}{2}\right)\se(\tilde\beta_j)
+\]
+$H_0: \beta_j = 0$ then the $t$ value is
+\[
+\abs{t} = \frac{\hat{\beta}_j - \beta_j}{\se(\tilde\beta_j)}
+\]
+\subsubsection{Inference about Mean Response}
+\begin{align*}
+    &\tilde\mu(c) = c^T\tilde{\v\beta}\\
+    &\tilde\mu(c) \sim N\left(c^T\v\beta, c^T\left[\sigma^2(X^TX)^{-1}\right] c\right)\\
+    &\frac{\tilde\mu(c) - \mu(c)}{\sqrt{c^T\left[\sigma^2(X^TX)^{-1}\right] c}} \sim t_{n-p-1}\\
+    &\se(\tilde\mu(c)) = \sqrt{c^T\left[\sigma^2(X^TX)^{-1}\right] c}
+\end{align*}
+$(1-\alpha)100\%$ CI for $\mu(c)$ is
+\[
+\hat{\mu}(c) \pm t_{n-p-1}\left(1-\frac{\alpha}{2}\right)\se(\tilde\mu(c))
+\]
+\subsubsection{Prediction Interval}
+\begin{align*}
+    &Y_p = c^T\v\beta + R_p\\
+    &\E[Y_p - \tilde{Y}_p] = 0\\
+    &\Var(Y_p - \tilde{Y}_p) = \sigma^2 + c^T\underbrace{\left[\sigma^2(X^TX)^{-1}\right]}_{\Var(\tilde{\beta})} c\\
+    &\se(Y_p - \tilde{Y}_p) = \sqrt{ \sigma^2 + c^T \Var(\tilde{\beta}) c}\\
+    &\frac{Y_p - \tilde{Y}_p}{\se(Y_p-\tilde{Y}_p)} \sim t_{n-p-1}
+\end{align*}
+$(1-\alpha)100\%$ Prediction Interval for $Y_p$ is
+\[
+\hat{Y}_p \pm t_{n-p-1}\left(1-\frac{\alpha}{2}\right)\se(Y_p - \tilde{Y}_p)
+\]
+\subsection{ANOVA in MLR}
+\scalebox{0.8}{
+\begin{tabular}{|l|l|l|l|}
+        \hline
+        Source   & \textbf{S}um of \textbf{S}quares & $d.f$ & \textbf{MS}\\ \hline
+        \textbf{M}odel    & $\nsum{i=1}{n}(\hat\mu_i - \bar{y})^2$   &  $p$   & $\frac{1}{p}\nsum{i=1}{n}(\hat\mu_i - \bar{y})^2$ \\ \hline
+        \textbf{R}esidual &  $\nsum{i=1}{n}\hat{r}_i^2$   & $(n-p-1)$   &  $\frac{1}{n-p-1}\nsum{i=1}{n}\hat{r}_i^2$    \\ \hline
+        \textbf{T}otal    &  $\nsum{i=1}{n}(y_i - \bar{y})^2$  & $(n-1)$     &  $\frac{1}{n-1}\nsum{i=1}{n}(y_i - \bar{y})^2$  \\ \hline
+\end{tabular}
+}
+
+$F$-test for Significance of Model. $H_0: \beta_0 = \beta_1 = \cdots = 0$, $H_a: \exists \beta_j \neq 0$.
+\begin{align*}
+    F = \frac{\mathrm{MMS}}{\mathrm{RMS}} = \frac{MSS/p}{RSS/(n-p-1)}
+\end{align*}
+If $H_0$ is true then $F\sim F_{p, n-p-1}$. $p-$value $= \P(F_{p, n-p-1} > F)$
+\subsection{Coefficient of Determination}
+\begin{align*}
+    &R^2 = 1 - \frac{RSS}{TSS} = \frac{MSS}{TSS}\\
+    &R^2_{\mathrm{adj}} = 1 - \frac{RMS}{TMS} = 1 - \frac{n-1}{n-p-1}(1-R^2)
+\end{align*}
+
+\subsection{Geometric Interpretation}
+\begin{align*}
+    &\vb{X} = \smqty[\mathbb{1}_n & \vb{X_1} & \cdots &\vb{X_p}]\;\;\v{\mu} = \vb{X}\v{\beta}
+\end{align*}
+Geometrically $\v{\mu} \in \Span(\mathbb{1}_n , \vb{X_1} , \ldots ,\vb{X_p}) = \Col(\vb{X})$. 
+
+We need to choose $\hat{\mu} \in \Col(\vb{X})$ such that $\hat{\mu}$ is the \textbf{closest} to observed $\vb{y}$. 
+
+%% Remove after test
+%\begin{center}
+%\includegraphics[scale=0.3]{figs/geo.png}
+%\end{center}
+The point which makes the residue vector $\hat{\v{r}} = y - \hat{y}$ the smallest is when it is perpendicular to $\Col(\vb{X})$. 
+\begin{align*}
+    &\hat{\v{r}}\perp\Col(\vb X)\\
+    \iff &X_j^T\hat{\v{r}} = 0 \;\; \iff  \vb{X}^T\hat{\v{r}} = \mathbb{0}_{p+1}\\
+    %&\norm{\v{y}}^2 = ||\hat{\v\mu}|| + ||\hat{\v r}||\\
+    %&\cos^2(\theta) = \frac{||\hat{\v\mu}||}{\norm{\v{y}}^2} = 1 - \frac{ ||\hat{\v r}||}{\norm{\v{y}}^2} = R^2
+    &\vb{X}^T\hat{\v{r}} = \mathbb{0}_{p+1} \;\;,\;\; \vb{X}^T(y - \vb{X}\hat\beta) = \mathbb{0}_{p+1}\\
+    %&\vb{X}^Ty = (\vb{X}^T\vb{X})\hat\beta\\
+    &\hat{\v{\beta}} = (\vb{X}^T\vb{X})^{-1}\vb{X}^Ty\\
+    &\hat{\v{\mu}} = \vb{X}\hat{\v{\beta}} = \vb{X}(\vb{X}^T\vb{X})^{-1}\vb{X}^Ty = \vb{H}y
+\end{align*}
+% $\vb{H}$ is an orthogonal projection matrix
+
+\textbf{Test General Linear Hypothesis}
+\begin{align*}
+    &C_{q \times (p + 1)}, \v{b}_{q\times 1}\\
+    &H_0: C\v\beta = \v{b}
+\end{align*}
+$C$ has a row rank of $q$. Each row  corresponds to a linear restriction on $\v\beta$
+\begin{align*}
+&C\tilde{\beta} \sim  \MVN(C\beta, \sigma^2 C(X^TX)^{-1}C^T)\\
+&(C\tilde{\beta} - C\beta)^T[\sigma^2 C(X^TX)^{-1}C^T]^{-1}(C\tilde{\beta} - C\beta) \sim \chi^2_q
+\end{align*}
+$F-$test for $H_0: C\v{\beta} = \v b$. If $H_0$ is true then
+\begin{align*}
+    &F =\frac{(C\tilde{\beta} - C\beta)^T[\sigma^2 C(X^TX)^{-1}C^T]^{-1}(C\tilde{\beta} - C\beta)}{q} \sim F_{q, n-p-1}
+\end{align*}
+$p-$value $\P(F_{q, n-p-1} > F)$. $q$ is the number of constraints/restrictions on $\v{\beta}$. 
+
+Restricted Sum of Squares: $RSS_{C}$ residual sum of squares for the restricted model under the linear constraints. We can write $F$ statistic as
+\begin{align*}
+    F = \frac{(RSS_C - RSS)/q}{RSS/(n-p-1)} \sim F_{q, n-p-1}
+\end{align*}
+
+\subsection{Model Diagnostic}
+\textbf{Assumptions in Linear Regression}
+\begin{itemize}
+    \item Linearity $\mu_i = \E(Y_i) = \beta_0 + \beta_1x_{i1} + \cdots + \beta_px_{ip}$
+    \item Independence $R_i$ are independent
+    \item Homoscedasticity: $\forall i \;\; \Var(R_i) = \sigma^2 $ (Equal varriance)
+    \item Normality: $R_i \sim N(0, \sigma^2)$
+\end{itemize}
+\subsection{Residual Plots}
+\begin{align*}
+    &\hat{r}_i = y_i - \hat{\mu}_i\\
+    &\hat{\v{r}}_i = \v{Y} - \tilde{\v{\mu}} = \v{Y} - X\tilde{\v{\beta}} = \v{Y} - H\v{Y} = (I-H)\v{Y}\\
+    &\v{R} \sim \MVN(\v{\mathbb{0}}, \sigma^2I) \Rightarrow \tilde{\v{r}} \sim \MVN(\v{\mathbb{0}}, \sigma^2(I - H))
+\end{align*}
+$\sigma^2(I - H)$ might not have non-zero non-diagonal entries. If $H$ is small relative to $I$ then $\tilde{\v{r}} \approx \v{R}$ and $ \tilde{\v{r}} \sim\approx \MVN(\v{\mathbb{0}}, \sigma^2I)$. $\hat{\Var}(\tilde{r}_i) = \sqrt{\hat{\sigma^2}(1 - h_{ii})}$. Where $h_ii$ is the $i-$th diagonal of $H$. 
+\begin{align*}
+&\text{Standardized Residuals: } \frac{\hat{r_i}}{\hat\sigma}\\
+&\text{Studentized Residuals: } \frac{\hat{r_i}}{\sqrt{\hat{\sigma^2}(1 - h_{ii})}}
+\end{align*}
+\textbf{Data Transformation}
+\begin{align*}
+    y_i^{(\lambda)} = \begin{cases}
+    \frac{y_i^\lambda - 1}{\lambda} & \lambda \neq 0 \\
+    \ln(y_i) & \lambda = 0
+    \end{cases} \tag{Box-Cox}
+\end{align*}
+
+\subsection{Weighted Least Squares}
+\begin{align*}
+    &Y_i = \v{x_i}^T\v{\beta} + R_i \\
+    &\E[R_i] = 0 \;,\; \Var(R_i) = \frac{\sigma^2}{w_i}\\
+    & w_iY_i =  \sqrt{w_i}\v{x_i}^T\v{\beta} + \sqrt{w_i}R_i\\
+    & R_i^* = \sqrt{w_i}R_i \;,\; \Var(R_i^*) = \sigma^2
+\end{align*}
+WLS is equivalent to regressing transformed $\sqrt{w_i}y_i$ on the transformed co-variates 
+$\sqrt{w_i}\v{x}_i$. Where $W$ needs to be known (or estimated).
+\begin{align*}
+    &W = \smqty(
+    \dmat{w_1, w_2, \ddots, w_n}
+    ) \tag{Weights}\\
+    &s(\v{\beta}) = \nsum{i=1}{n}\left(
+    \sqrt{w_i}y_i - \sqrt{w_i}\v{x}_i^T\v{\beta}
+    \right)^2 = (\v{y} - X\v{\beta})^TW(\v{y}-X\v{\beta})\\
+    &\pdv{s}{\v{\beta}} = -2X^TW(\v{y} - X\v{\beta})\\
+    &\hat{\beta}_{WLS} = (X^TWX)^{-1}X^TW\v{y}\\
+    &\Var{\tilde{\beta}_{WLS}} = (X^TWX)^{-1}X^TW\Var(\v{Y})WX(X^TWX)^{-1}\\
+    &\Var{\tilde{\beta}_{WLS}} = (X^TWX)^{-1} \text{ if $\Var(\v{Y}) = W^{-1}$ }\\
+    &\Var{\tilde{\beta}_{WLS}} = \sigma^2 (X^TWX)^{-1} \text{ if $\Var(\v{Y}) = \sigma^2 W^{-1}$ }\\
+    & \hat{\sigma}^2 = \frac{1}{n-p-1} \nsum{i=1}{n}w_i(y_i - \v{x}_i^T\hat{\beta}_{WLS})^2
+\end{align*}
+Computing weights:
+\begin{align*}
+    &\texttt{residfit = lm(abs(rstand.ols) $\sim$ muhat.ols)}\\
+    &\texttt{wts = 1/(fitted(residfit)\^\;2)}
+\end{align*}
+\textbf{Influential Points}
+\begin{align*}
+&\dv{\hat{\mu}_i}{y_i} = h_{ii} \text{ \textbf{leverage} of point $i$th observation}\\
+&\dv{\hat{\mu}_i}{\hat{r}_i} = \frac{h_{ii}}{1-h_{ii}} \text{ \textbf{elasticity} of point $i$th observation}\\
+&\nsum{i=1}{n}h_{ii} = \mathrm{trace}(H) = p \;,\; h_{\text{avg}} = \frac{p}{n}\\
+&d_i = \frac{\hat{r}_i}{1 - h_{ii}} \;,\; \frac{d_i}{\se(\tilde{d_i})} =  \frac{\hat{r}_i}{\sqrt{\hat{\sigma}^2_{(i)}1 - h_{ii}}} \tag{deleted residual}\\
+&D_i = \frac{\norm{\hat{\mu}^{(i)} - \hat{\mu}}}{\hat{\sigma}^2(p+1)} =  d_i^2\frac{h_i}{1-h_{ii}}\cdot\frac{1}{p+1} \tag{Cook's Distance}
+\end{align*}
+Variance Inflation Factors (VIF) $\mathrm{VIF}_{i} = \frac{1}{1-R^2_j}$. 
+\\
+\textbf{Model Selection}
+\begin{align*}
+&C_p = \frac{\mathrm{SSR}_p}{\sigma^2_{\mathrm{full}}} - n + 2(p+1) \tag{Mallow’s $C_p$}\\
+&\mathbf{AIC} = 2(p+1) - 2\ln(L(\hat{\theta})) \tag{Akaike’s IC}\\
+&\mathbf{AIC}_{\text{Gaussian}} = 2(p+1) - \frac{n}{2}\ln(\mathrm{SSR}) \\
+&\mathbf{BIC} = (p+1)\ln(n) - 2\ln(L(\hat{\theta})) \tag{Bayesian IC}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{multicols}
+
+\end{document}
+
